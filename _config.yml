@@ -7,7 +7,7 @@ title: SStar1314
 subtitle:
 description:
 author: Xia,MingXing
-language:
+language: zh-CN
 timezone:
 
 # URL
@@ -65,9 +65,20 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 theme: aloha
 
+sidebar:
+  bio: Software Developer
+  avater: /images/avatar.jpg
+  subtitle: 程序员
+  location: Xi'an
+  social:
+    github: https://github.com/SStar1314
+    weibo: None
+    twitter: None
+
+
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: http://sstar1314.github.io/KnowledgeRecord/
+  repo: https://github.com/SStar1314/KnowledgeRecord.git
   branch: master
