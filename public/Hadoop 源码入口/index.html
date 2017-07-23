@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>Hadoop 源码入口 | SStar1314</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="improt Hadoop源代码到Eclipse里面：  mvn clean install -DskipTests    mvn eclipse:eclipse -DdownloadSources -DdownloadJavadocs    Hadoop 源码入口这些是Hadoop 源码阅读的入口位置，可以通过这些main函数看进源码实现。 123456789101112131415161718">
+<meta name="keywords" content="Hadoop">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hadoop 源码入口">
+<meta property="og:url" content="http://yoursite.com/Hadoop 源码入口/index.html">
+<meta property="og:site_name" content="SStar1314">
+<meta property="og:description" content="improt Hadoop源代码到Eclipse里面：  mvn clean install -DskipTests    mvn eclipse:eclipse -DdownloadSources -DdownloadJavadocs    Hadoop 源码入口这些是Hadoop 源码阅读的入口位置，可以通过这些main函数看进源码实现。 123456789101112131415161718">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-07-19T06:30:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hadoop 源码入口">
+<meta name="twitter:description" content="improt Hadoop源代码到Eclipse里面：  mvn clean install -DskipTests    mvn eclipse:eclipse -DdownloadSources -DdownloadJavadocs    Hadoop 源码入口这些是Hadoop 源码阅读的入口位置，可以通过这些main函数看进源码实现。 123456789101112131415161718">
+  
+    <link rel="alternative" href="/atom.xml" title="SStar1314" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/favicon.ico" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Xia, MingXing</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">西安</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/archives">所有文章</a></li>
+	        
+				<li><a href="/categories">目录</a></li>
+	        
+				<li><a href="/tags">标签</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/SStar1314/" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+		        
+					<a class="rss" target="_blank" href="#" title="rss">rss</a>
+		        
+					<a class="mail" target="_blank" href="/xaxiamx@gmail.com" title="mail">mail</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Xia, MingXing</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/favicon.ico" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Xia, MingXing</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">西安</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories">目录</a></li>
+		        
+					<li><a href="/tags">标签</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/SStar1314/" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="mail" target="_blank" href="/xaxiamx@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-Hadoop 源码入口" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Hadoop 源码入口
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="improt-Hadoop源代码到Eclipse里面："><a href="#improt-Hadoop源代码到Eclipse里面：" class="headerlink" title="improt Hadoop源代码到Eclipse里面："></a>improt Hadoop源代码到Eclipse里面：</h3><ul>
+<li><ol>
+<li>mvn clean install -DskipTests</li>
+</ol>
+</li>
+<li><ol>
+<li>mvn eclipse:eclipse -DdownloadSources -DdownloadJavadocs</li>
+</ol>
+</li>
+</ul>
+<h2 id="Hadoop-源码入口"><a href="#Hadoop-源码入口" class="headerlink" title="Hadoop 源码入口"></a>Hadoop 源码入口</h2><p>这些是Hadoop 源码阅读的入口位置，可以通过这些main函数看进源码实现。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">Hadoop <span class="built_in">command</span>:</div><div class="line">    <span class="comment"># the core commands</span></div><div class="line">    <span class="keyword">if</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"fs"</span> ] ; <span class="keyword">then</span></div><div class="line">      CLASS=org.apache.hadoop.fs.FsShell</div><div class="line">    <span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"version"</span> ] ; <span class="keyword">then</span></div><div class="line">      CLASS=org.apache.hadoop.util.VersionInfo</div><div class="line">    <span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"jar"</span> ] ; <span class="keyword">then</span></div><div class="line">      CLASS=org.apache.hadoop.util.RunJar</div><div class="line">      <span class="keyword">if</span> [[ -n <span class="string">"<span class="variable">$&#123;YARN_OPTS&#125;</span>"</span> ]] || [[ -n <span class="string">"<span class="variable">$&#123;YARN_CLIENT_OPTS&#125;</span>"</span> ]]; <span class="keyword">then</span></div><div class="line">        <span class="built_in">echo</span> <span class="string">"WARNING: Use \"yarn jar\" to launch YARN applications."</span> 1&gt;&amp;2</div><div class="line">      <span class="keyword">fi</span></div><div class="line">    <span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"key"</span> ] ; <span class="keyword">then</span></div><div class="line">      CLASS=org.apache.hadoop.crypto.key.KeyShell</div><div class="line">    <span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"checknative"</span> ] ; <span class="keyword">then</span></div><div class="line">      CLASS=org.apache.hadoop.util.NativeLibraryChecker</div><div class="line">    <span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"distcp"</span> ] ; <span class="keyword">then</span></div><div class="line">      CLASS=org.apache.hadoop.tools.DistCp</div><div class="line">      CLASSPATH=<span class="variable">$&#123;CLASSPATH&#125;</span>:<span class="variable">$&#123;TOOL_PATH&#125;</span></div><div class="line">    <span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"daemonlog"</span> ] ; <span class="keyword">then</span></div><div class="line">      CLASS=org.apache.hadoop.log.LogLevel</div><div class="line">    <span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"archive"</span> ] ; <span class="keyword">then</span></div><div class="line">      CLASS=org.apache.hadoop.tools.HadoopArchives</div><div class="line">      CLASSPATH=<span class="variable">$&#123;CLASSPATH&#125;</span>:<span class="variable">$&#123;TOOL_PATH&#125;</span></div><div class="line">    <span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"credential"</span> ] ; <span class="keyword">then</span></div><div class="line">      CLASS=org.apache.hadoop.security.alias.CredentialShell</div><div class="line">    <span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"trace"</span> ] ; <span class="keyword">then</span></div><div class="line">      CLASS=org.apache.hadoop.tracing.TraceAdmin</div><div class="line">    <span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"classpath"</span> ] ; <span class="keyword">then</span></div><div class="line">      <span class="keyword">if</span> [ <span class="string">"<span class="variable">$#</span>"</span> -gt 1 ]; <span class="keyword">then</span></div><div class="line">        CLASS=org.apache.hadoop.util.Classpath</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line">Hdfs <span class="built_in">command</span>:</div><div class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"namenode"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=<span class="string">'org.apache.hadoop.hdfs.server.namenode.NameNode'</span></div><div class="line">  HADOOP_OPTS=<span class="string">"<span class="variable">$HADOOP_OPTS</span> <span class="variable">$HADOOP_NAMENODE_OPTS</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"zkfc"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=<span class="string">'org.apache.hadoop.hdfs.tools.DFSZKFailoverController'</span></div><div class="line">  HADOOP_OPTS=<span class="string">"<span class="variable">$HADOOP_OPTS</span> <span class="variable">$HADOOP_ZKFC_OPTS</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"secondarynamenode"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=<span class="string">'org.apache.hadoop.hdfs.server.namenode.SecondaryNameNode'</span></div><div class="line">  HADOOP_OPTS=<span class="string">"<span class="variable">$HADOOP_OPTS</span> <span class="variable">$HADOOP_SECONDARYNAMENODE_OPTS</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"datanode"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=<span class="string">'org.apache.hadoop.hdfs.server.datanode.DataNode'</span></div><div class="line">  <span class="keyword">if</span> [ <span class="string">"<span class="variable">$starting_secure_dn</span>"</span> = <span class="string">"true"</span> ]; <span class="keyword">then</span></div><div class="line">    HADOOP_OPTS=<span class="string">"<span class="variable">$HADOOP_OPTS</span> -jvm server <span class="variable">$HADOOP_DATANODE_OPTS</span>"</span></div><div class="line">  <span class="keyword">else</span></div><div class="line">    HADOOP_OPTS=<span class="string">"<span class="variable">$HADOOP_OPTS</span> -server <span class="variable">$HADOOP_DATANODE_OPTS</span>"</span></div><div class="line">  <span class="keyword">fi</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"journalnode"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=<span class="string">'org.apache.hadoop.hdfs.qjournal.server.JournalNode'</span></div><div class="line">  HADOOP_OPTS=<span class="string">"<span class="variable">$HADOOP_OPTS</span> <span class="variable">$HADOOP_JOURNALNODE_OPTS</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"dfs"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.fs.FsShell</div><div class="line">  HADOOP_OPTS=<span class="string">"<span class="variable">$HADOOP_OPTS</span> <span class="variable">$HADOOP_CLIENT_OPTS</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"dfsadmin"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.DFSAdmin</div><div class="line">  HADOOP_OPTS=<span class="string">"<span class="variable">$HADOOP_OPTS</span> <span class="variable">$HADOOP_CLIENT_OPTS</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"haadmin"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.DFSHAAdmin</div><div class="line">  CLASSPATH=<span class="variable">$&#123;CLASSPATH&#125;</span>:<span class="variable">$&#123;TOOL_PATH&#125;</span></div><div class="line">  HADOOP_OPTS=<span class="string">"<span class="variable">$HADOOP_OPTS</span> <span class="variable">$HADOOP_CLIENT_OPTS</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"fsck"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.DFSck</div><div class="line">  HADOOP_OPTS=<span class="string">"<span class="variable">$HADOOP_OPTS</span> <span class="variable">$HADOOP_CLIENT_OPTS</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"balancer"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.server.balancer.Balancer</div><div class="line">  HADOOP_OPTS=<span class="string">"<span class="variable">$HADOOP_OPTS</span> <span class="variable">$HADOOP_BALANCER_OPTS</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"mover"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.server.mover.Mover</div><div class="line">  HADOOP_OPTS=<span class="string">"<span class="variable">$&#123;HADOOP_OPTS&#125;</span> <span class="variable">$&#123;HADOOP_MOVER_OPTS&#125;</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"storagepolicies"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.StoragePolicyAdmin</div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"jmxget"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.JMXGet</div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"oiv"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.offlineImageViewer.OfflineImageViewerPB</div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"oiv_legacy"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.offlineImageViewer.OfflineImageViewer</div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"oev"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.offlineEditsViewer.OfflineEditsViewer</div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"fetchdt"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.DelegationTokenFetcher</div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"getconf"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.GetConf</div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"groups"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.GetGroups</div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"snapshotDiff"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.snapshot.SnapshotDiff</div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"lsSnapshottableDir"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.snapshot.LsSnapshottableDir</div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"portmap"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.portmap.Portmap</div><div class="line">  HADOOP_OPTS=<span class="string">"<span class="variable">$HADOOP_OPTS</span> <span class="variable">$HADOOP_PORTMAP_OPTS</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"nfs3"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.nfs.nfs3.Nfs3</div><div class="line">  HADOOP_OPTS=<span class="string">"<span class="variable">$HADOOP_OPTS</span> <span class="variable">$HADOOP_NFS3_OPTS</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"cacheadmin"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.CacheAdmin</div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"crypto"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.CryptoAdmin</div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"version"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.util.VersionInfo</div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"debug"</span> ]; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.DebugAdmin</div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"classpath"</span> ]; <span class="keyword">then</span></div><div class="line">  <span class="keyword">if</span> [ <span class="string">"<span class="variable">$#</span>"</span> -gt 0 ]; <span class="keyword">then</span></div><div class="line">    CLASS=org.apache.hadoop.util.Classpath</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">org.apache.hadoop.hdfs.server.datanode.SecureDataNodeStarter</div><div class="line">org.apache.hadoop.hdfs.nfs.nfs3.PrivilegedNfsGatewayStarter</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div></pre></td><td class="code"><pre><div class="line">Yarn:</div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"rmadmin"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=<span class="string">'org.apache.hadoop.yarn.client.cli.RMAdminCLI'</span></div><div class="line">  YARN_OPTS=<span class="string">"<span class="variable">$YARN_OPTS</span> <span class="variable">$YARN_CLIENT_OPTS</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"scmadmin"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=<span class="string">'org.apache.hadoop.yarn.client.SCMAdmin'</span></div><div class="line">  YARN_OPTS=<span class="string">"<span class="variable">$YARN_OPTS</span> <span class="variable">$YARN_CLIENT_OPTS</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"application"</span> ] ||</div><div class="line">     [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"applicationattempt"</span> ] ||</div><div class="line">     [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"container"</span> ]; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.yarn.client.cli.ApplicationCLI</div><div class="line">  YARN_OPTS=<span class="string">"<span class="variable">$YARN_OPTS</span> <span class="variable">$YARN_CLIENT_OPTS</span>"</span></div><div class="line">  <span class="built_in">set</span> -- <span class="variable">$COMMAND</span> <span class="variable">$@</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"node"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.yarn.client.cli.NodeCLI</div><div class="line">  YARN_OPTS=<span class="string">"<span class="variable">$YARN_OPTS</span> <span class="variable">$YARN_CLIENT_OPTS</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"queue"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.yarn.client.cli.QueueCLI</div><div class="line">  YARN_OPTS=<span class="string">"<span class="variable">$YARN_OPTS</span> <span class="variable">$YARN_CLIENT_OPTS</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"resourcemanager"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASSPATH=<span class="variable">$&#123;CLASSPATH&#125;</span>:<span class="variable">$YARN_CONF_DIR</span>/rm-config/log4j.properties</div><div class="line">  CLASS=<span class="string">'org.apache.hadoop.yarn.server.resourcemanager.ResourceManager’               main     —&gt; serviceInit —&gt; serviceStart</span></div><div class="line">  YARN_OPTS="$YARN_OPTS $YARN_RESOURCEMANAGER_OPTS"</div><div class="line">  if [ "$YARN_RESOURCEMANAGER_HEAPSIZE" != "" ]; then</div><div class="line">    JAVA_HEAP_MAX="-Xmx""$YARN_RESOURCEMANAGER_HEAPSIZE""m"</div><div class="line">  fi</div><div class="line">elif [ "$COMMAND" = "historyserver" ] ; then</div><div class="line">  echo "DEPRECATED: Use of this command to start the timeline server is deprecated." 1&gt;&amp;2</div><div class="line">  echo "Instead use the timelineserver command for it." 1&gt;&amp;2</div><div class="line">  CLASSPATH=$&#123;CLASSPATH&#125;:$YARN_CONF_DIR/ahs-config/log4j.properties</div><div class="line">  CLASS='org.apache.hadoop.yarn.server.applicationhistoryservice.ApplicationHistoryServer<span class="string">'</span></div><div class="line">  YARN_OPTS="$YARN_OPTS $YARN_HISTORYSERVER_OPTS"</div><div class="line">  if [ "$YARN_HISTORYSERVER_HEAPSIZE" != "" ]; then</div><div class="line">    JAVA_HEAP_MAX="-Xmx""$YARN_HISTORYSERVER_HEAPSIZE""m"</div><div class="line">  fi</div><div class="line">elif [ "$COMMAND" = "timelineserver" ] ; then</div><div class="line">  CLASSPATH=$&#123;CLASSPATH&#125;:$YARN_CONF_DIR/timelineserver-config/log4j.properties</div><div class="line">  CLASS='org.apache.hadoop.yarn.server.applicationhistoryservice.ApplicationHistoryServer<span class="string">'</span></div><div class="line">  YARN_OPTS="$YARN_OPTS $YARN_TIMELINESERVER_OPTS"</div><div class="line">  if [ "$YARN_TIMELINESERVER_HEAPSIZE" != "" ]; then</div><div class="line">    JAVA_HEAP_MAX="-Xmx""$YARN_TIMELINESERVER_HEAPSIZE""m"</div><div class="line">  fi</div><div class="line">elif [ "$COMMAND" = "sharedcachemanager" ] ; then</div><div class="line">  CLASSPATH=$&#123;CLASSPATH&#125;:$YARN_CONF_DIR/scm-config/log4j.properties</div><div class="line">  CLASS='org.apache.hadoop.yarn.server.sharedcachemanager.SharedCacheManager<span class="string">'</span></div><div class="line">  YARN_OPTS="$YARN_OPTS $YARN_SHAREDCACHEMANAGER_OPTS"</div><div class="line">  YARN_OPTS="$YARN_OPTS $YARN_SHAREDCACHEMANAGER_OPTS"</div><div class="line">  if [ "$YARN_SHAREDCACHEMANAGER_HEAPSIZE" != "" ]; then</div><div class="line">    JAVA_HEAP_MAX="-Xmx""$YARN_SHAREDCACHEMANAGER_HEAPSIZE""m"</div><div class="line">  fi</div><div class="line">elif [ "$COMMAND" = "nodemanager" ] ; then</div><div class="line">  CLASSPATH=$&#123;CLASSPATH&#125;:$YARN_CONF_DIR/nm-config/log4j.properties</div><div class="line">  CLASS='org.apache.hadoop.yarn.server.nodemanager.NodeManager<span class="string">'                      main     —&gt; serviceInit —&gt; serviceStart</span></div><div class="line">  YARN_OPTS="$YARN_OPTS -server $YARN_NODEMANAGER_OPTS"</div><div class="line">  if [ "$YARN_NODEMANAGER_HEAPSIZE" != "" ]; then</div><div class="line">    JAVA_HEAP_MAX="-Xmx""$YARN_NODEMANAGER_HEAPSIZE""m"</div><div class="line">  fi</div><div class="line">elif [ "$COMMAND" = "proxyserver" ] ; then</div><div class="line">  CLASS='org.apache.hadoop.yarn.server.webproxy.WebAppProxyServer<span class="string">'</span></div><div class="line">  YARN_OPTS="$YARN_OPTS $YARN_PROXYSERVER_OPTS"</div><div class="line">  if [ "$YARN_PROXYSERVER_HEAPSIZE" != "" ]; then</div><div class="line">    JAVA_HEAP_MAX="-Xmx""$YARN_PROXYSERVER_HEAPSIZE""m"</div><div class="line">  fi</div><div class="line">elif [ "$COMMAND" = "version" ] ; then</div><div class="line">  CLASS=org.apache.hadoop.util.VersionInfo</div><div class="line">  YARN_OPTS="$YARN_OPTS $YARN_CLIENT_OPTS"</div><div class="line">elif [ "$COMMAND" = "jar" ] ; then</div><div class="line">  CLASS=org.apache.hadoop.util.RunJar</div><div class="line">  YARN_OPTS="$YARN_OPTS $YARN_CLIENT_OPTS"</div><div class="line">elif [ "$COMMAND" = "logs" ] ; then</div><div class="line">  CLASS=org.apache.hadoop.yarn.client.cli.LogsCLI</div><div class="line">  YARN_OPTS="$YARN_OPTS $YARN_CLIENT_OPTS"</div><div class="line">elif [ "$COMMAND" = "daemonlog" ] ; then</div><div class="line">  CLASS=org.apache.hadoop.log.LogLevel</div><div class="line">  YARN_OPTS="$YARN_OPTS $YARN_CLIENT_OPTS"</div><div class="line">elif [ "$COMMAND" = "cluster" ] ; then</div><div class="line">  CLASS=org.apache.hadoop.yarn.client.cli.ClusterCLI</div><div class="line">  YARN_OPTS="$YARN_OPTS $YARN_CLIENT_OPTS"</div><div class="line">else</div><div class="line">  CLASS=$COMMAND</div><div class="line">fi</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/Hadoop 源码入口/" class="archive-article-date">
+  	<time datetime="2016-11-08T08:54:09.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-08</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/bigdata/">bigdata</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/HBase/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          HBase(非关系型分布式数据库)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Hadoop Yarn(待补充)/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hadoop Yarn(待补充)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 Xia, MingXing
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: false
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Kafka/" style="font-size: 12.5px;">Kafka</a> <a href="/tags/Libvirt/" style="font-size: 10px;">Libvirt</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/Linux-Networking-Internals/" style="font-size: 15px;">Linux Networking Internals</a> <a href="/tags/Linux-Source-Code/" style="font-size: 10px;">Linux Source Code</a> <a href="/tags/Linux-Special-File-System/" style="font-size: 10px;">Linux Special File System</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/QEMU/" style="font-size: 10px;">QEMU</a> <a href="/tags/Spark/" style="font-size: 15px;">Spark</a> <a href="/tags/ZooKeeper/" style="font-size: 12.5px;">ZooKeeper</a> <a href="/tags/etcd/" style="font-size: 10px;">etcd</a> <a href="/tags/kubernetes/" style="font-size: 10px;">kubernetes</a> <a href="/tags/lxc/" style="font-size: 10px;">lxc</a> <a href="/tags/lxcfs/" style="font-size: 10px;">lxcfs</a> <a href="/tags/介绍/" style="font-size: 10px;">介绍</a> <a href="/tags/分布式协同/" style="font-size: 10px;">分布式协同</a> <a href="/tags/大数据/" style="font-size: 17.5px;">大数据</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接1</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接2</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接3</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接4</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接5</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接6</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">平均每天保证几小时的学习时间，用一万小时定律激励自己</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

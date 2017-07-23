@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>Linux一些命令总结 | SStar1314</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="通过Sighup信号让Linux Daemon重新加载配置文件对于守护进程而言，一般情况下守护进程都是detach from shell，所以接受不到sighup信号，这个信号经常被用作 reload configuration左右。1kill  -s   SIGHUP  $pid Linux syslogLinux 系统中的主要log都在/var/log目录下：  /var/log/lastlo">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux一些命令总结">
+<meta property="og:url" content="http://yoursite.com/Linux奇形怪状的命令/index.html">
+<meta property="og:site_name" content="SStar1314">
+<meta property="og:description" content="通过Sighup信号让Linux Daemon重新加载配置文件对于守护进程而言，一般情况下守护进程都是detach from shell，所以接受不到sighup信号，这个信号经常被用作 reload configuration左右。1kill  -s   SIGHUP  $pid Linux syslogLinux 系统中的主要log都在/var/log目录下：  /var/log/lastlo">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-07-20T03:09:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux一些命令总结">
+<meta name="twitter:description" content="通过Sighup信号让Linux Daemon重新加载配置文件对于守护进程而言，一般情况下守护进程都是detach from shell，所以接受不到sighup信号，这个信号经常被用作 reload configuration左右。1kill  -s   SIGHUP  $pid Linux syslogLinux 系统中的主要log都在/var/log目录下：  /var/log/lastlo">
+  
+    <link rel="alternative" href="/atom.xml" title="SStar1314" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/favicon.ico" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Xia, MingXing</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">西安</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/archives">所有文章</a></li>
+	        
+				<li><a href="/categories">目录</a></li>
+	        
+				<li><a href="/tags">标签</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/SStar1314/" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+		        
+					<a class="rss" target="_blank" href="#" title="rss">rss</a>
+		        
+					<a class="mail" target="_blank" href="/xaxiamx@gmail.com" title="mail">mail</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Xia, MingXing</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/favicon.ico" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Xia, MingXing</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">西安</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories">目录</a></li>
+		        
+					<li><a href="/tags">标签</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/SStar1314/" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="mail" target="_blank" href="/xaxiamx@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-Linux奇形怪状的命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux一些命令总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="通过Sighup信号让Linux-Daemon重新加载配置文件"><a href="#通过Sighup信号让Linux-Daemon重新加载配置文件" class="headerlink" title="通过Sighup信号让Linux Daemon重新加载配置文件"></a>通过Sighup信号让Linux Daemon重新加载配置文件</h3><p>对于守护进程而言，一般情况下守护进程都是detach from shell，所以接受不到sighup信号，这个信号经常被用作 reload configuration左右。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">kill</span>  -s   SIGHUP  <span class="variable">$pid</span></div></pre></td></tr></table></figure></p>
+<h3 id="Linux-syslog"><a href="#Linux-syslog" class="headerlink" title="Linux syslog"></a>Linux syslog</h3><p>Linux 系统中的主要log都在/var/log目录下：</p>
+<ul>
+<li>/var/log/lastlog:  用户登录系统记录日志。</li>
+<li>/var/log/secure:  与Linux中身份验证相关的日志文件，比如：ssh。</li>
+<li>/var/log/messages:  是Linux中许多应用的首选日志文件。</li>
+<li>/var/log/maillog:  邮件相关。</li>
+<li>/var/log/cron:  计划任务日志， /etc/cron.d/sysstat。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">klogd  —dmesg               —&gt; /var/<span class="built_in">log</span>/dmesg</div><div class="line">syslogd                     —&gt; /ect/syslog.conf</div><div class="line">两个共同的配置文件 —&gt; /etc/sysconfig/syslog</div></pre></td></tr></table></figure>
+<p>redhat 中使用了   <strong>rsyslog</strong> 替代 syslog<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/etc/rsyslog.d/*</div></pre></td></tr></table></figure></p>
+<h3 id="Linux-tty-ttyS-pts-X-Window"><a href="#Linux-tty-ttyS-pts-X-Window" class="headerlink" title="Linux tty/ttyS/pts + X-Window"></a>Linux tty/ttyS/pts + X-Window</h3><ul>
+<li>tty：是串口的终端模拟器，模拟鼠标／键盘／显示器等设备。</li>
+<li>ttyS：Linux下的真正的串口。</li>
+<li>pts：虚拟的设备终端，由application（如：X-window，SSH）动态创建。 (X-window中的终端模拟器Teminal 也会创建相应的pts/#)</li>
+<li>X-window： 是Linux的图形界面application。</li>
+</ul>
+<p>w: 显示当前所有的登录用户</p>
+<p>多登陆端口通信：  （pts/1向pts/0发送消息）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">__pts/1:__  <span class="built_in">echo</span>  aaaaaaaaa  &gt;  /dev/pts/0</div><div class="line">__pts/0:__  aaaaaaaaa</div></pre></td></tr></table></figure></p>
+<ul>
+<li>Alt＋F7: 打开第一个X-window窗口，Alt+F8 打开第二个</li>
+<li>Linux启动的时候，会首先打开6个tty串口模拟器(Alt + F1-6) +++++ 1个X-window application(Alt + F7)。</li>
+<li>startx: 启动X-window命令。   startx –:1 (打开第二个X-window)     startx –:2 (打开第三个X-window)         这个命令在pts虚拟终端中无法运行。</li>
+<li>skill -9 pts/2  让另一个控制台的人掉线。</li>
+</ul>
+<p>vim /etc/inittab     可以减少默认启动的tty个数！！！！</p>
+<h3 id="Linux-打包及压缩工具"><a href="#Linux-打包及压缩工具" class="headerlink" title="Linux 打包及压缩工具"></a>Linux 打包及压缩工具</h3><p><strong>compress/uncompress</strong>     最古老的Unix压缩工具<br><strong>gzip/gunzip</strong>          最广泛的压缩工具，Linux系统中标准压缩工具，对于文本文件能够达到很高压缩率<br><strong>bzip2/bunzip2</strong>     新版Linux压缩工具，比gzip拥有更高的压缩率<br><strong>tar</strong> 打包(备份)作用，参数：</p>
+<ul>
+<li>-c:  将文件备份create</li>
+<li>-v:  将过程输出verbose</li>
+<li>-x:  从一个文件中解出备份extract</li>
+<li>-r:  将文件添加入已经存在的文件中</li>
+<li>-C: 解出备份指向位置</li>
+<li>-z:  gzip压缩</li>
+<li>-j:  bzip2压缩<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar xvf/xvf/rvf</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Linux-文件类型-7种-查询inode的命令"><a href="#Linux-文件类型-7种-查询inode的命令" class="headerlink" title="Linux 文件类型(7种) + 查询inode的命令"></a>Linux 文件类型(7种) + 查询inode的命令</h3><p>Linux 下文件类型共有7种：<br>“-“     文件<br>d     文件夹<br>l     链接<br>b     block<br>c     char字符设备<br>s     socket文件<br>p     protocol网络文件</p>
+<p>文件分为三个部分进行存储：(目录文件中存储文件名)<br>1.存储文件名(指向inode号)   —&gt;   2.inode(指向块存储单元)   —&gt;  3.block (4k为单位)</p>
+<p>inode 存储文件的属性，  可以用 <strong>stat</strong> 命令查看文件inode的内容。</p>
+<h3 id="Linux-文件命令"><a href="#Linux-文件命令" class="headerlink" title="Linux 文件命令"></a>Linux 文件命令</h3><p>文本文件的操作命令：</p>
+<ul>
+<li>cat： 查看文件内容</li>
+<li>more： 逐屏查看文件内容</li>
+<li>less： 逐行查看文件内容</li>
+<li>head：显示文件开头部分内容</li>
+<li>tail： 显示文件结尾部分内容</li>
+<li>diff： 报告文件差异</li>
+<li>uniq： 去除文件中的相邻的重复行</li>
+<li>cut： 只显示文件中的某一行                         cut -d: -f1  /etc/passwd</li>
+<li>sort：按序重排文本                                sort  -t:  +2  -n  /etc/passwd</li>
+<li><p>wc： 统计文件的行，词，字数</p>
+</li>
+<li><p>which  ls     :   查找命令,  查找 $PATH 路径中的文件</p>
+</li>
+<li>whereis  ls  :   可以查找命令及相应的man文件, 查找 $PATH 和 $MANPATH 路径</li>
+<li><p>locate  ls :      查找所有匹配ls字母的文件，  注意!!!  locate 命令从数据库中查找文件，而不是直接查找系统文件，数据库位置为/var/lib/slocate/slocate.db.        当数据库没有更新的时候，可能会查找不到。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">yum install mlocate     !!!                   </div><div class="line">updatedb 更新locate 的数据库                   </div><div class="line">/etc/cron.daily/mlocate 每天有定时更新数据库的任务</div></pre></td></tr></table></figure>
+</li>
+<li><p>find</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">find  .  -iname  “xxx”  -ok   file  &#123;&#125;  \;        交互执行file命令</div><div class="line">find  .  -iname  “xxx”  -<span class="built_in">exec</span>   file  &#123;&#125;  \;      直接执行file命令</div></pre></td></tr></table></figure>
+<ul>
+<li>grep</li>
+</ul>
+<h3 id="Linux-系统服务启动-readhat6-x的init程序-readhat7之后的systemd之后的并非如此"><a href="#Linux-系统服务启动-readhat6-x的init程序-readhat7之后的systemd之后的并非如此" class="headerlink" title="Linux 系统服务启动(readhat6.x的init程序, readhat7之后的systemd之后的并非如此)"></a>Linux 系统服务启动(readhat6.x的init程序, readhat7之后的systemd之后的并非如此)</h3><p>系统服务启动顺序：<br>|-/etc/inittab                    总的配置文件<br>|—–/etc/rc.d/rc.sysinit                    系统初始化文件, 加载许多内容<br>————fsck.ext3   mount  -o  rw.remount   /dev/sda2  /<br>————mount  -a  /etc/fstab<br>|—–/etc/rc.d/rcX.d/*                    X为系统运行级别<br>|———-/etc/rc.d/rcX.d/ServiceXXX1  start               用户定义自启动的service<br>|———-/etc/rc.d/rcX.d/ServiceXXX2  start<br>|—–/etc/rc.d/rc.local          最后访问的文件<br>|<br>|-minigetty   启动   /dev/tty1-6                                   启动tty<br>|———-login    —&gt;  bash     —&gt;  /etc/profile     ~/.bash_profile<br>|-gdm               监控进程是否死掉，重启进程</p>
+<ul>
+<li>respawn          监控tty进程是否死掉，如果死掉会重启tty进程    respawn与init进程共同死，共同活</li>
+<li>chkconfig  service  on/off –level X    将service 启动/关闭 脚本 加入/删除 到/etc/rc.d/rcX.d 目录下</li>
+<li>加入到rcX.d 目录之后，可以用        service  Sname   start/stop/restart      来控制service</li>
+</ul>
+<h3 id="Linux-一些命令"><a href="#Linux-一些命令" class="headerlink" title="Linux 一些命令"></a>Linux 一些命令</h3><p>shutdown -h now／init 0 ／ halt  -p -f ／ poweroff： 关机<br>users： 显示当前系统登录的用户<br>who： 当前登录在本机的用户及来源<br>w： 当前登录本机的用户及运行的程序<br>write： 给当前联机的用户发消息<br>wall： 给所有登录在本机的用户广播消息<br>last： 查看用户的登录日志<br>lastlog： 查看每个用户最后登录的情况<br>finger： 查看用户信息</p>
+<h3 id="Linux-网络"><a href="#Linux-网络" class="headerlink" title="Linux 网络"></a>Linux 网络</h3><p><strong>ping -s 1024  www.baidu.com</strong>          -s 可以指定测试包的大小，用于测试不同包大小的带宽。<br><strong>ab -n 1000 -c 1000  www.baidu.com</strong>         ab为 linux压力测试的命令，模拟1000个端口，进行总共1000次请求          (Apache HTTP server benchmarking tool)<br><strong>traceroute  www.baidu.com</strong>                    查询整个转发路径上的访问结点的掉包率<br><strong>mtr  www.baidu.com</strong>                    查看通路的掉包率<br><strong>arping</strong>  查询哪个机器网卡ip地址是多少</p>
+<p><strong>top</strong><br><strong>vmstat</strong>          (Report virtual memory statistics)<br><strong>netstat</strong>          (Print network connections, routing tables, interface statistics, masquerade connections, and multicast memberships)<br><strong>netstat</strong> 查看tcp连接时, 如果<br>ESTABLISHED特别多              <strong>CC(Challenge Collapsar)</strong> 攻击, 建立链接攻击<br>ESTABLISHED很少,LISTEN很多     <strong>DDOS</strong> 攻击  sync-flood(泛滥攻击)</p>
+<p>抓包工具：</p>
+<ul>
+<li>iptraf</li>
+<li>tcpdump</li>
+<li>wireshark</li>
+</ul>
+<h3 id="Linux-网络内核参数修改"><a href="#Linux-网络内核参数修改" class="headerlink" title="Linux 网络内核参数修改"></a>Linux 网络内核参数修改</h3><p>Linux 内核内核参数：<br>位于 /proc/sys 目录下, 修改内核参数：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> 1 &gt; /proc/sys/net/ipv4/icmp_echo_ignore_all</div><div class="line">sysctl  -w  net.ipv4.icmp_echo_ignore_all=1</div><div class="line">sysctl  -p  <span class="variable">$file</span>     load config from file</div></pre></td></tr></table></figure></p>
+<p>输出内核参数：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sysctl  -a  &gt; /tmp/sysctl.output</div></pre></td></tr></table></figure></p>
+<p>从文件中读入内核参数：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sysctl  -f   /tmp/sysctl.output  -p</div></pre></td></tr></table></figure></p>
+<h3 id="rpm包管理"><a href="#rpm包管理" class="headerlink" title="rpm包管理"></a>rpm包管理</h3><ul>
+<li><p>解压rpm包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm2cpio *.rpm | cpio -div</div></pre></td></tr></table></figure>
+</li>
+<li><p>查询rpm包里面内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@vmenable core]<span class="comment"># rpm -qpl *.rpm</span></div><div class="line">/etc/*-release</div><div class="line">/opt/*/swidtag</div><div class="line">/opt/*/swidtag/*.swidtag</div></pre></td></tr></table></figure>
+</li>
+<li><p>查询rpm包里面的install/uninstall script</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@vmenable core]<span class="comment"># rpm -qpl   *.x86_64.rpm  --scripts</span></div><div class="line">preinstall scriptlet (using /bin/sh):</div><div class="line">postinstall scriptlet (using /bin/sh):</div><div class="line">preuninstall program: /bin/sh</div><div class="line">postuninstall scriptlet (using /bin/sh):</div></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/Linux奇形怪状的命令/" class="archive-article-date">
+  	<time datetime="2017-07-19T13:28:39.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-07-19</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/Linux/">Linux</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/Linux Kickstart Install/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Linux Kickstart Install(无人值守安装)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/categories/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">目录</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 Xia, MingXing
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: false
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Kafka/" style="font-size: 12.5px;">Kafka</a> <a href="/tags/Libvirt/" style="font-size: 10px;">Libvirt</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/Linux-Networking-Internals/" style="font-size: 15px;">Linux Networking Internals</a> <a href="/tags/Linux-Source-Code/" style="font-size: 10px;">Linux Source Code</a> <a href="/tags/Linux-Special-File-System/" style="font-size: 10px;">Linux Special File System</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/QEMU/" style="font-size: 10px;">QEMU</a> <a href="/tags/Spark/" style="font-size: 15px;">Spark</a> <a href="/tags/ZooKeeper/" style="font-size: 12.5px;">ZooKeeper</a> <a href="/tags/etcd/" style="font-size: 10px;">etcd</a> <a href="/tags/kubernetes/" style="font-size: 10px;">kubernetes</a> <a href="/tags/lxc/" style="font-size: 10px;">lxc</a> <a href="/tags/lxcfs/" style="font-size: 10px;">lxcfs</a> <a href="/tags/介绍/" style="font-size: 10px;">介绍</a> <a href="/tags/分布式协同/" style="font-size: 10px;">分布式协同</a> <a href="/tags/大数据/" style="font-size: 17.5px;">大数据</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接1</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接2</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接3</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接4</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接5</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接6</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">平均每天保证几小时的学习时间，用一万小时定律激励自己</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

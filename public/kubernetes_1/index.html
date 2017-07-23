@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>kubernetes | SStar1314</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="KubernetesKubernetes组件功能介绍： kube-apiserver：作为kubernetes系统的入口，封装了核心对象的增删改查操作，以RESTFul接口方式提供给外部客户和内部组件调用。它维护的REST对象将持久化到etcd（一个分布式强一致性的key/value存储）。 kube-scheduler：负责集群的资源调度，为新建的pod分配机器。这部分工作分出来变成一个组件，意">
+<meta name="keywords" content="kubernetes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kubernetes">
+<meta property="og:url" content="http://yoursite.com/kubernetes_1/index.html">
+<meta property="og:site_name" content="SStar1314">
+<meta property="og:description" content="KubernetesKubernetes组件功能介绍： kube-apiserver：作为kubernetes系统的入口，封装了核心对象的增删改查操作，以RESTFul接口方式提供给外部客户和内部组件调用。它维护的REST对象将持久化到etcd（一个分布式强一致性的key/value存储）。 kube-scheduler：负责集群的资源调度，为新建的pod分配机器。这部分工作分出来变成一个组件，意">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-07-22T09:41:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="kubernetes">
+<meta name="twitter:description" content="KubernetesKubernetes组件功能介绍： kube-apiserver：作为kubernetes系统的入口，封装了核心对象的增删改查操作，以RESTFul接口方式提供给外部客户和内部组件调用。它维护的REST对象将持久化到etcd（一个分布式强一致性的key/value存储）。 kube-scheduler：负责集群的资源调度，为新建的pod分配机器。这部分工作分出来变成一个组件，意">
+  
+    <link rel="alternative" href="/atom.xml" title="SStar1314" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/favicon.ico" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Xia, MingXing</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">西安</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/archives">所有文章</a></li>
+	        
+				<li><a href="/categories">目录</a></li>
+	        
+				<li><a href="/tags">标签</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/SStar1314/" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+		        
+					<a class="rss" target="_blank" href="#" title="rss">rss</a>
+		        
+					<a class="mail" target="_blank" href="/xaxiamx@gmail.com" title="mail">mail</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Xia, MingXing</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/favicon.ico" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Xia, MingXing</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">西安</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories">目录</a></li>
+		        
+					<li><a href="/tags">标签</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/SStar1314/" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="mail" target="_blank" href="/xaxiamx@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-kubernetes_1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      kubernetes
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Kubernetes"><a href="#Kubernetes" class="headerlink" title="Kubernetes"></a>Kubernetes</h2><h3 id="Kubernetes组件功能介绍："><a href="#Kubernetes组件功能介绍：" class="headerlink" title="Kubernetes组件功能介绍："></a>Kubernetes组件功能介绍：</h3><ul>
+<li>kube-apiserver：作为kubernetes系统的入口，封装了核心对象的增删改查操作，以RESTFul接口方式提供给外部客户和内部组件调用。它维护的REST对象将持久化到etcd（一个分布式强一致性的key/value存储）。</li>
+<li>kube-scheduler：负责集群的资源调度，为新建的pod分配机器。这部分工作分出来变成一个组件，意味着可以很方便地替换成其他的调度器。</li>
+<li><p>kube-controller-manager：负责执行各种控制器，目前有两类：</p>
+<ul>
+<li>endpoint-controller：定期关联service和pod(关联信息由endpoint对象维护)，保证service到pod的映射总是最新的。</li>
+<li>replication-controller：定期关联replicationController和pod，保证replicationController定义的复制数量与实际运行pod的数量总是一致的。</li>
+</ul>
+</li>
+<li>kube-proxy：负责为pod提供代理。它会定期从etcd获取所有的service，并根据service信息创建代理。当某个客户pod要访问其他pod时，访问请求会经过本机proxy做转发。</li>
+<li>kubelet：负责管控docker容器，如启动/停止、监控运行状态等。它会定期从etcd获取分配到本机的pod，并根据pod信息启动或停止相应的容器。同时，它也会接收apiserver的HTTP请求，汇报pod的运行状态。</li>
+</ul>
+<h3 id="Kubernetes安装过程中注意事项："><a href="#Kubernetes安装过程中注意事项：" class="headerlink" title="Kubernetes安装过程中注意事项："></a>Kubernetes安装过程中注意事项：</h3><p>1.Kubernetes解压之后，进入kubernetes/server目录下，再次解压kubernetes-server-linux-amd64.tar.gz文件，再进入kubernetes/server/kubernetes/server/bin目录下，才能发现kubernetes对应的很多命令。<br>2.命令list：<br>Master：<br>./etcd &gt; /var/log/etcd.log 2&gt;&amp;1 &amp;<br>./kube-apiserver  –insecure-bind-address=9.21.62.27 –insecure-port=8080 –service-cluster-ip-range=172.17.0.0/16 –etcd_servers=<a href="http://127.0.0.1:4001" target="_blank" rel="external">http://127.0.0.1:4001</a> –logtostderr=true –v=0 –log_dir=/home/kubernetes/logs/kube</p>
+<p>./kube-controller-manager –v=0 –logtostderr=false –log_dir=/var/log/kube  –master=9.21.62.27:8080<br>./kube-scheduler  –master=’9.21.62.27:8080’   –v=0    –log_dir=/var/log/kube<br>Slave:<br>./kube-proxy  –logtostderr=false    –v=0     –master=<a href="http://9.21.62.27:8080" target="_blank" rel="external">http://9.21.62.27:8080</a><br>./kubelet  –logtostderr=false –v=0 –allow-privileged=false  –log_dir=/var/log/kube  –address=0.0.0.0  –port=10250 –hostname_override=172.30.13.0  –api_servers=<a href="http://9.21.62.27:8080" target="_blank" rel="external">http://9.21.62.27:8080</a><br>Test: ./kubectl -s <a href="http://9.21.62.27:8080" target="_blank" rel="external">http://9.21.62.27:8080</a> get services</p>
+<p>创建kubernetes Dashboard：./kubectl -s <a href="http://9.21.62.27:8080" target="_blank" rel="external">http://9.21.62.27:8080</a> create -f ../../../../cluster/addons/dashboard/dashboard-service.yaml  –namespace=kube-system<br>访问地址为： <a href="http://9.21.62.27:8080/api/v1/proxy/namespaces/kube-system/services/kubernetes-dashboard/#/dashboard/" target="_blank" rel="external">http://9.21.62.27:8080/api/v1/proxy/namespaces/kube-system/services/kubernetes-dashboard/#/dashboard/</a></p>
+<p>基于influxdb,grafana,heapster创建日志分析性能监控：  ./kubectl -s <a href="http://9.21.62.27:8080" target="_blank" rel="external">http://9.21.62.27:8080</a> create -f ../../../../../kubernetes/cluster/addons/cluster-monitoring/influxdb/</p>
+<p>显示cluster-info信息：<br>./kubectl -s <a href="http://9.21.62.27:8080" target="_blank" rel="external">http://9.21.62.27:8080</a> –namespace=”kube-system”   cluster-info<br>Kubernetes master is running at <a href="http://9.21.62.27:8080" target="_blank" rel="external">http://9.21.62.27:8080</a><br>Heapster is running at <a href="http://9.21.62.27:8080/api/v1/proxy/namespaces/kube-system/services/heapster" target="_blank" rel="external">http://9.21.62.27:8080/api/v1/proxy/namespaces/kube-system/services/heapster</a><br>Grafana is running at <a href="http://9.21.62.27:8080/api/v1/proxy/namespaces/kube-system/services/monitoring-grafana" target="_blank" rel="external">http://9.21.62.27:8080/api/v1/proxy/namespaces/kube-system/services/monitoring-grafana</a><br>InfluxDB is running at <a href="http://9.21.62.27:8080/api/v1/proxy/namespaces/kube-system/services/monitoring-influxdb" target="_blank" rel="external">http://9.21.62.27:8080/api/v1/proxy/namespaces/kube-system/services/monitoring-influxdb</a></p>
+<h2 id="Kubernetes安装："><a href="#Kubernetes安装：" class="headerlink" title="Kubernetes安装："></a>Kubernetes安装：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">cmd/kube-dns</div><div class="line">cmd/kube-proxy</div><div class="line">cmd/kube-apiserver</div><div class="line">cmd/kube-controller-manager</div><div class="line">cmd/kubelet</div><div class="line">cmd/kubeadm</div><div class="line">cmd/hyperkube</div><div class="line">cmd/kube-discovery</div><div class="line">plugin/cmd/kube-scheduler</div></pre></td></tr></table></figure>
+<h3 id="方式一：-通过Docker在本地来安装Kubernetes-Single-node-Kubernetes-cluster-using-Docker"><a href="#方式一：-通过Docker在本地来安装Kubernetes-Single-node-Kubernetes-cluster-using-Docker" class="headerlink" title="方式一：  通过Docker在本地来安装Kubernetes, Single node Kubernetes cluster using Docker."></a>方式一：  通过Docker在本地来安装Kubernetes, Single node Kubernetes cluster using Docker.</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> K8S_VERSION=$(curl -sS https://storage.googleapis.com/kubernetes-release/release/stable.txt)</div><div class="line"><span class="built_in">export</span> ARCH=amd64</div><div class="line">docker run -d \</div><div class="line">    --volume=/:/rootfs:ro \</div><div class="line">    --volume=/sys:/sys:rw \</div><div class="line">    --volume=/var/lib/docker/:/var/lib/docker:rw \</div><div class="line">    --volume=/var/lib/kubelet/:/var/lib/kubelet:rw \</div><div class="line">    --volume=/var/run:/var/run:rw \</div><div class="line">    --net=host \</div><div class="line">    --pid=host \</div><div class="line">    --privileged \</div><div class="line">    gcr.io/google_containers/hyperkube-<span class="variable">$&#123;ARCH&#125;</span>:<span class="variable">$&#123;K8S_VERSION&#125;</span> \</div><div class="line">    /hyperkube kubelet \</div><div class="line">        --containerized \</div><div class="line">        --hostname-override=127.0.0.1 \</div><div class="line">        --api-servers=http://localhost:8080 \</div><div class="line">        --config=/etc/kubernetes/manifests \</div><div class="line">        --allow-privileged --v=2</div></pre></td></tr></table></figure>
+<p>安装kubectl：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">curl -sSL <span class="string">"http://storage.googleapis.com/kubernetes-release/release/v1.2.0/bin/linux/amd64/kubectl"</span> &gt; /usr/bin/kubectl</div><div class="line">chmod +x /usr/bin/kubectl</div></pre></td></tr></table></figure></p>
+<p>通过kubectl来配置本地kubernetes cluster：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">kubectl config <span class="built_in">set</span>-cluster <span class="built_in">test</span>-doc --server=http://localhost:8080</div><div class="line">kubectl config <span class="built_in">set</span>-context <span class="built_in">test</span>-doc --cluster=<span class="built_in">test</span>-doc</div><div class="line">kubectl config use-context <span class="built_in">test</span>-doc</div></pre></td></tr></table></figure></p>
+<p>Test本地Cluster：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">kubectl get nodes</div><div class="line">Run an application：</div><div class="line">kubectl run nginx --image=nginx --port=80</div></pre></td></tr></table></figure></p>
+<h3 id="方式二：通过Minikube在本地创建Kubernetes-Cluster"><a href="#方式二：通过Minikube在本地创建Kubernetes-Cluster" class="headerlink" title="方式二：通过Minikube在本地创建Kubernetes Cluster"></a>方式二：通过Minikube在本地创建Kubernetes Cluster</h3><ol>
+<li>机器必须支持虚拟化：<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /proc/cpuinfo | grep <span class="string">'vmx\|svm'</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>2.需要安装VirtualBox环境：<br>ubuntu14.04:   wget <a href="http://download.virtualbox.org/virtualbox/5.0.22/virtualbox-5.0_5.0.22-108108~Ubuntu~trusty_amd64.deb" target="_blank" rel="external">http://download.virtualbox.org/virtualbox/5.0.22/virtualbox-5.0_5.0.22-108108~Ubuntu~trusty_amd64.deb</a><br>Redhat 7.1: wget <a href="http://download.virtualbox.org/virtualbox/5.0.22/VirtualBox-5.0-5.0.22_108108_el7-1.x86_64.rpm" target="_blank" rel="external">http://download.virtualbox.org/virtualbox/5.0.22/VirtualBox-5.0-5.0.22_108108_el7-1.x86_64.rpm</a><br>3.本地利用virtualbox搭建Kubernetes Cluster：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">minikube start</div><div class="line">kubectl get pods --all-namespaces</div><div class="line">minikube dashboard</div></pre></td></tr></table></figure></p>
+<p>4.Test 搭建的环境：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kubectl get nodes</div></pre></td></tr></table></figure></p>
+<h3 id="方式三：Installation-Kubernetes-Locally-with-No-VM："><a href="#方式三：Installation-Kubernetes-Locally-with-No-VM：" class="headerlink" title="方式三：Installation Kubernetes Locally with No VM："></a>方式三：Installation Kubernetes Locally with No VM：</h3><p>Requirements:<br>Docker 1.8.3+ : <a href="https://docs.docker.com/engine/installation/#installation" target="_blank" rel="external">https://docs.docker.com/engine/installation/#installation</a><br>etcd : <a href="https://github.com/coreos/etcd/releases" target="_blank" rel="external">https://github.com/coreos/etcd/releases</a><br>go : <a href="https://golang.org/doc/install" target="_blank" rel="external">https://golang.org/doc/install</a></p>
+<p>etcd安装与Test：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">curl -L  https://github.com/coreos/etcd/releases/download/v2.3.7/etcd-v2.3.7-linux-amd64.tar.gz -o etcd-v2.3.7-linux-amd64.tar.gz</div><div class="line">tar xzvf etcd-v2.3.7-linux-amd64.tar.gz</div><div class="line"><span class="built_in">cd</span> etcd-v2.3.7-linux-amd64</div><div class="line">./etcd</div></pre></td></tr></table></figure></p>
+<p>Open another terminal:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">./etcdctl <span class="built_in">set</span> mykey <span class="string">"this is awesome"</span></div><div class="line">./etcdctl get mykey</div><div class="line"></div><div class="line">docker run --name etcd quay.io/coreos/etcd:v2.3.7</div><div class="line">docker <span class="built_in">exec</span> etcd /etcdctl <span class="built_in">set</span> foo bar</div><div class="line"></div><div class="line">rkt run --volume data-dir,kind=host,<span class="built_in">source</span>=/tmp --mds-register=<span class="literal">false</span> coreos.com/etcd:v2.3.7</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/kubernetes_1/" class="archive-article-date">
+  	<time datetime="2017-07-22T09:27:18.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-07-22</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kubernetes/">kubernetes</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/容器技术/">容器技术</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/mesos_installation/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Mesos
+        
+      </div>
+    </a>
+  
+  
+    <a href="/docker_1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Docker</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 Xia, MingXing
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: false
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Kafka/" style="font-size: 12.5px;">Kafka</a> <a href="/tags/Libvirt/" style="font-size: 10px;">Libvirt</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/Linux-Networking-Internals/" style="font-size: 15px;">Linux Networking Internals</a> <a href="/tags/Linux-Source-Code/" style="font-size: 10px;">Linux Source Code</a> <a href="/tags/Linux-Special-File-System/" style="font-size: 10px;">Linux Special File System</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/QEMU/" style="font-size: 10px;">QEMU</a> <a href="/tags/Spark/" style="font-size: 15px;">Spark</a> <a href="/tags/ZooKeeper/" style="font-size: 12.5px;">ZooKeeper</a> <a href="/tags/etcd/" style="font-size: 10px;">etcd</a> <a href="/tags/kubernetes/" style="font-size: 10px;">kubernetes</a> <a href="/tags/lxc/" style="font-size: 10px;">lxc</a> <a href="/tags/lxcfs/" style="font-size: 10px;">lxcfs</a> <a href="/tags/介绍/" style="font-size: 10px;">介绍</a> <a href="/tags/分布式协同/" style="font-size: 10px;">分布式协同</a> <a href="/tags/大数据/" style="font-size: 17.5px;">大数据</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接1</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接2</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接3</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接4</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接5</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接6</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">平均每天保证几小时的学习时间，用一万小时定律激励自己</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

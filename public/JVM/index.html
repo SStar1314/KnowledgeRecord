@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>JVM 源码阅读(OpenJDK8) | SStar1314</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Java 启动执行的源代码跟踪(OpenJDK8)main.c —&amp;gt; java.c(JLI_Launch函数) 文件:12345678910111213141516171819202122232425262728293031323334353637383940411. CreateExecutionEnvironment    ==&amp;gt;    GetJREPath   +   GetJV">
+<meta name="keywords" content="JVM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM 源码阅读(OpenJDK8)">
+<meta property="og:url" content="http://yoursite.com/JVM/index.html">
+<meta property="og:site_name" content="SStar1314">
+<meta property="og:description" content="Java 启动执行的源代码跟踪(OpenJDK8)main.c —&amp;gt; java.c(JLI_Launch函数) 文件:12345678910111213141516171819202122232425262728293031323334353637383940411. CreateExecutionEnvironment    ==&amp;gt;    GetJREPath   +   GetJV">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-07-20T14:24:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JVM 源码阅读(OpenJDK8)">
+<meta name="twitter:description" content="Java 启动执行的源代码跟踪(OpenJDK8)main.c —&amp;gt; java.c(JLI_Launch函数) 文件:12345678910111213141516171819202122232425262728293031323334353637383940411. CreateExecutionEnvironment    ==&amp;gt;    GetJREPath   +   GetJV">
+  
+    <link rel="alternative" href="/atom.xml" title="SStar1314" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/favicon.ico" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Xia, MingXing</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">西安</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/archives">所有文章</a></li>
+	        
+				<li><a href="/categories">目录</a></li>
+	        
+				<li><a href="/tags">标签</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/SStar1314/" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+		        
+					<a class="rss" target="_blank" href="#" title="rss">rss</a>
+		        
+					<a class="mail" target="_blank" href="/xaxiamx@gmail.com" title="mail">mail</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Xia, MingXing</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/favicon.ico" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Xia, MingXing</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">西安</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories">目录</a></li>
+		        
+					<li><a href="/tags">标签</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/SStar1314/" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="mail" target="_blank" href="/xaxiamx@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-JVM" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JVM 源码阅读(OpenJDK8)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Java-启动执行的源代码跟踪-OpenJDK8"><a href="#Java-启动执行的源代码跟踪-OpenJDK8" class="headerlink" title="Java 启动执行的源代码跟踪(OpenJDK8)"></a>Java 启动执行的源代码跟踪(OpenJDK8)</h2><p>main.c —&gt; java.c(JLI_Launch函数) 文件:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">1. CreateExecutionEnvironment    ==&gt;    GetJREPath   +   GetJVMPath  </div><div class="line">            GetJREPath   :    获取 libjava.so 文件路径,  赋值给 jrepath .</div><div class="line">            GetJVMPath  :   获取  libjvm.dylib  文件路径, 赋值给 jvmpath.</div><div class="line">2. LoadJavaVM     ==&gt;      libjvm = dlopen(jvmpath, RTLD_NOW + RTLD_GLOBAL);            加载链接文件 libjvm.dylib,  将以下3个函数指向链接文件中的函数</div><div class="line">                                           CreateJavaVM = (CreateJavaVM_t)dlsym(libjvm, <span class="string">"JNI_CreateJavaVM”);           </span></div><div class="line">                                              GetDefaultJavaVMInitArgs = (GetDefaultJavaVMInitArgs_t)dlsym(libjvm, "JNI_GetDefaultJavaVMInitArgs”);</div><div class="line">                                              GetCreatedJavaVMs = (GetCreatedJavaVMs_t)dlsym(libjvm, <span class="string">"JNI_GetCreatedJavaVMs"</span>);</div><div class="line">3. SetJavaCommandLineProp       ==&gt;    JLI_StrCCmp(str, <span class="string">"-Xss”)  JLI_StrCCmp(str, "</span>-Xmx”)  JLI_StrCCmp(str, <span class="string">"-Xms”)       jvm 堆栈大小</span></div><div class="line">4. JVMInit   ==&gt;   ContinueInNewThread(InvocationFunctions* ifn)</div><div class="line">                                                ==&gt;   ifn-&gt;GetDefaultJavaVMInitArgs(&amp;args1_1);</div><div class="line">                                                    ==&gt;    ContinueInNewThread0(JavaMain, threadStackSize, (void*)&amp;args);   create new thread, and execute JavaMain function</div><div class="line">                                                     主要函数:  ==&gt;   JavaMain  函数   执行下列过程</div><div class="line"> JavaMain  函数     ==&gt;   RegisterThread()  +  InitializeJVM(&amp;vm, &amp;env, &amp;ifn) &#123; =&gt; (ifn-&gt;CreateJavaVM(pvm, (void **)penv, &amp;args);) &#125;   +  LoadMainClass(env, mode, what)   +  GetApplicationClass(env)  +  PostJVMInit(env, appClass, vm) (for GUI purpose)</div><div class="line">                        +    mainID = (*env)-&gt;GetStaticMethodID(env, mainClass, "main”, <span class="string">"([Ljava/lang/String;)V”);</span></div><div class="line">          + mainArgs = CreateApplicationArgs(env, argv, argc);                  build platform specific argument array</div><div class="line">          + (*env)-&gt;CallStaticVoidMethod(env, mainClass, mainID, mainArgs);     invoke main thread</div><div class="line">//  InitializeJVM -&gt; CreateJavaVM 函数</div><div class="line">ifn-&gt;CreateJavaVM(pvm, (void **)penv, &amp;args); ==&gt; 会调用 jni.cpp 的 JNI_CreateJavaVM 函数.  </div><div class="line">    JNI_CreateJavaVM   ==&gt;   Threads::create_vm((JavaVMInitArgs*) args, &amp;can_try_again);</div><div class="line"></div><div class="line">// java.c -&gt; LoadMainClass(env, mode, what) 函数 ,  env 为load 进的 jni 函数环境.              通过class loader 取 load class 进来</div><div class="line">==&gt;   jclass cls = GetLauncherHelperClass(env);   </div><div class="line">                   GetLuncherHelperClass 函数会:  return  helperClass = FindBootStrapClass(env, "sun/launcher/LauncherHelper”) load jni: JVM_FindClassFromBootLoader</div><div class="line">==&gt;  NULL_CHECK0(mid = (*env)-&gt;GetStaticMethodID(env, cls,</div><div class="line">                <span class="string">"checkAndLoadMain"</span>,</div><div class="line">                <span class="string">"(ZILjava/lang/String;)Ljava/lang/Class;"</span>));  </div><div class="line">==&gt; str = NewPlatformString(env, name);    str 为组装后的java 启动 main函数类名</div><div class="line">==&gt;  result = (*env)-&gt;CallStaticObjectMethod(env, cls, mid, USE_STDERR, mode, str); 调用 LauncherHelper.java的checkAndLoadMain函数,返回 mainclass.</div><div class="line"></div><div class="line">// java.c  -&gt;  GetApplicationClass(env) 函数</div><div class="line">    /*</div><div class="line">     * In some cases when launching an application that needs a helper, e.g., a</div><div class="line">     * JavaFX application with no main method, the mainClass will not be the</div><div class="line">     * applications own main class but rather a helper class. To keep things</div><div class="line">     * consistent <span class="keyword">in</span> the UI we need to track and report the application main class.</div><div class="line">     */</div><div class="line">==&gt;  jclass cls = GetLauncherHelperClass(env);</div><div class="line">==&gt;   NULL_CHECK0(mid = (*env)-&gt;GetStaticMethodID(env, cls,</div><div class="line">                <span class="string">"getApplicationClass"</span>,</div><div class="line">                <span class="string">"()Ljava/lang/Class;”));</span></div><div class="line">==&gt;  return (*env)-&gt;CallStaticObjectMethod(env, cls, mid);   调用 LauncherHelper.java的getApplicationClass函数,返回 appclass.</div></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">typedef struct &#123;</div><div class="line">    CreateJavaVM_t CreateJavaVM;</div><div class="line">    GetDefaultJavaVMInitArgs_t GetDefaultJavaVMInitArgs;</div><div class="line">    GetCreatedJavaVMs_t GetCreatedJavaVMs;</div><div class="line">&#125; InvocationFunctions;</div></pre></td></tr></table></figure>
+<h3 id="JVM-依赖的两个-lib库"><a href="#JVM-依赖的两个-lib库" class="headerlink" title="JVM 依赖的两个 lib库"></a>JVM 依赖的两个 lib库</h3><p>libjava.so<br>libjvm.so</p>
+<h3 id="java-class-与-jni-mapping-表"><a href="#java-class-与-jni-mapping-表" class="headerlink" title="java class 与 jni mapping 表"></a>java class 与 jni mapping 表</h3><p>See   openjdk8/hotspot/src/share/vm/classfile/vmSymbols.hpp   </p>
+<h3 id="jni-cpp-文件-JNI-CreateJavaVM-函数"><a href="#jni-cpp-文件-JNI-CreateJavaVM-函数" class="headerlink" title="jni.cpp 文件 JNI_CreateJavaVM 函数:"></a>jni.cpp 文件 JNI_CreateJavaVM 函数:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div><div class="line">307</div><div class="line">308</div><div class="line">309</div><div class="line">310</div><div class="line">311</div><div class="line">312</div><div class="line">313</div><div class="line">314</div><div class="line">315</div><div class="line">316</div><div class="line">317</div><div class="line">318</div><div class="line">319</div><div class="line">320</div><div class="line">321</div><div class="line">322</div><div class="line">323</div><div class="line">324</div><div class="line">325</div><div class="line">326</div><div class="line">327</div><div class="line">328</div><div class="line">329</div><div class="line">330</div><div class="line">331</div><div class="line">332</div><div class="line">333</div><div class="line">334</div><div class="line">335</div><div class="line">336</div><div class="line">337</div><div class="line">338</div><div class="line">339</div><div class="line">340</div><div class="line">341</div><div class="line">342</div><div class="line">343</div><div class="line">344</div><div class="line">345</div><div class="line">346</div><div class="line">347</div><div class="line">348</div><div class="line">349</div><div class="line">350</div><div class="line">351</div><div class="line">352</div><div class="line">353</div><div class="line">354</div><div class="line">355</div><div class="line">356</div><div class="line">357</div><div class="line">358</div><div class="line">359</div><div class="line">360</div><div class="line">361</div><div class="line">362</div><div class="line">363</div><div class="line">364</div><div class="line">365</div><div class="line">366</div><div class="line">367</div><div class="line">368</div><div class="line">369</div><div class="line">370</div><div class="line">371</div><div class="line">372</div><div class="line">373</div><div class="line">374</div><div class="line">375</div><div class="line">376</div><div class="line">377</div><div class="line">378</div><div class="line">379</div><div class="line">380</div><div class="line">381</div><div class="line">382</div><div class="line">383</div><div class="line">384</div><div class="line">385</div><div class="line">386</div><div class="line">387</div><div class="line">388</div><div class="line">389</div><div class="line">390</div><div class="line">391</div><div class="line">392</div><div class="line">393</div><div class="line">394</div><div class="line">395</div><div class="line">396</div><div class="line">397</div><div class="line">398</div><div class="line">399</div><div class="line">400</div><div class="line">401</div><div class="line">402</div><div class="line">403</div><div class="line">404</div><div class="line">405</div><div class="line">406</div><div class="line">407</div><div class="line">408</div><div class="line">409</div><div class="line">410</div><div class="line">411</div><div class="line">412</div><div class="line">413</div><div class="line">414</div><div class="line">415</div><div class="line">416</div><div class="line">417</div><div class="line">418</div><div class="line">419</div><div class="line">420</div><div class="line">421</div><div class="line">422</div><div class="line">423</div><div class="line">424</div><div class="line">425</div><div class="line">426</div><div class="line">427</div></pre></td><td class="code"><pre><div class="line">1. HS_DTRACE_PROBE3(hotspot_jni, CreateJavaVM__entry, vm, penv, args);</div><div class="line">2.  result = Threads::create_vm((JavaVMInitArgs*) args, &amp;can_try_again);</div><div class="line">3.    JavaThread *thread = JavaThread::current();</div><div class="line">    /* thread is thread_in_vm here */</div><div class="line">    *vm = (JavaVM *)(&amp;main_vm);</div><div class="line">4.  *(JNIEnv**)penv = thread-&gt;jni_environment();</div><div class="line">    // Tracks the time application was running before GC</div><div class="line">5.  RuntimeService::record_application_start();          track runtime application <span class="keyword">for</span> gc</div><div class="line">    // Notify JVMTI</div><div class="line">6.  <span class="keyword">if</span> (JvmtiExport::should_post_thread_life()) &#123;</div><div class="line">       JvmtiExport::post_thread_start(thread);</div><div class="line">    &#125;</div><div class="line">    EventThreadStart event;</div><div class="line">    <span class="keyword">if</span> (event.should_commit()) &#123;</div><div class="line">7.    event.set_javalangthread(java_lang_Thread::thread_id(thread-&gt;threadObj()));</div><div class="line">      event.commit();</div><div class="line">    &#125;</div><div class="line">    // Check <span class="keyword">if</span> we should compile all classes on bootclasspath</div><div class="line">8.  <span class="keyword">if</span> (CompileTheWorld) ClassLoader::compile_the_world();        <span class="keyword">do</span> compile work</div><div class="line">9.  <span class="keyword">if</span> (ReplayCompiles) ciReplay::replay(thread);                 replay compile work</div><div class="line">    // Since this is not a JVM_ENTRY we have to <span class="built_in">set</span> the thread state manually before leaving.</div><div class="line">10. ThreadStateTransition::transition_and_fence(thread, _thread_in_vm, _thread_in_native);      </div><div class="line"></div><div class="line"></div><div class="line">openjdk8/hotspot/src/share/vm/runtime/thread.cpp:</div><div class="line">thread.cpp 文件 create_vm 函数:</div><div class="line"></div><div class="line">jint Threads::create_vm(JavaVMInitArgs* args, bool* canTryAgain) &#123;</div><div class="line"></div><div class="line">  extern void JDK_Version_init();</div><div class="line">  // Check version</div><div class="line">  <span class="keyword">if</span> (!is_supported_jni_version(args-&gt;version)) <span class="built_in">return</span> JNI_EVERSION;</div><div class="line"></div><div class="line">  // Initialize the output stream module</div><div class="line">  ostream_init();</div><div class="line"></div><div class="line">  // Process java launcher properties.</div><div class="line">  Arguments::process_sun_java_launcher_properties(args);</div><div class="line"></div><div class="line">  // Initialize the os module before using TLS</div><div class="line">  os::init();</div><div class="line"></div><div class="line">  // Initialize system properties.</div><div class="line">  Arguments::init_system_properties();</div><div class="line"></div><div class="line">  // So that JDK version can be used as a discrimintor when parsing arguments</div><div class="line">  JDK_Version_init();</div><div class="line"></div><div class="line">  // Update/Initialize System properties after JDK version number is known</div><div class="line">  Arguments::init_version_specific_system_properties();</div><div class="line"></div><div class="line">  // Parse arguments</div><div class="line">  jint parse_result = Arguments::parse(args);        arguments.cpp 文件中, 支持的所以参数都列举在这.</div><div class="line">  <span class="keyword">if</span> (parse_result != JNI_OK) <span class="built_in">return</span> parse_result;</div><div class="line"></div><div class="line">  os::init_before_ergo();</div><div class="line"></div><div class="line">  jint ergo_result = Arguments::apply_ergo();</div><div class="line">  <span class="keyword">if</span> (ergo_result != JNI_OK) <span class="built_in">return</span> ergo_result;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (PauseAtStartup) &#123;</div><div class="line">    os::pause();</div><div class="line">  &#125;</div><div class="line"></div><div class="line"><span class="comment">#ifndef USDT2</span></div><div class="line">  HS_DTRACE_PROBE(hotspot, vm__init__begin);</div><div class="line"><span class="comment">#else /* USDT2 */</span></div><div class="line">  HOTSPOT_VM_INIT_BEGIN();</div><div class="line"><span class="comment">#endif /* USDT2 */</span></div><div class="line"></div><div class="line">  // Record VM creation timing statistics</div><div class="line">  TraceVmCreationTime create_vm_timer;</div><div class="line">  create_vm_timer.start();</div><div class="line"></div><div class="line">  // Timing (must come after argument parsing)</div><div class="line">  TraceTime timer(<span class="string">"Create VM"</span>, TraceStartupTime);</div><div class="line"></div><div class="line">  // Initialize the os module after parsing the args</div><div class="line">  jint os_init_2_result = os::init_2();</div><div class="line">  <span class="keyword">if</span> (os_init_2_result != JNI_OK) <span class="built_in">return</span> os_init_2_result;</div><div class="line"></div><div class="line">  jint adjust_after_os_result = Arguments::adjust_after_os();</div><div class="line">  <span class="keyword">if</span> (adjust_after_os_result != JNI_OK) <span class="built_in">return</span> adjust_after_os_result;</div><div class="line"></div><div class="line">  // intialize TLS</div><div class="line">  ThreadLocalStorage::init();</div><div class="line"></div><div class="line">  // Bootstrap native memory tracking, so it can start recording memory</div><div class="line">  // activities before worker thread is started. This is the first phase</div><div class="line">  // of bootstrapping, VM is currently running <span class="keyword">in</span> single-thread mode.</div><div class="line">  MemTracker::bootstrap_single_thread();</div><div class="line"></div><div class="line">  // Initialize output stream logging</div><div class="line">  ostream_init_log();</div><div class="line"></div><div class="line">  // Convert -Xrun to -agentlib: <span class="keyword">if</span> there is no JVM_OnLoad</div><div class="line">  // Must be before create_vm_init_agents()</div><div class="line">  <span class="keyword">if</span> (Arguments::init_libraries_at_startup()) &#123;</div><div class="line">    convert_vm_init_libraries_to_agents();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  // Launch -agentlib/-agentpath and converted -Xrun agents</div><div class="line">  <span class="keyword">if</span> (Arguments::init_agents_at_startup()) &#123;</div><div class="line">    create_vm_init_agents();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  // Initialize Threads state</div><div class="line">  _thread_list = NULL;</div><div class="line">  _number_of_threads = 0;</div><div class="line">  _number_of_non_daemon_threads = 0;</div><div class="line"></div><div class="line">  // Initialize global data structures and create system classes <span class="keyword">in</span> heap</div><div class="line">  vm_init_globals();</div><div class="line"></div><div class="line">  // Attach the main thread to this os thread</div><div class="line">  JavaThread* main_thread = new JavaThread();</div><div class="line">  main_thread-&gt;set_thread_state(_thread_in_vm);</div><div class="line">  // must <span class="keyword">do</span> this before set_active_handles and initialize_thread_local_storage</div><div class="line">  // Note: on solaris initialize_thread_local_storage() will (indirectly)</div><div class="line">  // change the stack size recorded here to one based on the java thread</div><div class="line">  // stacksize. This adjusted size is what is used to figure the placement</div><div class="line">  // of the guard pages.</div><div class="line">  main_thread-&gt;record_stack_base_and_size();</div><div class="line">  main_thread-&gt;initialize_thread_local_storage();</div><div class="line"></div><div class="line">  main_thread-&gt;set_active_handles(JNIHandleBlock::allocate_block());</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (!main_thread-&gt;set_as_starting_thread()) &#123;</div><div class="line">    vm_shutdown_during_initialization(</div><div class="line">      <span class="string">"Failed necessary internal allocation. Out of swap space"</span>);</div><div class="line">    delete main_thread;</div><div class="line">    *canTryAgain = <span class="literal">false</span>; // don<span class="string">'t let caller call JNI_CreateJavaVM again</span></div><div class="line">    return JNI_ENOMEM;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  // Enable guard page *after* os::create_main_thread(), otherwise it would</div><div class="line">  // crash Linux VM, see notes in os_linux.cpp.</div><div class="line">  main_thread-&gt;create_stack_guard_pages();</div><div class="line"></div><div class="line">  // Initialize Java-Level synchronization subsystem</div><div class="line">  ObjectMonitor::Initialize() ;</div><div class="line"></div><div class="line">  // Second phase of bootstrapping, VM is about entering multi-thread mode</div><div class="line">  MemTracker::bootstrap_multi_thread();</div><div class="line"></div><div class="line">  // Initialize global modules</div><div class="line">  jint status = init_globals();</div><div class="line">  if (status != JNI_OK) &#123;</div><div class="line">    delete main_thread;</div><div class="line">    *canTryAgain = false; // don't <span class="built_in">let</span> <span class="built_in">caller</span> call JNI_CreateJavaVM again</div><div class="line">    <span class="built_in">return</span> status;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  // Should be <span class="keyword">done</span> after the heap is fully created</div><div class="line">  main_thread-&gt;cache_global_variables();</div><div class="line"></div><div class="line">  HandleMark hm;</div><div class="line"></div><div class="line">  &#123; MutexLocker mu(Threads_lock);</div><div class="line">    Threads::add(main_thread);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  // Any JVMTI raw monitors entered <span class="keyword">in</span> onload will transition into</div><div class="line">  // real raw monitor. VM is setup enough here <span class="keyword">for</span> raw monitor enter.</div><div class="line">  JvmtiExport::transition_pending_onload_raw_monitors();</div><div class="line"></div><div class="line">  // Fully start NMT</div><div class="line">  MemTracker::start();</div><div class="line"></div><div class="line">  // Create the VMThread</div><div class="line">  &#123; TraceTime timer(<span class="string">"Start VMThread"</span>, TraceStartupTime);</div><div class="line">    VMThread::create();</div><div class="line">    Thread* vmthread = VMThread::vm_thread();</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (!os::create_thread(vmthread, os::vm_thread))</div><div class="line">      vm_exit_during_initialization(<span class="string">"Cannot create VM thread. Out of system resources."</span>);</div><div class="line"></div><div class="line">    // Wait <span class="keyword">for</span> the VM thread to become ready, and VMThread::run to initialize</div><div class="line">    // Monitors can have spurious returns, must always check another state flag</div><div class="line">    &#123;</div><div class="line">      MutexLocker ml(Notify_lock);</div><div class="line">      os::start_thread(vmthread);</div><div class="line">      <span class="keyword">while</span> (vmthread-&gt;active_handles() == NULL) &#123;</div><div class="line">        Notify_lock-&gt;<span class="built_in">wait</span>();</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  assert (Universe::is_fully_initialized(), <span class="string">"not initialized"</span>);</div><div class="line">  <span class="keyword">if</span> (VerifyDuringStartup) &#123;</div><div class="line">    // Make sure we<span class="string">'re starting with a clean slate.</span></div><div class="line">    VM_Verify verify_op;</div><div class="line">    VMThread::execute(&amp;verify_op);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  EXCEPTION_MARK;</div><div class="line"></div><div class="line">  // At this point, the Universe is initialized, but we have not executed</div><div class="line">  // any byte code.  Now is a good time (the only time) to dump out the</div><div class="line">  // internal state of the JVM for sharing.</div><div class="line">  if (DumpSharedSpaces) &#123;</div><div class="line">    MetaspaceShared::preload_and_dump(CHECK_0);</div><div class="line">    ShouldNotReachHere();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  // Always call even when there are not JVMTI environments yet, since environments</div><div class="line">  // may be attached late and JVMTI must track phases of VM execution</div><div class="line">  JvmtiExport::enter_start_phase();</div><div class="line"></div><div class="line">  // Notify JVMTI agents that VM has started (JNI is up) - nop if no agents.</div><div class="line">  JvmtiExport::post_vm_start();</div><div class="line"></div><div class="line">  &#123;</div><div class="line">    TraceTime timer("Initialize java.lang classes", TraceStartupTime);</div><div class="line"></div><div class="line">    if (EagerXrunInit &amp;&amp; Arguments::init_libraries_at_startup()) &#123;</div><div class="line">      create_vm_init_libraries();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    initialize_class(vmSymbols::java_lang_String(), CHECK_0);</div><div class="line"></div><div class="line">    // Initialize java_lang.System (needed before creating the thread)</div><div class="line">    initialize_class(vmSymbols::java_lang_System(), CHECK_0);</div><div class="line">    initialize_class(vmSymbols::java_lang_ThreadGroup(), CHECK_0);</div><div class="line">    Handle thread_group = create_initial_thread_group(CHECK_0);</div><div class="line">    Universe::set_main_thread_group(thread_group());</div><div class="line">    initialize_class(vmSymbols::java_lang_Thread(), CHECK_0);</div><div class="line">    oop thread_object = create_initial_thread(thread_group, main_thread, CHECK_0);</div><div class="line">    main_thread-&gt;set_threadObj(thread_object);</div><div class="line">    // Set thread status to running since main thread has</div><div class="line">    // been started and running.</div><div class="line">    java_lang_Thread::set_thread_status(thread_object,</div><div class="line">                                        java_lang_Thread::RUNNABLE);</div><div class="line"></div><div class="line">    // The VM creates &amp; returns objects of this class. Make sure it's initialized.</div><div class="line">    initialize_class(vmSymbols::java_lang_Class(), CHECK_0);</div><div class="line"></div><div class="line">    // The VM preresolves methods to these classes. Make sure that they get initialized</div><div class="line">    initialize_class(vmSymbols::java_lang_reflect_Method(), CHECK_0);</div><div class="line">    initialize_class(vmSymbols::java_lang_ref_Finalizer(),  CHECK_0);</div><div class="line">    call_initializeSystemClass(CHECK_0);</div><div class="line"></div><div class="line">    // get the Java runtime name after java.lang.System is initialized</div><div class="line">    JDK_Version::set_runtime_name(get_java_runtime_name(THREAD));</div><div class="line">    JDK_Version::set_runtime_version(get_java_runtime_version(THREAD));</div><div class="line"></div><div class="line">    // an instance of OutOfMemory exception has been allocated earlier</div><div class="line">    initialize_class(vmSymbols::java_lang_OutOfMemoryError(), CHECK_0);</div><div class="line">    initialize_class(vmSymbols::java_lang_NullPointerException(), CHECK_0);</div><div class="line">    initialize_class(vmSymbols::java_lang_ClassCastException(), CHECK_0);</div><div class="line">    initialize_class(vmSymbols::java_lang_ArrayStoreException(), CHECK_0);</div><div class="line">    initialize_class(vmSymbols::java_lang_ArithmeticException(), CHECK_0);</div><div class="line">    initialize_class(vmSymbols::java_lang_StackOverflowError(), CHECK_0);</div><div class="line">    initialize_class(vmSymbols::java_lang_IllegalMonitorStateException(), CHECK_0);</div><div class="line">    initialize_class(vmSymbols::java_lang_IllegalArgumentException(), CHECK_0);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  // See        : bugid 4211085.</div><div class="line">  // Background : the static initializer of java.lang.Compiler tries to <span class="built_in">read</span></div><div class="line">  //              property<span class="string">"java.compiler"</span> and <span class="built_in">read</span> &amp; write property <span class="string">"java.vm.info"</span>.</div><div class="line">  //              When a security manager is installed through the <span class="built_in">command</span> line</div><div class="line">  //              option <span class="string">"-Djava.security.manager"</span>, the above properties are not</div><div class="line">  //              readable and the static initializer <span class="keyword">for</span> java.lang.Compiler fails</div><div class="line">  //              resulting <span class="keyword">in</span> a NoClassDefFoundError.  This can happen <span class="keyword">in</span> any</div><div class="line">  //              user code <span class="built_in">which</span> calls methods <span class="keyword">in</span> java.lang.Compiler.</div><div class="line">  // Hack :       the hack is to pre-load and initialize this class, so that only</div><div class="line">  //              system domains are on the stack when the properties are <span class="built_in">read</span>.</div><div class="line">  //              Currently even the AWT code has calls to methods <span class="keyword">in</span> java.lang.Compiler.</div><div class="line">  //              On the classic VM, java.lang.Compiler is loaded very early to load the JIT.</div><div class="line">  // Future Fix : the best fix is to grant everyone permissions to <span class="built_in">read</span> <span class="string">"java.compiler"</span> and</div><div class="line">  //              <span class="built_in">read</span> and write<span class="string">"java.vm.info"</span> <span class="keyword">in</span> the default policy file. See bugid 4211383</div><div class="line">  //              Once that is <span class="keyword">done</span>, we should remove this hack.</div><div class="line">  initialize_class(vmSymbols::java_lang_Compiler(), CHECK_0);</div><div class="line"></div><div class="line">  // More hackery - the static initializer of java.lang.Compiler adds the string <span class="string">"nojit"</span> to</div><div class="line">  // the java.vm.info property <span class="keyword">if</span> no jit gets loaded through java.lang.Compiler (the hotspot</div><div class="line">  // compiler does not get loaded through java.lang.Compiler).  <span class="string">"java -version"</span> with the</div><div class="line">  // hotspot vm says <span class="string">"nojit"</span> all the time <span class="built_in">which</span> is confusing.  So, we reset it here.</div><div class="line">  // This should also be taken out as soon as 4211383 gets fixed.</div><div class="line">  reset_vm_info_property(CHECK_0);</div><div class="line"></div><div class="line">  quicken_jni_functions();</div><div class="line"></div><div class="line">  // Must be run after init_ft <span class="built_in">which</span> initializes ft_enabled</div><div class="line">  <span class="keyword">if</span> (TRACE_INITIALIZE() != JNI_OK) &#123;</div><div class="line">    vm_exit_during_initialization(<span class="string">"Failed to initialize tracing backend"</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  // Set flag that basic initialization has completed. Used by exceptions and various</div><div class="line">  // debug stuff, that does not work until all basic classes have been initialized.</div><div class="line">  set_init_completed();</div><div class="line"></div><div class="line"><span class="comment">#ifndef USDT2</span></div><div class="line">  HS_DTRACE_PROBE(hotspot, vm__init__end);</div><div class="line"><span class="comment">#else /* USDT2 */</span></div><div class="line">  HOTSPOT_VM_INIT_END();</div><div class="line"><span class="comment">#endif /* USDT2 */</span></div><div class="line"></div><div class="line">  // record VM initialization completion time</div><div class="line"><span class="comment">#if INCLUDE_MANAGEMENT</span></div><div class="line">  Management::record_vm_init_completed();</div><div class="line"><span class="comment">#endif // INCLUDE_MANAGEMENT</span></div><div class="line"></div><div class="line">  // Compute system loader. Note that this has to occur after set_init_completed, since</div><div class="line">  // valid exceptions may be thrown <span class="keyword">in</span> the process.</div><div class="line">  // Note that we <span class="keyword">do</span> not use CHECK_0 here since we are inside an EXCEPTION_MARK and</div><div class="line">  // set_init_completed has just been called, causing exceptions not to be shortcut</div><div class="line">  // anymore. We call vm_exit_during_initialization directly instead.</div><div class="line">  SystemDictionary::compute_java_system_loader(THREAD);</div><div class="line">  <span class="keyword">if</span> (HAS_PENDING_EXCEPTION) &#123;</div><div class="line">    vm_exit_during_initialization(Handle(THREAD, PENDING_EXCEPTION));</div><div class="line">  &#125;</div><div class="line"></div><div class="line"><span class="comment">#if INCLUDE_ALL_GCS</span></div><div class="line">  // Support <span class="keyword">for</span> ConcurrentMarkSweep. This should be cleaned up</div><div class="line">  // and better encapsulated. The ugly nested <span class="keyword">if</span> <span class="built_in">test</span> would go away</div><div class="line">  // once things are properly refactored. XXX YSR</div><div class="line">  <span class="keyword">if</span> (UseConcMarkSweepGC || UseG1GC) &#123;</div><div class="line">    <span class="keyword">if</span> (UseConcMarkSweepGC) &#123;</div><div class="line">      ConcurrentMarkSweepThread::makeSurrogateLockerThread(THREAD);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      ConcurrentMarkThread::makeSurrogateLockerThread(THREAD);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (HAS_PENDING_EXCEPTION) &#123;</div><div class="line">      vm_exit_during_initialization(Handle(THREAD, PENDING_EXCEPTION));</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"><span class="comment">#endif // INCLUDE_ALL_GCS</span></div><div class="line"></div><div class="line">  // Always call even when there are not JVMTI environments yet, since environments</div><div class="line">  // may be attached late and JVMTI must track phases of VM execution</div><div class="line">  JvmtiExport::enter_live_phase();</div><div class="line"></div><div class="line">  // Signal Dispatcher needs to be started before VMInit event is posted</div><div class="line">  os::signal_init();</div><div class="line"></div><div class="line">  // Start Attach Listener <span class="keyword">if</span> +StartAttachListener or it can<span class="string">'t be started lazily</span></div><div class="line">  if (!DisableAttachMechanism) &#123;</div><div class="line">    AttachListener::vm_start();</div><div class="line">    if (StartAttachListener || AttachListener::init_at_startup()) &#123;</div><div class="line">      AttachListener::init();</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  // Launch -Xrun agents</div><div class="line">  // Must be done in the JVMTI live phase so that for backward compatibility the JDWP</div><div class="line">  // back-end can launch with -Xdebug -Xrunjdwp.</div><div class="line">  if (!EagerXrunInit &amp;&amp; Arguments::init_libraries_at_startup()) &#123;</div><div class="line">    create_vm_init_libraries();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  // Notify JVMTI agents that VM initialization is complete - nop if no agents.</div><div class="line">  JvmtiExport::post_vm_initialized();</div><div class="line"></div><div class="line">  if (TRACE_START() != JNI_OK) &#123;</div><div class="line">    vm_exit_during_initialization("Failed to start tracing backend.");</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  if (CleanChunkPoolAsync) &#123;</div><div class="line">    Chunk::start_chunk_pool_cleaner_task();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  // initialize compiler(s)</div><div class="line">#if defined(COMPILER1) || defined(COMPILER2) || defined(SHARK)</div><div class="line">  CompileBroker::compilation_init();</div><div class="line">#endif</div><div class="line"></div><div class="line">  if (EnableInvokeDynamic) &#123;</div><div class="line">    // Pre-initialize some JSR292 core classes to avoid deadlock during class loading.</div><div class="line">    // It is done after compilers are initialized, because otherwise compilations of</div><div class="line">    // signature polymorphic MH intrinsics can be missed</div><div class="line">    // (see SystemDictionary::find_method_handle_intrinsic).</div><div class="line">    initialize_class(vmSymbols::java_lang_invoke_MethodHandle(), CHECK_0);</div><div class="line">    initialize_class(vmSymbols::java_lang_invoke_MemberName(), CHECK_0);</div><div class="line">    initialize_class(vmSymbols::java_lang_invoke_MethodHandleNatives(), CHECK_0);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">#if INCLUDE_MANAGEMENT</div><div class="line">  Management::initialize(THREAD);</div><div class="line">#endif // INCLUDE_MANAGEMENT</div><div class="line"></div><div class="line">  if (HAS_PENDING_EXCEPTION) &#123;</div><div class="line">    // management agent fails to start possibly due to</div><div class="line">    // configuration problem and is responsible for printing</div><div class="line">    // stack trace if appropriate. Simply exit VM.</div><div class="line">    vm_exit(1);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  if (Arguments::has_profile())       FlatProfiler::engage(main_thread, true);</div><div class="line">  if (MemProfiling)                   MemProfiler::engage();</div><div class="line">  StatSampler::engage();</div><div class="line">  if (CheckJNICalls)                  JniPeriodicChecker::engage();</div><div class="line"></div><div class="line">  BiasedLocking::init();</div><div class="line"></div><div class="line">  if (JDK_Version::current().post_vm_init_hook_enabled()) &#123;</div><div class="line">    call_postVMInitHook(THREAD);</div><div class="line">    // The Java side of PostVMInitHook.run must deal with all</div><div class="line">    // exceptions and provide means of diagnosis.</div><div class="line">    if (HAS_PENDING_EXCEPTION) &#123;</div><div class="line">      CLEAR_PENDING_EXCEPTION;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  &#123;</div><div class="line">      MutexLockerEx ml(PeriodicTask_lock, Mutex::_no_safepoint_check_flag);</div><div class="line">      // Make sure the watcher thread can be started by WatcherThread::start()</div><div class="line">      // or by dynamic enrollment.</div><div class="line">      WatcherThread::make_startable();</div><div class="line">      // Start up the WatcherThread if there are any periodic tasks</div><div class="line">      // NOTE:  All PeriodicTasks should be registered by now. If they</div><div class="line">      //   aren't, late joiners might appear to start slowly (we might</div><div class="line">      //   take a <span class="keyword">while</span> to process their first tick).</div><div class="line">      <span class="keyword">if</span> (PeriodicTask::num_tasks() &gt; 0) &#123;</div><div class="line">          WatcherThread::start();</div><div class="line">      &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  // Give os specific code one last chance to start</div><div class="line">  os::init_3();</div><div class="line"></div><div class="line">  create_vm_timer.end();</div><div class="line"><span class="comment">#ifdef ASSERT</span></div><div class="line">  _vm_complete = <span class="literal">true</span>;</div><div class="line"><span class="comment">#endif</span></div><div class="line">  <span class="built_in">return</span> JNI_OK;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/JVM/" class="archive-article-date">
+  	<time datetime="2017-07-20T14:15:13.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-07-20</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/Java/">Java</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/Linux Special File System/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Linux Special File System
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Linux Networking Internals5/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux Networking Internals 5 - Network Device Notification Chains</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 Xia, MingXing
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: false
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Kafka/" style="font-size: 12.5px;">Kafka</a> <a href="/tags/Libvirt/" style="font-size: 10px;">Libvirt</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/Linux-Networking-Internals/" style="font-size: 15px;">Linux Networking Internals</a> <a href="/tags/Linux-Source-Code/" style="font-size: 10px;">Linux Source Code</a> <a href="/tags/Linux-Special-File-System/" style="font-size: 10px;">Linux Special File System</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/QEMU/" style="font-size: 10px;">QEMU</a> <a href="/tags/Spark/" style="font-size: 15px;">Spark</a> <a href="/tags/ZooKeeper/" style="font-size: 12.5px;">ZooKeeper</a> <a href="/tags/etcd/" style="font-size: 10px;">etcd</a> <a href="/tags/kubernetes/" style="font-size: 10px;">kubernetes</a> <a href="/tags/lxc/" style="font-size: 10px;">lxc</a> <a href="/tags/lxcfs/" style="font-size: 10px;">lxcfs</a> <a href="/tags/介绍/" style="font-size: 10px;">介绍</a> <a href="/tags/分布式协同/" style="font-size: 10px;">分布式协同</a> <a href="/tags/大数据/" style="font-size: 17.5px;">大数据</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接1</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接2</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接3</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接4</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接5</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接6</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">平均每天保证几小时的学习时间，用一万小时定律激励自己</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

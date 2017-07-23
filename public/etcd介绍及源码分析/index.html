@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>etcd介绍及源码解析 | SStar1314</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="etcd 相关网站https://coreos.com/etcd/docs/latest/https://coreos.com/etcd/docs/latest/api.htmlhttps://coreos.com/etcd/docs/latest/libraries-and-tools.html Eclipse安装golang语言plugin：Installation Requirements:">
+<meta name="keywords" content="etcd">
+<meta property="og:type" content="article">
+<meta property="og:title" content="etcd介绍及源码解析">
+<meta property="og:url" content="http://yoursite.com/etcd介绍及源码分析/index.html">
+<meta property="og:site_name" content="SStar1314">
+<meta property="og:description" content="etcd 相关网站https://coreos.com/etcd/docs/latest/https://coreos.com/etcd/docs/latest/api.htmlhttps://coreos.com/etcd/docs/latest/libraries-and-tools.html Eclipse安装golang语言plugin：Installation Requirements:">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-07-19T03:10:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="etcd介绍及源码解析">
+<meta name="twitter:description" content="etcd 相关网站https://coreos.com/etcd/docs/latest/https://coreos.com/etcd/docs/latest/api.htmlhttps://coreos.com/etcd/docs/latest/libraries-and-tools.html Eclipse安装golang语言plugin：Installation Requirements:">
+  
+    <link rel="alternative" href="/atom.xml" title="SStar1314" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/favicon.ico" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Xia, MingXing</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">西安</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/archives">所有文章</a></li>
+	        
+				<li><a href="/categories">目录</a></li>
+	        
+				<li><a href="/tags">标签</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/SStar1314/" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+		        
+					<a class="rss" target="_blank" href="#" title="rss">rss</a>
+		        
+					<a class="mail" target="_blank" href="/xaxiamx@gmail.com" title="mail">mail</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Xia, MingXing</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/favicon.ico" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Xia, MingXing</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">西安</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories">目录</a></li>
+		        
+					<li><a href="/tags">标签</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/SStar1314/" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="mail" target="_blank" href="/xaxiamx@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-etcd介绍及源码分析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      etcd介绍及源码解析
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="etcd-相关网站"><a href="#etcd-相关网站" class="headerlink" title="etcd 相关网站"></a>etcd 相关网站</h3><p><a href="https://coreos.com/etcd/docs/latest/" target="_blank" rel="external">https://coreos.com/etcd/docs/latest/</a><br><a href="https://coreos.com/etcd/docs/latest/api.html" target="_blank" rel="external">https://coreos.com/etcd/docs/latest/api.html</a><br><a href="https://coreos.com/etcd/docs/latest/libraries-and-tools.html" target="_blank" rel="external">https://coreos.com/etcd/docs/latest/libraries-and-tools.html</a></p>
+<h3 id="Eclipse安装golang语言plugin："><a href="#Eclipse安装golang语言plugin：" class="headerlink" title="Eclipse安装golang语言plugin："></a>Eclipse安装golang语言plugin：</h3><p>Installation Requirements:</p>
+<ul>
+<li>Java VM version 8 or later.</li>
+<li>Eclipse 4.6 (Neon) or later.</li>
+<li>CDT 9.0 or later (this will be installed or updated automatically as part of the steps below).</li>
+</ul>
+<p>Instructions:</p>
+<ul>
+<li>Use your existing Eclipse, or download a new Eclipse package from <a href="http://www.eclipse.org/downloads/" target="_blank" rel="external">http://www.eclipse.org/downloads/</a>.<ul>
+<li>For an Eclipse package without any other IDEs or extras (such a VCS tools), download the “Platform Runtime Binary”.</li>
+</ul>
+</li>
+<li>Start Eclipse, go to Help -&gt; Install New Software…</li>
+<li>Click the Add… button, then enter the Update Site URL: <a href="http://goclipse.github.io/releases/" target="_blank" rel="external">http://goclipse.github.io/releases/</a> in the Location field, click OK.</li>
+<li>Select the recently added update site in the Work with: dropdown. Type GoClipse in the filter box. Now the Goclipse feature should appear below.</li>
+<li>Select the GoClipse feature, and complete the wizard.<ul>
+<li>Dependencies such as CDT will automatically be added during installation.</li>
+</ul>
+</li>
+<li>Restart Eclipse.</li>
+<li>Follow the instructions from the User Guide’s Configuration section to configure the required external tools. It is recommended you read the rest of the guide too.</li>
+</ul>
+<h3 id="源码解析"><a href="#源码解析" class="headerlink" title="源码解析"></a>源码解析</h3><p><strong>客户端：client.go</strong></p>
+<p>etcdmain/main.go  Main():<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div></pre></td><td class="code"><pre><div class="line">—&gt; etcdmain/etcd.go  startEtcdOrProxyV2():</div><div class="line">          —&gt; etcdmain/config.go  cfg := newConfig():               etcd初始化对象配置</div><div class="line">          —&gt; etcdmain/config.go  cfg.parse(Args[1:]):               解析etcd启动参数</div><div class="line">          —&gt; etcdmain/etcd.go  setupLogging(cfg)</div><div class="line">          —&gt; etcdmain/etcd.go  which := identifyDataDirOrDie(cfg.Dir)       分析Dir参数，解析etcd启动方式，如果Dir参数为空，也会走下面2个分支</div><div class="line">                    —&gt; case dirMember:</div><div class="line">                              —&gt; etcdmain/etcd.go  startEtcd(&amp;cfg.Config)</div><div class="line">                                        —&gt; embed/etcd.go  e, err := embed.StartEtcd(cfg)                         启动etcd服务</div><div class="line">                                                  —&gt; embed/config.go  cfg.Validate()                                             验证config值</div><div class="line">                                                  —&gt; embed/etcd.go  e.Peers := startPeerListeners(cfg)</div><div class="line">                                                            —&gt; plns = make([]net.Listener, len(cfg.LPUrls))</div><div class="line">                                                            —&gt; for i, u := range cfg.LPUrls</div><div class="line">                                                                      —&gt; pkg/transport/listener.go  tlscfg = cfg.PeerTLSInfo.ServerConfig()               CA file config</div><div class="line">                                                                      —&gt; rafthttp/util.go  plns[i] = rafthttp.NewListener(u, tlscfg)</div><div class="line">                                                                                —&gt; transport/timeout_listener.go  transport.NewTimeoutListener(u.Host, u.Scheme, tlscfg, ConnReadTimeout, ConnWriteTimeout)</div><div class="line">                                                                                          —&gt; pkg/transport/listener.go  ln := newListener(u.Host, u.Scheme)</div><div class="line">                                                                                                    —&gt; unix_listener.go       if (u.Scheme == “unix” | “unixs”)     return NewUnixListener(u.Host)               unix socket via unix://laddr</div><div class="line">                                                                                                    —&gt; dial.go                         else      return net.Listen(“tcp”, u.Host)                                        tcp socket</div><div class="line">                                                                                          —&gt; transport/timeout_listener.go  ln = &amp;rwTimeoutListener&#123;&#125;</div><div class="line">                                                                                          —&gt; pkg/transport/listener.go  ln = wrapTLS(u.Host, u.Scheme, tlscfg, ln)</div><div class="line">                                                                                                    —&gt; tls.go  tlscfg.NewListener(ln, tlscfg)                                                  创建listener，该listener接受inner连接               tls：Transport Layer Security 传输层安全协议</div><div class="line">                                                  —&gt; embed/etcd.go  e.sctxs := startClientListeners(cfg)</div><div class="line">                                                            —&gt; if  cfg.ClientAutoTLS &amp;&amp; cfg.ClientTLSInfo.Empty()     cfg.ClientTLSInfo = transport.SelfCert(path.Join(cfg.Dir, “fixtures/client"), cfg.LCurls)               配置tls信息</div><div class="line">                                                            —&gt; sctxs = make(map[string] *serveCtx)</div><div class="line">                                                            —&gt; sctx.l = net.Listen(proto, cfg.LCurls)                         proto=“tcp|unix|unixs"      创建socket 进行listen</div><div class="line">                                                            —&gt; sctx.l = transport.LimitListener(sctx.l, int(fdLimit - reservedInternalFDNum))                    设置listen limit上限值</div><div class="line">                                                            —&gt; pkg/transport/keepalive_listener.go  sctx.l = transport.NewKeepAliveListener(sctx.l, “tcp”, cfg)                                             创建socket</div><div class="line">                                                                      —&gt; newTLSKeepaliveListener(sctx.l, cfg)</div><div class="line">                                                  —&gt; e.Clients = append(e.Clients, e.sctxs.l)</div><div class="line">                                                  —&gt; srvcfg := &amp;etcdserver.ServerConfig&#123;cfg&#125;</div><div class="line">                                                  —&gt; etcdserver/server.go  e.Server = etcdserver.NewServer(srvcfg)</div><div class="line">                                                            —&gt; store/store.go  st := store.New(StoreClusterPrefix, StoreKeysPrefix)</div><div class="line">                                                                      —&gt; store/store.go  s := newStore(namespaces ...)</div><div class="line">                                                                                —&gt; s := new(store)</div><div class="line">                                                                                —&gt; s.Root = newDir(s, “/“, s.CurrentIndex, Permanent)</div><div class="line">                                                                                —&gt; for namespace := range namespaces        s.Root.Add(newDir(s, namespace, s.CurrentIndex, s.Root, Permanent))</div><div class="line">                                                                                —&gt; s.Stats = newStats()</div><div class="line">                                                                                —&gt; s.WatcherHub = newWatchHub(1000)</div><div class="line">                                                                                —&gt; s.ttlKeyHeap = newTtlKeyHeap()</div><div class="line">                                                                                —&gt; s.readonlySet =  types.NewUnsafeSet(append(namespaces, “/“) ...)</div><div class="line">                                                                      —&gt; s.clock = clockwork.NewRealClock()</div><div class="line">                                                            —&gt; haveWAL := wal.Exist(cfg.WALDir())</div><div class="line">                                                            —&gt; ss := snap.New(cfg.SnapDir())</div><div class="line">                                                            —&gt; bepath := path.Join(cfg.SnapDir(), databaseFilename)</div><div class="line">                                                            —&gt; mvcc/backend/backend.go  be := backend.NewDefaultBackend(bepath)</div><div class="line">                                                                      —&gt; newBackend(bepath, defaultBatchInterval, defaultBatchLimit)</div><div class="line">                                                                                —&gt; db := bolt.Open(bepath, 0600, boltOpenOptions)</div><div class="line">                                                                                —&gt; b := &amp;backend&#123;&#125;</div><div class="line">                                                                                —&gt; mvcc/backend/batch_tx.go  b.batchTx = newBatchTx(b)</div><div class="line">                                                                                          —&gt; tx := &amp;batchTx&#123;b&#125;</div><div class="line">                                                                                          —&gt; tx.Commit()</div><div class="line">                                                                                —&gt; go b.run()</div><div class="line">                                                                                          —&gt; t := time.NewTimer(b.batchInterval)</div><div class="line">                                                                                          —&gt; for</div><div class="line">                                                                                                    —&gt; select</div><div class="line">                                                                                                              —&gt; case &lt;- t,C:</div><div class="line">                                                                                                              —&gt; case &lt;- b.stopc:</div><div class="line">                                                                                                                        —&gt; b.batchTx.CommitAndStop()</div><div class="line">                                                                                                    —&gt; b.batchTx.Commit()</div><div class="line">                                                                                                    —&gt; b.Reset(b.batchInterval)</div><div class="line">                                                            —&gt; rafthttp/util.go  prt := rafthttp.NewRoundTripper(cfg.PeerTLSInfo, cfg.peerDialTimeout())</div><div class="line">                                                                      —&gt; pkg/transport/timeout_transport.go  transport.NewTimoutTransport(cfg.PeerTLSInfo, cfg.peerDialTimeout())</div><div class="line">                                                                                —&gt; tr := NewTransport(info, dialtimeoutd)</div><div class="line">                                                                                —&gt; tr.Dial =(&amp;rwTimeoutDialer&#123;&#125;).Dial</div><div class="line">                                                            —&gt; swith</div><div class="line">                                                                      —&gt; case !haveWAL &amp;&amp; !cfg.NewCluster</div><div class="line">                                                                                —&gt; cfg.VerifyJoinExisting()</div><div class="line">                                                                                —&gt; cl = membership.NewClusterFromURLsMap(cfg.InitialClusterToken, cfg.InitialPeerURLsMap)</div><div class="line">                                                                                —&gt; existingCluster = GetClusterFromRemotePeers(getRemotePeerURLs(cl, cfg.Name), prt)</div><div class="line">                                                                                —&gt; membership.ValidateClusterAndAssignIDs(cl, existingCluster)</div><div class="line">                                                                                —&gt; isCompatibleWithCluster(cl, cl.MemberByName(cfg.Name).ID, prt)</div><div class="line">                                                                                —&gt; remotes = existingCluster.Members()</div><div class="line">                                                                                —&gt; cl.SetID(existingCluster.ID())</div><div class="line">                                                                                —&gt; cl.SetStore(st)</div><div class="line">                                                                                —&gt; cl.SetBackend(be)</div><div class="line">                                                                                —&gt; cfg.Print()</div><div class="line">                                                                                —&gt; id, n, s, w = startNode(cfg, cl)</div><div class="line">                                                                      —&gt; case !haveWAL &amp;&amp; cfg.NewCluster</div><div class="line">                                                                                —&gt; cfg.VerifyBootstrape()</div><div class="line">                                                                                —&gt; cl = membership.NewClusterFromURLsMap(cfg.InitialClusterToken, cfg.InitialPeerURLsMap)</div><div class="line">                                                                                —&gt; m := cl.MemberByName(cfg.Name)</div><div class="line">                                                                                —&gt; isMemberBootstrapped(cl, cfg.Name, prt, cfg.bootstrapTimeout())</div><div class="line">                                                                                —&gt; if cfg.ShouldDiscover()</div><div class="line">                                                                                          —&gt; str = discovery.JoinCluster(cfg.DiscoveryURL, cfg.DiscoveryProxy, m.ID, cfg.InitialPeerURLsMap.String())</div><div class="line">                                                                                          —&gt; urlsmap = types.NewURLsMap(str)</div><div class="line">                                                                                          —&gt; checkDuplicateURL(urlsmap)</div><div class="line">                                                                                          —&gt; cl = membership.NewClusterFromURLsMap(cfg.InitoalClusterToken, urlsmap)</div><div class="line">                                                                                —&gt; cl.SetStore(st)</div><div class="line">                                                                                —&gt; cl.SetBackend(be)</div><div class="line">                                                                                —&gt; cfg.PrintWithInitial()</div><div class="line">                                                                                —&gt; id, n, s, w = startNode(cfg, cl, cl.MemberIDs())</div><div class="line">                                                                      —&gt; case haveWAL:</div><div class="line">                                                                                —&gt; fileutil.IsDirWriteable(cfg.MemberDir())</div><div class="line">                                                                                —&gt; fileutil.IsDirWriteable(cfg.WALDir())</div><div class="line">                                                                                —&gt; snapshot = ss.Load()</div><div class="line">                                                                                —&gt; st.Recovery(snapshot.Data)</div><div class="line">                                                                                —&gt; cfg.Print()</div><div class="line">                                                                                —&gt; if !cfg.ForceNewCluster</div><div class="line">                                                                                          —&gt; id, cl, n, s, w = restartNode(cfg, snapshot)</div><div class="line">                                                                                —&gt; else</div><div class="line">                                                                                          —&gt; id, cl, n, s, w = restartAsStandaloneNode(cfg, snapshot)</div><div class="line">                                                                                —&gt; cl.SetStore(st)</div><div class="line">                                                                                —&gt; cl.SetBackend(be)</div><div class="line">                                                                                —&gt; cl.Recover()</div><div class="line">                                                            —&gt; sstats := &amp;stats.ServerStats&#123;&#125;</div><div class="line">                                                            —&gt; sstats.Initialize()</div><div class="line">                                                            —&gt; lstats := stats.NewLeaderStats(id.String())</div><div class="line">                                                            —&gt; srv = &amp;EtcdServer&#123;&#125;</div><div class="line">                                                            —&gt; srv.applyV2 = &amp;applierV2store&#123;&#125;</div><div class="line">                                                            —&gt; srv.be = be</div><div class="line">                                                            —&gt; srv.lessor = lease.NewLessor(srv.be)</div><div class="line">                                                            —&gt; srv.kv = mvcc.New(src.be, srv.lessor, &amp;srv.consistIndex)</div><div class="line">                                                            —&gt; srv.consistIndex.setConsistentIndex(srv.kv.ConsistentIndex())</div><div class="line">                                                            —&gt; srv.authStore = auth.NewAuthStore(srv.be)</div><div class="line">                                                            —&gt; h := cfg.AutoCompactionRetention</div><div class="line">                                                            —&gt; srv.compactor = compactor.NewPeriodic(h, srv,kv, srv)</div><div class="line">                                                            —&gt; tr := &amp;rafthttp.Transport&#123;&#125;</div><div class="line">                                                            —&gt; tr.Start()</div><div class="line">                                                            —&gt; for m := range  remotes      tr.AddRemote(m.ID, m.PeerURLs)</div><div class="line">                                                            —&gt; for m := range  cl.Members()      tr.AddPeer(m.ID, m.PeerURLs)</div><div class="line">                                                            —&gt; srv.r.transport = tr</div><div class="line">                                                  —&gt; etcdserver/server.go  e.Server.Start()</div><div class="line">                                        —&gt; interrupt_unix.go  osutil.RegisterInterruptHandler(e.Server.Stop)               向系统注册中断事件</div><div class="line">                    —&gt; case dirProxy:</div><div class="line">                              —&gt; etcdmain/etcd.go  startProxy(&amp;cfg.Config)</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/etcd介绍及源码分析/" class="archive-article-date">
+  	<time datetime="2016-11-10T05:31:40.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-10</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/etcd/">etcd</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/分布式协同/">分布式协同</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/Kafka/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Kafka
+        
+      </div>
+    </a>
+  
+  
+    <a href="/ZooKeeper源码/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ZooKeeper源码</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 Xia, MingXing
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: false
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Kafka/" style="font-size: 12.5px;">Kafka</a> <a href="/tags/Libvirt/" style="font-size: 10px;">Libvirt</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/Linux-Networking-Internals/" style="font-size: 15px;">Linux Networking Internals</a> <a href="/tags/Linux-Source-Code/" style="font-size: 10px;">Linux Source Code</a> <a href="/tags/Linux-Special-File-System/" style="font-size: 10px;">Linux Special File System</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/QEMU/" style="font-size: 10px;">QEMU</a> <a href="/tags/Spark/" style="font-size: 15px;">Spark</a> <a href="/tags/ZooKeeper/" style="font-size: 12.5px;">ZooKeeper</a> <a href="/tags/etcd/" style="font-size: 10px;">etcd</a> <a href="/tags/kubernetes/" style="font-size: 10px;">kubernetes</a> <a href="/tags/lxc/" style="font-size: 10px;">lxc</a> <a href="/tags/lxcfs/" style="font-size: 10px;">lxcfs</a> <a href="/tags/介绍/" style="font-size: 10px;">介绍</a> <a href="/tags/分布式协同/" style="font-size: 10px;">分布式协同</a> <a href="/tags/大数据/" style="font-size: 17.5px;">大数据</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接1</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接2</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接3</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接4</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接5</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接6</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">平均每天保证几小时的学习时间，用一万小时定律激励自己</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

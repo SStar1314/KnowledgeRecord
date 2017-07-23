@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>SStar1314</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="SStar1314">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:site_name" content="SStar1314">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SStar1314">
+  
+    <link rel="alternative" href="/atom.xml" title="SStar1314" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/favicon.ico" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Xia, MingXing</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">西安</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/archives">所有文章</a></li>
+	        
+				<li><a href="/categories">目录</a></li>
+	        
+				<li><a href="/tags">标签</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/SStar1314/" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+		        
+					<a class="rss" target="_blank" href="#" title="rss">rss</a>
+		        
+					<a class="mail" target="_blank" href="/xaxiamx@gmail.com" title="mail">mail</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Xia, MingXing</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/favicon.ico" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Xia, MingXing</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">西安</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories">目录</a></li>
+		        
+					<li><a href="/tags">标签</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/SStar1314/" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="mail" target="_blank" href="/xaxiamx@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        
+  
+    <article id="post-Storm介绍" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Storm介绍/">Storm(流计算)介绍</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Storm-简介"><a href="#Storm-简介" class="headerlink" title="Storm 简介"></a>Storm 简介</h2><p>参考： <a href="http://storm.apache.org/releases/0.10.2/index.html" target="_blank" rel="external">http://storm.apache.org/releases/0.10.2/index.html</a><br>Storm是一个分布式计算框架，主要由Clojure编程语言编写。最初是由Nathan Marz[1]及其团队创建于BackType，[2]该项目在被Twitter取得后开源。[3]它使用用户创建的“管（spouts）”和“螺栓（bolts）”来定义信息源和操作来允许批量、分布式处理流式数据。</p>
+<h3 id="Storm-源代码导入-Eclipse"><a href="#Storm-源代码导入-Eclipse" class="headerlink" title="Storm 源代码导入 Eclipse"></a>Storm 源代码导入 Eclipse</h3><p>下载源代码并导入Eclipse： （可参考网页：<a href="http://ylzhj02.iteye.com/blog/2162197）" target="_blank" rel="external">http://ylzhj02.iteye.com/blog/2162197）</a></p>
+<ul>
+<li>1.git clone git://github.com/apache/storm.git</li>
+<li>2.mvn clean package install -DskipTests=true</li>
+<li>3.mvn eclipse:eclipse</li>
+</ul>
+<h3 id="Storm-Topology-架构"><a href="#Storm-Topology-架构" class="headerlink" title="Storm Topology 架构"></a>Storm Topology 架构</h3><p><img src="/images/Storm_Topology.png" alt=""></p>
+<ul>
+<li>Topology：storm中运行的一个实时应用程序，因为各个组件间的消息流动形成逻辑上的一个拓扑结构。</li>
+<li>Spout：在一个topology中产生源数据流的组件。通常情况下spout会从外部数据源中读取数据，然后转换为topology内部的源数据。Spout是一个主动的角色，其接口中有个nextTuple()函数，storm框架会不停地调用此函数，用户只要在其中生成源数据即可。</li>
+<li>Bolt：在一个topology中接受数据然后执行处理的组件。Bolt可以执行过滤、函数操作、合并、写数据库等任何操作。Bolt是一个被动的角色，其接口中有个execute(Tuple input)函数,在接受到消息后会调用此函数，用户可以在其中执行自己想要的操作。</li>
+<li>Tuple：一次消息传递的基本单元。本来应该是一个key-value的map，但是由于各个组件间传递的tuple的字段名称已经事先定义好，所以tuple中只要按序填入各个value就行了，所以就是一个value list.</li>
+<li>Stream：源源不断传递的tuple就组成了stream。</li>
+</ul>
+<h3 id="Storm-Detail"><a href="#Storm-Detail" class="headerlink" title="Storm Detail"></a>Storm Detail</h3><p>在Storm的集群里面有两种节点： 控制节点(master node)和工作节点(worker node)。控制节点上面运行一个叫Nimbus后台程序，它的作用类似Hadoop里面的JobTracker。Nimbus负责在集群里面分发代码，分配计算任务给机器，并且监控状态。<br>每一个工作节点上面运行一个叫做Supervisor的节点。Supervisor会监听分配给它那台机器的工作，根据需要启动/关闭工作进程。每一个工作进程执行一个topology的一个子集；一个运行的topology由运行在很多机器上的很多工作进程组成。<br><img src="/images/Storm1.png" alt="">  <img src="/images/Storm2.jpg" alt="">  <img src="/images/Storm3.png" alt=""></p>
+<ul>
+<li>Storm提供的最基本的处理stream的原语是spout和bolt。你可以实现spout和bolt提供的接口来处理你的业务逻辑。</li>
+<li>消息源spout是Storm里面一个topology里面的消息生产者。一般来说消息源会从一个外部源读取数据并且向topology里面发出消息：tuple。Spout可以是可靠的也可以是不可靠的。如果这个tuple没有被storm成功处理，可靠的消息源spouts可以重新发射一个tuple， 但是不可靠的消息源spouts一旦发出一个tuple就不能重发了。</li>
+<li>消息源可以发射多条消息流stream。使用OutputFieldsDeclarer.declareStream来定义多个stream，然后使用SpoutOutputCollector来发射指定的stream。</li>
+<li>Spout类里面最重要的方法是nextTuple。要么发射一个新的tuple到topology里面或者简单的返回如果已经没有新的tuple。要注意的是nextTuple方法不能阻塞，因为storm在同一个线程上面调用所有消息源spout的方法。</li>
+<li>另外两个比较重要的spout方法是ack和fail。storm在检测到一个tuple被整个topology成功处理的时候调用ack，否则调用fail。storm只对可靠的spout调用ack和fail。</li>
+<li>所有的消息处理逻辑被封装在bolts里面。Bolts可以做很多事情：过滤，聚合，查询数据库等等。</li>
+<li>Bolts可以简单的做消息流的传递。复杂的消息流处理往往需要很多步骤，从而也就需要经过很多bolts。比如算出一堆图片里面被转发最多的图片就至少需要两步：第一步算出每个图片的转发数量。第二步找出转发最多的前10个图片。(如果要把这个过程做得更具有扩展性那么可能需要更多的步骤)。</li>
+<li>Bolts可以发射多条消息流， 使用OutputFieldsDeclarer.declareStream定义stream，使用OutputCollector.emit来选择要发射的stream。</li>
+<li>Bolts的主要方法是execute, 它以一个tuple作为输入，bolts使用OutputCollector来发射tuple，bolts必须要为它处理的每一个tuple调用OutputCollector的ack方法，以通知Storm这个tuple被处理完成了，从而通知这个tuple的发射者spouts。 一般的流程是： bolts处理一个输入tuple, 发射0个或者多个tuple, 然后调用ack通知storm自己已经处理过这个tuple了。storm提供了一个IBasicBolt会自动调用ack。</li>
+<li>定义一个topology的其中一步是定义每个bolt接收什么样的流作为输入。stream grouping就是用来定义一个stream应该如果分配数据给bolts上面的多个tasks。</li>
+</ul>
+<h3 id="Storm里面有7种类型的stream-grouping"><a href="#Storm里面有7种类型的stream-grouping" class="headerlink" title="Storm里面有7种类型的stream grouping"></a>Storm里面有7种类型的stream grouping</h3><ul>
+<li>　　Shuffle Grouping: 随机分组， 随机派发stream里面的tuple，保证每个bolt接收到的tuple数目大致相同。</li>
+<li>　　Fields Grouping：按字段分组， 比如按userid来分组， 具有同样userid的tuple会被分到相同的Bolts里的一个task， 而不同的userid则会被分配到不同的bolts里的task。</li>
+<li>　　All Grouping：广播发送，对于每一个tuple，所有的bolts都会收到。</li>
+<li>　　Global Grouping：全局分组， 这个tuple被分配到storm中的一个bolt的其中一个task。再具体一点就是分配给id值最低的那个task。</li>
+<li>　　Non Grouping：不分组，这个分组的意思是说stream不关心到底谁会收到它的tuple。目前这种分组和Shuffle grouping是一样的效果， 有一点不同的是storm会把这个bolt放到这个bolt的订阅者同一个线程里面去执行。</li>
+<li>　　Direct Grouping： 直接分组， 这是一种比较特别的分组方法，用这种分组意味着消息的发送者指定由消息接收者的哪个task处理这个消息。 只有被声明为Direct Stream的消息流可以声明这种分组方法。而且这种消息tuple必须使用emitDirect方法来发射。消息处理者可以通过TopologyContext来获取处理它的消息的task的id (OutputCollector.emit方法也会返回task的id)。</li>
+<li>　　Local or shuffle grouping：如果目标bolt有一个或者多个task在同一个工作进程中，tuple将会被随机发生给这些tasks。否则，和普通的Shuffle Grouping行为一致。</li>
+</ul>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/Storm介绍/" class="archive-article-date">
+  	<time datetime="2016-11-08T12:27:38.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-08</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大数据/">大数据</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/bigdata/">bigdata</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Hive" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Hive/">Hive(数据仓库)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Hive-简介"><a href="#Hive-简介" class="headerlink" title="Hive 简介"></a>Hive 简介</h2><p>参考： <a href="https://cwiki.apache.org/confluence/display/Hive/Home" target="_blank" rel="external">https://cwiki.apache.org/confluence/display/Hive/Home</a><br>Apache Hive是一个建立在Hadoop架构之上的数据仓库。它能够提供数据的精炼，查询和分析。Apache Hive起初由Facebook开发。</p>
+<p>hive是基于Hadoop的一个数据仓库工具，可以将结构化的数据文件映射为一张数据库表，并提供简单的SQL查询功能，可以将SQL语句转换为MapReduce任务进行运行。其优点是学习成本低，可以通过类SQL语句快速实现简单的MapReduce统计，不必开发专门的MapReduce应用，十分适合数据仓库的统计分析。</p>
+<ul>
+<li>1.hive是一个数据仓库</li>
+<li>2.hive基于hadoop。</li>
+</ul>
+<h3 id="Hive-安装"><a href="#Hive-安装" class="headerlink" title="Hive 安装"></a>Hive 安装</h3><p>参考： <a href="http://doctuts.readthedocs.io/en/latest/hive.html" target="_blank" rel="external">http://doctuts.readthedocs.io/en/latest/hive.html</a></p>
+<ul>
+<li><p>1.安装hadoop</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">export HADOOP_HOME=/root/hadoop-2.7.3</div><div class="line">export HIVE_HOME=/root/apache-hive-2.1.0-bin</div><div class="line">export PATH=$PATH:$HIVE_HOME/bin</div></pre></td></tr></table></figure>
+</li>
+<li><p>2.启动hadoop hdfs文件系统</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">bin/hdfs   namenode   -format</div><div class="line">sbin/start-all.sh    或者   start-dfs.sh and start-yarn.sh</div></pre></td></tr></table></figure>
+</li>
+<li><p>3.创建文件夹</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">bin/hadoop fs -mkdir /usr/hive/warehouse</div><div class="line">bin/hadoop fs -chmod g+w /usr/hive/warehouse</div></pre></td></tr></table></figure>
+</li>
+<li><p>4.第一次运行hive之前，需要设置schema</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">schematool -initSchema -dbType derby</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>如果已经尝试运行hive出错之后，再去设置schema也会出错，需要做：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mv  metastore_db  metastore_db.tmp</div></pre></td></tr></table></figure></p>
+<ul>
+<li>5.运行hive<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hive</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Hive-启动源代码入口："><a href="#Hive-启动源代码入口：" class="headerlink" title="Hive 启动源代码入口："></a>Hive 启动源代码入口：</h3><p>bin/hive  —&gt;  hive script中会执行  bin/ext/*.sh, 以及 bin/ext/util/*.sh 命令<br>SERVICE_LIST 变量 在bin/ext/*.sh 中增加value；<br>SERVICE 变量在启动命令时 赋值； 默认   SERVICE=”cli”</p>
+<p><img src="/images/Hive_Code_1.png" alt=""> <img src="/images/Hive_Code_2.png" alt=""></p>
+<p>—&gt;   execHiveCmd 启动 java 源代码的入口               org.apache.hive.beeline.cli.HiveCli   或者   org.apache.hadoop.hive.cli.CliDriver</p>
+<h3 id="Hive-vs-HBase"><a href="#Hive-vs-HBase" class="headerlink" title="Hive vs HBase"></a>Hive vs HBase</h3><p>共同点：</p>
+<ul>
+<li>1.hbase与hive都是架构在hadoop之上的。都是用hadoop作为底层存储</li>
+</ul>
+<p>区别：</p>
+<ul>
+<li>1.Hive是建立在Hadoop之上为了减少MapReduce jobs编写工作的批处理系统，HBase是为了支持弥补Hadoop对实时操作的缺陷的项目 。</li>
+<li>2.想象你在操作RMDB数据库，如果是全表扫描，就用Hive+Hadoop,如果是索引访问，就用HBase+Hadoop 。</li>
+<li>3.Hive query就是MapReduce jobs可以从5分钟到数小时不止，HBase是非常高效的，肯定比Hive高效的多。</li>
+<li>4.Hive本身不存储和计算数据，它完全依赖于HDFS和MapReduce，Hive中的表纯逻辑。</li>
+<li>5.hive借用hadoop的MapReduce来完成一些hive中的命令的执行</li>
+<li>6.hbase是物理表，不是逻辑表，提供一个超大的内存hash表，搜索引擎通过它来存储索引，方便查询操作。</li>
+<li>7.hbase是列存储。</li>
+<li>8.hdfs作为底层存储，hdfs是存放文件的系统，而Hbase负责组织文件。</li>
+<li>9.hive需要用到hdfs存储文件，需要用到MapReduce计算框架。</li>
+</ul>
+<h3 id="improt-Hive源代码到Eclipse里面："><a href="#improt-Hive源代码到Eclipse里面：" class="headerlink" title="improt Hive源代码到Eclipse里面："></a>improt Hive源代码到Eclipse里面：</h3><ul>
+<li><ol>
+<li>mvn clean install -DskipTests</li>
+</ol>
+</li>
+<li><ol>
+<li>mvn eclipse:eclipse -DdownloadSources -DdownloadJavadocs</li>
+</ol>
+</li>
+</ul>
+<h3 id="Hive-知识范围"><a href="#Hive-知识范围" class="headerlink" title="Hive 知识范围"></a>Hive 知识范围</h3><p><img src="/images/Hive_Related.png" alt=""></p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/Hive/" class="archive-article-date">
+  	<time datetime="2016-11-08T09:51:43.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-08</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大数据/">大数据</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/bigdata/">bigdata</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-HBase" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/HBase/">HBase(非关系型分布式数据库)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="HBase-简介"><a href="#HBase-简介" class="headerlink" title="HBase 简介"></a>HBase 简介</h2><p>HBase 是一个开源的非关系型分布式数据库。 <a href="https://azure.microsoft.com/en-us/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/" target="_blank" rel="external">https://azure.microsoft.com/en-us/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/</a></p>
+<ul>
+<li>HBase架构指南： <a href="http://www.guru99.com/hbase-architecture-data-flow-usecases.html" target="_blank" rel="external">http://www.guru99.com/hbase-architecture-data-flow-usecases.html</a></li>
+<li>安装指南： <a href="http://www.guru99.com/hbase-installation-guide.html" target="_blank" rel="external">http://www.guru99.com/hbase-installation-guide.html</a></li>
+<li>HBase Shell 命令指南： <a href="http://www.guru99.com/hbase-shell-general-commands.html" target="_blank" rel="external">http://www.guru99.com/hbase-shell-general-commands.html</a></li>
+</ul>
+<h2 id="HBase-NoSQL-数据库优缺点"><a href="#HBase-NoSQL-数据库优缺点" class="headerlink" title="HBase NoSQL 数据库优缺点"></a>HBase NoSQL 数据库优缺点</h2><p>Hbase,Casandra,Bigtable都属于面向 <strong>列存储</strong> 的分布式存储系统。</p>
+<p>HBase 基本单元：</p>
+<ul>
+<li>Table: Collection of rows present.</li>
+<li>Row: Collection of column families.</li>
+<li>Column Family: Collection of columns.</li>
+<li>Column: Collection of key-value pairs.</li>
+<li>Namespace: Logical grouping of tables.</li>
+<li>Cell: A {row, column, version} tuple exactly specifies a cell definition in HBase.</li>
+</ul>
+<p>列存储 vs 行存储：<br><img src="/images/Column_vs_Row.png" alt=""></p>
+<p>Hbase的优点：<br>1 列的可以动态增加，并且列为空就不存储数据,节省存储空间.<br>2 Hbase自动切分数据，使得数据存储自动具有水平scalability.<br>3 Hbase可以提供高并发读写操作的支持</p>
+<p>Hbase的缺点：<br>1 不能支持条件查询，只支持按照Row key来查询.<br>2 暂时不能支持Master server的故障切换,当Master宕机后,整个存储系统就会挂掉.</p>
+<h2 id="HBase-架构"><a href="#HBase-架构" class="headerlink" title="HBase 架构"></a>HBase 架构</h2><p><img src="/images/HBase_Arch.png" alt=""></p>
+<p><img src="/images/HBase_Arch_1.png" alt=""></p>
+<h2 id="Hbase-Data-Flow"><a href="#Hbase-Data-Flow" class="headerlink" title="Hbase Data Flow"></a>Hbase Data Flow</h2><p><img src="/images/HBase_Data_Flow.png" alt=""></p>
+<p>The Read and Write operations from Client into Hfile can be shown in below diagram.</p>
+<ul>
+<li>Step 1) Client wants to write data and in turn first communicates with Regions server and then regions</li>
+<li>Step 2) Regions contacting memstore for storing associated with the column family</li>
+<li>Step 3) First data stores into Memstore, where the data is sorted and after that it flushes into HFile. The main reason for using Memstore is to store data in Distributed file system based on Row Key. Memstore will be placed in Region server main memory while HFiles are written into HDFS.</li>
+<li>Step 4) Client wants to read data from Regions</li>
+<li>Step 5) In turn Client can have direct access to Mem store, and it can request for data.</li>
+<li>Step 6) Client approaches HFiles to get the data. The data are fetched and retrieved by the Client.</li>
+</ul>
+<h2 id="HBase-vs-HDFS"><a href="#HBase-vs-HDFS" class="headerlink" title="HBase vs HDFS"></a>HBase vs HDFS</h2><p><img src="/images/HBase_vs_HDFS.png" alt=""></p>
+<h3 id="improt-HBase源代码到Eclipse里面："><a href="#improt-HBase源代码到Eclipse里面：" class="headerlink" title="improt HBase源代码到Eclipse里面："></a>improt HBase源代码到Eclipse里面：</h3><ul>
+<li><ol>
+<li>mvn clean install -DskipTests</li>
+</ol>
+</li>
+<li><ol>
+<li>mvn eclipse:eclipse -DdownloadSources -DdownloadJavadocs</li>
+</ol>
+</li>
+</ul>
+<h2 id="HBase-源码入口"><a href="#HBase-源码入口" class="headerlink" title="HBase 源码入口"></a>HBase 源码入口</h2><p><img src="/images/HBase_Code.png" alt=""></p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/HBase/" class="archive-article-date">
+  	<time datetime="2016-11-08T09:16:42.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-08</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大数据/">大数据</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/bigdata/">bigdata</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Hadoop 源码入口" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Hadoop 源码入口/">Hadoop 源码入口</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="improt-Hadoop源代码到Eclipse里面："><a href="#improt-Hadoop源代码到Eclipse里面：" class="headerlink" title="improt Hadoop源代码到Eclipse里面："></a>improt Hadoop源代码到Eclipse里面：</h3><ul>
+<li><ol>
+<li>mvn clean install -DskipTests</li>
+</ol>
+</li>
+<li><ol>
+<li>mvn eclipse:eclipse -DdownloadSources -DdownloadJavadocs</li>
+</ol>
+</li>
+</ul>
+<h2 id="Hadoop-源码入口"><a href="#Hadoop-源码入口" class="headerlink" title="Hadoop 源码入口"></a>Hadoop 源码入口</h2><p>这些是Hadoop 源码阅读的入口位置，可以通过这些main函数看进源码实现。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">Hadoop <span class="built_in">command</span>:</div><div class="line">    <span class="comment"># the core commands</span></div><div class="line">    <span class="keyword">if</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"fs"</span> ] ; <span class="keyword">then</span></div><div class="line">      CLASS=org.apache.hadoop.fs.FsShell</div><div class="line">    <span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"version"</span> ] ; <span class="keyword">then</span></div><div class="line">      CLASS=org.apache.hadoop.util.VersionInfo</div><div class="line">    <span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"jar"</span> ] ; <span class="keyword">then</span></div><div class="line">      CLASS=org.apache.hadoop.util.RunJar</div><div class="line">      <span class="keyword">if</span> [[ -n <span class="string">"<span class="variable">$&#123;YARN_OPTS&#125;</span>"</span> ]] || [[ -n <span class="string">"<span class="variable">$&#123;YARN_CLIENT_OPTS&#125;</span>"</span> ]]; <span class="keyword">then</span></div><div class="line">        <span class="built_in">echo</span> <span class="string">"WARNING: Use \"yarn jar\" to launch YARN applications."</span> 1&gt;&amp;2</div><div class="line">      <span class="keyword">fi</span></div><div class="line">    <span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"key"</span> ] ; <span class="keyword">then</span></div><div class="line">      CLASS=org.apache.hadoop.crypto.key.KeyShell</div><div class="line">    <span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"checknative"</span> ] ; <span class="keyword">then</span></div><div class="line">      CLASS=org.apache.hadoop.util.NativeLibraryChecker</div><div class="line">    <span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"distcp"</span> ] ; <span class="keyword">then</span></div><div class="line">      CLASS=org.apache.hadoop.tools.DistCp</div><div class="line">      CLASSPATH=<span class="variable">$&#123;CLASSPATH&#125;</span>:<span class="variable">$&#123;TOOL_PATH&#125;</span></div><div class="line">    <span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"daemonlog"</span> ] ; <span class="keyword">then</span></div><div class="line">      CLASS=org.apache.hadoop.log.LogLevel</div><div class="line">    <span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"archive"</span> ] ; <span class="keyword">then</span></div><div class="line">      CLASS=org.apache.hadoop.tools.HadoopArchives</div><div class="line">      CLASSPATH=<span class="variable">$&#123;CLASSPATH&#125;</span>:<span class="variable">$&#123;TOOL_PATH&#125;</span></div><div class="line">    <span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"credential"</span> ] ; <span class="keyword">then</span></div><div class="line">      CLASS=org.apache.hadoop.security.alias.CredentialShell</div><div class="line">    <span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"trace"</span> ] ; <span class="keyword">then</span></div><div class="line">      CLASS=org.apache.hadoop.tracing.TraceAdmin</div><div class="line">    <span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"classpath"</span> ] ; <span class="keyword">then</span></div><div class="line">      <span class="keyword">if</span> [ <span class="string">"<span class="variable">$#</span>"</span> -gt 1 ]; <span class="keyword">then</span></div><div class="line">        CLASS=org.apache.hadoop.util.Classpath</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line">Hdfs <span class="built_in">command</span>:</div><div class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"namenode"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=<span class="string">'org.apache.hadoop.hdfs.server.namenode.NameNode'</span></div><div class="line">  HADOOP_OPTS=<span class="string">"<span class="variable">$HADOOP_OPTS</span> <span class="variable">$HADOOP_NAMENODE_OPTS</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"zkfc"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=<span class="string">'org.apache.hadoop.hdfs.tools.DFSZKFailoverController'</span></div><div class="line">  HADOOP_OPTS=<span class="string">"<span class="variable">$HADOOP_OPTS</span> <span class="variable">$HADOOP_ZKFC_OPTS</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"secondarynamenode"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=<span class="string">'org.apache.hadoop.hdfs.server.namenode.SecondaryNameNode'</span></div><div class="line">  HADOOP_OPTS=<span class="string">"<span class="variable">$HADOOP_OPTS</span> <span class="variable">$HADOOP_SECONDARYNAMENODE_OPTS</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"datanode"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=<span class="string">'org.apache.hadoop.hdfs.server.datanode.DataNode'</span></div><div class="line">  <span class="keyword">if</span> [ <span class="string">"<span class="variable">$starting_secure_dn</span>"</span> = <span class="string">"true"</span> ]; <span class="keyword">then</span></div><div class="line">    HADOOP_OPTS=<span class="string">"<span class="variable">$HADOOP_OPTS</span> -jvm server <span class="variable">$HADOOP_DATANODE_OPTS</span>"</span></div><div class="line">  <span class="keyword">else</span></div><div class="line">    HADOOP_OPTS=<span class="string">"<span class="variable">$HADOOP_OPTS</span> -server <span class="variable">$HADOOP_DATANODE_OPTS</span>"</span></div><div class="line">  <span class="keyword">fi</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"journalnode"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=<span class="string">'org.apache.hadoop.hdfs.qjournal.server.JournalNode'</span></div><div class="line">  HADOOP_OPTS=<span class="string">"<span class="variable">$HADOOP_OPTS</span> <span class="variable">$HADOOP_JOURNALNODE_OPTS</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"dfs"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.fs.FsShell</div><div class="line">  HADOOP_OPTS=<span class="string">"<span class="variable">$HADOOP_OPTS</span> <span class="variable">$HADOOP_CLIENT_OPTS</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"dfsadmin"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.DFSAdmin</div><div class="line">  HADOOP_OPTS=<span class="string">"<span class="variable">$HADOOP_OPTS</span> <span class="variable">$HADOOP_CLIENT_OPTS</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"haadmin"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.DFSHAAdmin</div><div class="line">  CLASSPATH=<span class="variable">$&#123;CLASSPATH&#125;</span>:<span class="variable">$&#123;TOOL_PATH&#125;</span></div><div class="line">  HADOOP_OPTS=<span class="string">"<span class="variable">$HADOOP_OPTS</span> <span class="variable">$HADOOP_CLIENT_OPTS</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"fsck"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.DFSck</div><div class="line">  HADOOP_OPTS=<span class="string">"<span class="variable">$HADOOP_OPTS</span> <span class="variable">$HADOOP_CLIENT_OPTS</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"balancer"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.server.balancer.Balancer</div><div class="line">  HADOOP_OPTS=<span class="string">"<span class="variable">$HADOOP_OPTS</span> <span class="variable">$HADOOP_BALANCER_OPTS</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"mover"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.server.mover.Mover</div><div class="line">  HADOOP_OPTS=<span class="string">"<span class="variable">$&#123;HADOOP_OPTS&#125;</span> <span class="variable">$&#123;HADOOP_MOVER_OPTS&#125;</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"storagepolicies"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.StoragePolicyAdmin</div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"jmxget"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.JMXGet</div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"oiv"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.offlineImageViewer.OfflineImageViewerPB</div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"oiv_legacy"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.offlineImageViewer.OfflineImageViewer</div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"oev"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.offlineEditsViewer.OfflineEditsViewer</div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"fetchdt"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.DelegationTokenFetcher</div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"getconf"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.GetConf</div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"groups"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.GetGroups</div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"snapshotDiff"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.snapshot.SnapshotDiff</div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"lsSnapshottableDir"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.snapshot.LsSnapshottableDir</div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"portmap"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.portmap.Portmap</div><div class="line">  HADOOP_OPTS=<span class="string">"<span class="variable">$HADOOP_OPTS</span> <span class="variable">$HADOOP_PORTMAP_OPTS</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"nfs3"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.nfs.nfs3.Nfs3</div><div class="line">  HADOOP_OPTS=<span class="string">"<span class="variable">$HADOOP_OPTS</span> <span class="variable">$HADOOP_NFS3_OPTS</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"cacheadmin"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.CacheAdmin</div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"crypto"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.CryptoAdmin</div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"version"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.util.VersionInfo</div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"debug"</span> ]; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.hdfs.tools.DebugAdmin</div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"classpath"</span> ]; <span class="keyword">then</span></div><div class="line">  <span class="keyword">if</span> [ <span class="string">"<span class="variable">$#</span>"</span> -gt 0 ]; <span class="keyword">then</span></div><div class="line">    CLASS=org.apache.hadoop.util.Classpath</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">org.apache.hadoop.hdfs.server.datanode.SecureDataNodeStarter</div><div class="line">org.apache.hadoop.hdfs.nfs.nfs3.PrivilegedNfsGatewayStarter</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div></pre></td><td class="code"><pre><div class="line">Yarn:</div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"rmadmin"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=<span class="string">'org.apache.hadoop.yarn.client.cli.RMAdminCLI'</span></div><div class="line">  YARN_OPTS=<span class="string">"<span class="variable">$YARN_OPTS</span> <span class="variable">$YARN_CLIENT_OPTS</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"scmadmin"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=<span class="string">'org.apache.hadoop.yarn.client.SCMAdmin'</span></div><div class="line">  YARN_OPTS=<span class="string">"<span class="variable">$YARN_OPTS</span> <span class="variable">$YARN_CLIENT_OPTS</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"application"</span> ] ||</div><div class="line">     [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"applicationattempt"</span> ] ||</div><div class="line">     [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"container"</span> ]; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.yarn.client.cli.ApplicationCLI</div><div class="line">  YARN_OPTS=<span class="string">"<span class="variable">$YARN_OPTS</span> <span class="variable">$YARN_CLIENT_OPTS</span>"</span></div><div class="line">  <span class="built_in">set</span> -- <span class="variable">$COMMAND</span> <span class="variable">$@</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"node"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.yarn.client.cli.NodeCLI</div><div class="line">  YARN_OPTS=<span class="string">"<span class="variable">$YARN_OPTS</span> <span class="variable">$YARN_CLIENT_OPTS</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"queue"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASS=org.apache.hadoop.yarn.client.cli.QueueCLI</div><div class="line">  YARN_OPTS=<span class="string">"<span class="variable">$YARN_OPTS</span> <span class="variable">$YARN_CLIENT_OPTS</span>"</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$COMMAND</span>"</span> = <span class="string">"resourcemanager"</span> ] ; <span class="keyword">then</span></div><div class="line">  CLASSPATH=<span class="variable">$&#123;CLASSPATH&#125;</span>:<span class="variable">$YARN_CONF_DIR</span>/rm-config/log4j.properties</div><div class="line">  CLASS=<span class="string">'org.apache.hadoop.yarn.server.resourcemanager.ResourceManager’               main     —&gt; serviceInit —&gt; serviceStart</span></div><div class="line">  YARN_OPTS="$YARN_OPTS $YARN_RESOURCEMANAGER_OPTS"</div><div class="line">  if [ "$YARN_RESOURCEMANAGER_HEAPSIZE" != "" ]; then</div><div class="line">    JAVA_HEAP_MAX="-Xmx""$YARN_RESOURCEMANAGER_HEAPSIZE""m"</div><div class="line">  fi</div><div class="line">elif [ "$COMMAND" = "historyserver" ] ; then</div><div class="line">  echo "DEPRECATED: Use of this command to start the timeline server is deprecated." 1&gt;&amp;2</div><div class="line">  echo "Instead use the timelineserver command for it." 1&gt;&amp;2</div><div class="line">  CLASSPATH=$&#123;CLASSPATH&#125;:$YARN_CONF_DIR/ahs-config/log4j.properties</div><div class="line">  CLASS='org.apache.hadoop.yarn.server.applicationhistoryservice.ApplicationHistoryServer<span class="string">'</span></div><div class="line">  YARN_OPTS="$YARN_OPTS $YARN_HISTORYSERVER_OPTS"</div><div class="line">  if [ "$YARN_HISTORYSERVER_HEAPSIZE" != "" ]; then</div><div class="line">    JAVA_HEAP_MAX="-Xmx""$YARN_HISTORYSERVER_HEAPSIZE""m"</div><div class="line">  fi</div><div class="line">elif [ "$COMMAND" = "timelineserver" ] ; then</div><div class="line">  CLASSPATH=$&#123;CLASSPATH&#125;:$YARN_CONF_DIR/timelineserver-config/log4j.properties</div><div class="line">  CLASS='org.apache.hadoop.yarn.server.applicationhistoryservice.ApplicationHistoryServer<span class="string">'</span></div><div class="line">  YARN_OPTS="$YARN_OPTS $YARN_TIMELINESERVER_OPTS"</div><div class="line">  if [ "$YARN_TIMELINESERVER_HEAPSIZE" != "" ]; then</div><div class="line">    JAVA_HEAP_MAX="-Xmx""$YARN_TIMELINESERVER_HEAPSIZE""m"</div><div class="line">  fi</div><div class="line">elif [ "$COMMAND" = "sharedcachemanager" ] ; then</div><div class="line">  CLASSPATH=$&#123;CLASSPATH&#125;:$YARN_CONF_DIR/scm-config/log4j.properties</div><div class="line">  CLASS='org.apache.hadoop.yarn.server.sharedcachemanager.SharedCacheManager<span class="string">'</span></div><div class="line">  YARN_OPTS="$YARN_OPTS $YARN_SHAREDCACHEMANAGER_OPTS"</div><div class="line">  YARN_OPTS="$YARN_OPTS $YARN_SHAREDCACHEMANAGER_OPTS"</div><div class="line">  if [ "$YARN_SHAREDCACHEMANAGER_HEAPSIZE" != "" ]; then</div><div class="line">    JAVA_HEAP_MAX="-Xmx""$YARN_SHAREDCACHEMANAGER_HEAPSIZE""m"</div><div class="line">  fi</div><div class="line">elif [ "$COMMAND" = "nodemanager" ] ; then</div><div class="line">  CLASSPATH=$&#123;CLASSPATH&#125;:$YARN_CONF_DIR/nm-config/log4j.properties</div><div class="line">  CLASS='org.apache.hadoop.yarn.server.nodemanager.NodeManager<span class="string">'                      main     —&gt; serviceInit —&gt; serviceStart</span></div><div class="line">  YARN_OPTS="$YARN_OPTS -server $YARN_NODEMANAGER_OPTS"</div><div class="line">  if [ "$YARN_NODEMANAGER_HEAPSIZE" != "" ]; then</div><div class="line">    JAVA_HEAP_MAX="-Xmx""$YARN_NODEMANAGER_HEAPSIZE""m"</div><div class="line">  fi</div><div class="line">elif [ "$COMMAND" = "proxyserver" ] ; then</div><div class="line">  CLASS='org.apache.hadoop.yarn.server.webproxy.WebAppProxyServer<span class="string">'</span></div><div class="line">  YARN_OPTS="$YARN_OPTS $YARN_PROXYSERVER_OPTS"</div><div class="line">  if [ "$YARN_PROXYSERVER_HEAPSIZE" != "" ]; then</div><div class="line">    JAVA_HEAP_MAX="-Xmx""$YARN_PROXYSERVER_HEAPSIZE""m"</div><div class="line">  fi</div><div class="line">elif [ "$COMMAND" = "version" ] ; then</div><div class="line">  CLASS=org.apache.hadoop.util.VersionInfo</div><div class="line">  YARN_OPTS="$YARN_OPTS $YARN_CLIENT_OPTS"</div><div class="line">elif [ "$COMMAND" = "jar" ] ; then</div><div class="line">  CLASS=org.apache.hadoop.util.RunJar</div><div class="line">  YARN_OPTS="$YARN_OPTS $YARN_CLIENT_OPTS"</div><div class="line">elif [ "$COMMAND" = "logs" ] ; then</div><div class="line">  CLASS=org.apache.hadoop.yarn.client.cli.LogsCLI</div><div class="line">  YARN_OPTS="$YARN_OPTS $YARN_CLIENT_OPTS"</div><div class="line">elif [ "$COMMAND" = "daemonlog" ] ; then</div><div class="line">  CLASS=org.apache.hadoop.log.LogLevel</div><div class="line">  YARN_OPTS="$YARN_OPTS $YARN_CLIENT_OPTS"</div><div class="line">elif [ "$COMMAND" = "cluster" ] ; then</div><div class="line">  CLASS=org.apache.hadoop.yarn.client.cli.ClusterCLI</div><div class="line">  YARN_OPTS="$YARN_OPTS $YARN_CLIENT_OPTS"</div><div class="line">else</div><div class="line">  CLASS=$COMMAND</div><div class="line">fi</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/Hadoop 源码入口/" class="archive-article-date">
+  	<time datetime="2016-11-08T08:54:09.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-08</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/bigdata/">bigdata</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Hadoop Yarn(待补充)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Hadoop Yarn(待补充)/">Hadoop Yarn(待补充)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Hadoop-Yarn-流程图"><a href="#Hadoop-Yarn-流程图" class="headerlink" title="Hadoop Yarn 流程图"></a>Hadoop Yarn 流程图</h2><p>Hadoop v1 资源调度：<br><img src="/images/Hadoop_Yarn_1.png" alt=""></p>
+<p>Hadoop v2 Yarn 资源调度：<br><img src="/images/Hadoop_Yarn_2.png" alt=""></p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/Hadoop Yarn(待补充)/" class="archive-article-date">
+  	<time datetime="2016-11-08T08:50:52.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-08</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/bigdata/">bigdata</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Hadoop MapReduce" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Hadoop MapReduce/">Hadoop MapReduce</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Hadoop-MapReduce-流程图"><a href="#Hadoop-MapReduce-流程图" class="headerlink" title="Hadoop MapReduce 流程图"></a>Hadoop MapReduce 流程图</h2><p><img src="/images/Hadoop_MapReduce.png" alt=""></p>
+<p><img src="/images/Hadoop_MapReduce_1.png" alt=""></p>
+<p><img src="/images/Hadoop_Map_Reduce.jpg" alt=""></p>
+<p><strong>在hadoop中，map-&gt;combine-&gt;partition-&gt;shuffle-&gt;reduce，五个步骤的作用分别是什么？</strong></p>
+<ul>
+<li>combine和partition都是函数，中间的步骤应该只有shuffle！</li>
+<li>combine分为map端和reduce端，作用是把同一个key的键值对合并在一起，可以自定义的。</li>
+<li>combine函数把一个map函数产生的<key,value>对（多个key,value）合并成一个新的<key2,value2>.将新的<key2,value2>作为输入到reduce函数中</key2,value2></key2,value2></key,value></li>
+<li>这个value2亦可称之为values，因为有多个。这个合并的目的是为了减少网络传输。</li>
+<li>partition是分割map每个节点的结果，按照key分别映射给不同的reduce，也是可以自定义的。这里其实可以理解归类。</li>
+<li>partition的作用就是把这些数据归类。只不过在写程序的时候，mapreduce使用哈希HashPartitioner帮我们归类了。这个我们也可以自定义。</li>
+<li>shuffle就是map和reduce之间的过程，包含了两端的combine和partition。</li>
+<li>Map的结果，会通过partition分发到Reducer上，Reducer做完Reduce操作后，通过OutputFormat，进行输出</li>
+<li>shuffle阶段的主要函数是fetchOutputs(),这个函数的功能就是将map阶段的输出，copy到reduce 节点本地。</li>
+</ul>
+<p><em>摘自aboutyun社区，一些值得思考的问题</em><br><strong>1.Shuffle的定义是什么？</strong><br><strong>2.map task与reduce task的执行是否在不同的节点上？</strong><br><strong>3.Shuffle产生的意义是什么？</strong><br><strong>4.每个map task都有一个内存缓冲区，存储着map的输出结果，当缓冲区快满的时候需要将缓冲区的数据该如何处理？</strong><br><strong>5.在map task执行时，它是如何读取HDFS的？</strong><br><strong>6.读取的Split与block的对应关系可能是什么？</strong><br><strong>7.MapReduce提供Partitioner接口，它的作用是什么？</strong><br><strong>8.溢写是在什么情况下发生？</strong><br><strong>9.溢写是为什么不影响往缓冲区写map结果的线程？</strong><br><strong>10.当溢写线程启动后，需要对这80MB空间内的key做排序(Sort)。排序是MapReduce模型默认的行为，这里的排序也是对谁的排序？</strong><br><strong>11.哪些场景才能使用Combiner呢？</strong><br><strong>12.Merge的作用是什么？</strong><br><strong>13.reduce中Copy过程采用是什么协议？</strong><br><strong>14.reduce中merge过程有几种方式，与map有什么相似之处？</strong><br><strong>15.溢写过程中如果有很多个key/value对需要发送到某个reduce端去，那么如何处理这些key/value值</strong></p>
+<p><strong>Shuffle产生的意义是什么？</strong><br>在Hadoop这样的集群环境中，大部分map task与reduce task的执行是在不同的节点上。当然很多情况下Reduce执行时需要跨节点去拉取其它节点上的map task结果。如果集群正在运行的job有很多，那么task的正常执行对集群内部的网络资源消耗会很严重。这种网络消耗是正常的，我们不能限制，能做的就是最大化地减少不必要的消耗。还有在节点内，相比于内存，磁盘IO对job完成时间的影响也是可观的。从最基本的要求来说，Shuffle过程的期望可以有：<br>完整地从map task端拉取数据到reduce 端。<br>在跨节点拉取数据时，尽可能地减少对带宽的不必要消耗。<br>减少磁盘IO对task执行的影响。</p>
+<p><strong>每个map task都有一个内存缓冲区，存储着map的输出结果，当缓冲区快满的时候需要将缓冲区的数据该如何处理？</strong><br>每个map task都有一个内存缓冲区，存储着map的输出结果，当缓冲区快满的时候需要将缓冲区的数据以一个临时文件的方式存放到磁盘，当整个map task结束后再对磁盘中这个map task产生的所有临时文件做合并，生成最终的正式输出文件，然后等待reduce task来拉数据。</p>
+<p><strong>MapReduce提供Partitioner接口，它的作用是什么？</strong><br>MapReduce提供Partitioner接口，它的作用就是根据key或value及reduce的数量来决定当前的这对输出数据最终应该交由哪个reduce task处理。默认对key hash后再以reduce task数量取模。默认的取模方式只是为了平均reduce的处理能力，如果用户自己对Partitioner有需求，可以订制并设置到job上。</p>
+<p><strong>什么是溢写？</strong><br>在一定条件下将缓冲区中的数据临时写入磁盘，然后重新利用这块缓冲区。这个从内存往磁盘写数据的过程被称为Spill，中文可译为溢写。</p>
+<p><strong>溢写是为什么不影响往缓冲区写map结果的线程？</strong><br>溢写线程启动时不应该阻止map的结果输出，所以整个缓冲区有个溢写的比例spill.percent。这个比例默认是0.8，也就是当缓冲区的数据已经达到阈值（buffer size <em> spill percent = 100MB </em> 0.8 = 80MB），溢写线程启动，锁定这80MB的内存，执行溢写过程。Map task的输出结果还可以往剩下的20MB内存中写，互不影响。</p>
+<p><strong>当溢写线程启动后，需要对这80MB空间内的key做排序(Sort)。排序是MapReduce模型默认的行为，这里的排序也是对谁的排序？</strong><br>当溢写线程启动后，需要对这80MB空间内的key做排序(Sort)。排序是MapReduce模型默认的行为，这里的排序也是对序列化的字节做的排序。</p>
+<p><strong>溢写过程中如果有很多个key/value对需要发送到某个reduce端去，那么如何处理这些key/value值？</strong><br>如果有很多个key/value对需要发送到某个reduce端去，那么需要将这些key/value值拼接到一块，减少与partition相关的索引记录。</p>
+<p><strong>哪些场景才能使用Combiner呢？</strong><br>Combiner的输出是Reducer的输入，Combiner绝不能改变最终的计算结果。所以从我的想法来看，Combiner只应该用于那种Reduce的输入key/value与输出key/value类型完全一致，且不影响最终结果的场景。比如累加，最大值等。Combiner的使用一定得慎重，如果用好，它对job执行效率有帮助，反之会影响reduce的最终结果。</p>
+<p><strong>Merge的作用是什么？</strong><br>最终磁盘中会至少有一个这样的溢写文件存在(如果map的输出结果很少，当map执行完成时，只会产生一个溢写文件)，因为最终的文件只有一个，所以需要将这些溢写文件归并到一起，这个过程就叫做Merge</p>
+<p><strong>每个reduce task不断的通过什么协议从JobTracker那里获取map task是否完成的信息？</strong><br>每个reduce task不断地通过RPC从JobTracker那里获取map task是否完成的信息</p>
+<p><strong>reduce中Copy过程采用是什么协议？</strong><br>Copy过程，简单地拉取数据。Reduce进程启动一些数据copy线程(Fetcher)，通过HTTP方式请求map task所在的TaskTracker获取map task的输出文件。</p>
+<p><strong>reduce中merge过程有几种方式？</strong><br>merge有三种形式：1)内存到内存  2)内存到磁盘  3)磁盘到磁盘。默认情况下第一种形式不启用，让人比较困惑，是吧。当内存中的数据量到达一定阈值，就启动内存到磁盘的merge。与map 端类似，这也是溢写的过程，这个过程中如果你设置有Combiner，也是会启用的，然后在磁盘中生成了众多的溢写文件。第二种merge方式一直在运行，直到没有map端的数据时才结束，然后启动第三种磁盘到磁盘的merge方式生成最终的那个文件。</p>
+<h3 id="Map-过程"><a href="#Map-过程" class="headerlink" title="Map 过程"></a>Map 过程</h3><p><img src="/images/Hadoop_Map.jpg" alt=""><br>整个流程分了四步。简单些可以这样说，每个map task都有一个内存缓冲区，存储着map的输出结果，当缓冲区快满的时候需要将缓冲区的数据以一个临时文件的方式存放到磁盘，当整个map task结束后再对磁盘中这个map task产生的所有临时文件做合并，生成最终的正式输出文件，然后等待reduce task来拉数据。</p>
+<p>当然这里的每一步都可能包含着多个步骤与细节，下面对细节来说明：</p>
+<ul>
+<li><p>1.在map task执行时，它的输入数据来源于HDFS的block，当然在MapReduce概念中，map task只读取split。Split与block的对应关系可能是多对一，默认是一对一。在WordCount例子里，假设map的输入数据都是像“aaa”这样的字符串。</p>
+</li>
+<li><p>2.在经过mapper的运行后，我们得知mapper的输出是这样一个key/value对： key是“aaa”， value是数值1。因为当前map端只做加1的操作，在reduce task里才去合并结果集。这个job有多个reduce task，到底当前的“aaa”应该交由哪个reduce去做呢，是需要现在决定的。</p>
+</li>
+</ul>
+<p>MapReduce提供Partitioner接口，它的作用就是根据key或value及reduce的数量来决定当前的这对输出数据最终应该交由哪个reduce task处理。默认对key hash后再以reduce task数量取模。默认的取模方式只是为了平均reduce的处理能力，如果用户自己对Partitioner有需求，可以订制并设置到job上。</p>
+<p>在WordCount例子中，“aaa”经过Partitioner后返回0，也就是这对值应当交由第一个reducer来处理。接下来，需要将数据写入内存缓冲区中，缓冲区的作用是批量收集map结果，减少磁盘IO的影响。我们的key/value对以及Partition的结果都会被写入缓冲区。当然写入之前，key与value值都会被序列化成字节数组。</p>
+<ul>
+<li>3.这个内存缓冲区是有大小限制的，默认是100MB。当map task的输出结果很多时，就可能会撑爆内存，所以需要在一定条件下将缓冲区中的数据临时写入磁盘，然后重新利用这块缓冲区。这个从内存往磁盘写数据的过程被称为Spill，中文可译为溢写，字面意思很直观。这个溢写是由单独线程来完成，不影响往缓冲区写map结果的线程。溢写线程启动时不应该阻止map的结果输出，所以整个缓冲区有个溢写的比例spill.percent。这个比例默认是0.8，也就是当缓冲区的数据已经达到阈值（buffer size <em> spill percent = 100MB </em> 0.8 = 80MB），溢写线程启动，锁定这80MB的内存，执行溢写过程。Map task的输出结果还可以往剩下的20MB内存中写，互不影响。</li>
+</ul>
+<p>当溢写线程启动后，需要对这80MB空间内的key做排序(Sort)。排序是MapReduce模型默认的行为，这里的排序也是对序列化的字节做的排序。</p>
+<p>在这里我们可以想想，因为map task的输出是需要发送到不同的reduce端去，而内存缓冲区没有对将发送到相同reduce端的数据做合并，那么这种合并应该是体现是磁盘文件中的。从官方图上也可以看到写到磁盘中的溢写文件是对不同的reduce端的数值做过合并。所以溢写过程一个很重要的细节是，如果有很多个key/value对需要发送到某个reduce端去，那么需要将这些key/value值拼接到一块，减少与partition相关的索引记录。</p>
+<p>在针对每个reduce端而合并数据时，有些数据可能像这样：“aaa”/1， “aaa”/1。对于WordCount例子，就是简单地统计单词出现的次数，如果在同一个map task的结果中有很多个像“aaa”一样出现多次的key，我们就应该把它们的值合并到一块，这个过程叫reduce也叫combine。但MapReduce的术语中，reduce只指reduce端执行从多个map task取数据做计算的过程。除reduce外，非正式地合并数据只能算做combine了。其实大家知道的，MapReduce中将Combiner等同于Reducer。</p>
+<p>如果client设置过Combiner，那么现在就是使用Combiner的时候了。将有相同key的key/value对的value加起来，减少溢写到磁盘的数据量。Combiner会优化MapReduce的中间结果，所以它在整个模型中会多次使用。那哪些场景才能使用Combiner呢？从这里分析，Combiner的输出是Reducer的输入，Combiner绝不能改变最终的计算结果。所以从我的想法来看，Combiner只应该用于那种Reduce的输入key/value与输出key/value类型完全一致，且不影响最终结果的场景。比如累加，最大值等。Combiner的使用一定得慎重，如果用好，它对job执行效率有帮助，反之会影响reduce的最终结果。</p>
+<ul>
+<li>4.每次溢写会在磁盘上生成一个溢写文件，如果map的输出结果真的很大，有多次这样的溢写发生，磁盘上相应的就会有多个溢写文件存在。当map task真正完成时，内存缓冲区中的数据也全部溢写到磁盘中形成一个溢写文件。最终磁盘中会至少有一个这样的溢写文件存在(如果map的输出结果很少，当map执行完成时，只会产生一个溢写文件)，因为最终的文件只有一个，所以需要将这些溢写文件归并到一起，这个过程就叫做Merge。Merge是怎样的？如前面的例子，“aaa”从某个map task读取过来时值是5，从另外一个map 读取时值是8，因为它们有相同的key，所以得merge成group。什么是group。对于“aaa”就是像这样的：{“aaa”, [5, 8, 2, …]}，数组中的值就是从不同溢写文件中读取出来的，然后再把这些值加起来。请注意，因为merge是将多个溢写文件合并到一个文件，所以可能也有相同的key存在，在这个过程中如果client设置过Combiner，也会使用Combiner来合并相同的key。</li>
+</ul>
+<p>至此，map端的所有工作都已结束，最终生成的这个文件也存放在TaskTracker够得着的某个本地目录内。每个reduce task不断地通过RPC从JobTracker那里获取map task是否完成的信息，如果reduce task得到通知，获知某台TaskTracker上的map task执行完成，Shuffle的后半段过程开始启动。</p>
+<h3 id="Reduce-过程"><a href="#Reduce-过程" class="headerlink" title="Reduce 过程"></a>Reduce 过程</h3><p><img src="/images/Hadoop_Reduce.jpg" alt=""></p>
+<p>如map端的细节图，Shuffle在reduce端的过程也能用图上标明的三点来概括。当前reduce copy数据的前提是它要从JobTracker获得有哪些map task已执行结束。Reducer真正运行之前，所有的时间都是在拉取数据，做merge，且不断重复地在做。如前面的方式一样，下面也分段地描述reduce 端的Shuffle细节：</p>
+<ul>
+<li><p>1.Copy过程，简单地拉取数据。Reduce进程启动一些数据copy线程(Fetcher)，通过HTTP方式请求map task所在的TaskTracker获取map task的输出文件。因为map task早已结束，这些文件就归TaskTracker管理在本地磁盘中。</p>
+</li>
+<li><p>2.Merge阶段。这里的merge如map端的merge动作，只是数组中存放的是不同map端copy来的数值。Copy过来的数据会先放入内存缓冲区中，这里的缓冲区大小要比map端的更为灵活，它基于JVM的heap size设置，因为Shuffle阶段Reducer不运行，所以应该把绝大部分的内存都给Shuffle用。这里需要强调的是，merge有三种形式：1)内存到内存  2)内存到磁盘  3)磁盘到磁盘。默认情况下第一种形式不启用，让人比较困惑，是吧。当内存中的数据量到达一定阈值，就启动内存到磁盘的merge。与map 端类似，这也是溢写的过程，这个过程中如果你设置有Combiner，也是会启用的，然后在磁盘中生成了众多的溢写文件。第二种merge方式一直在运行，直到没有map端的数据时才结束，然后启动第三种磁盘到磁盘的merge方式生成最终的那个文件。</p>
+</li>
+<li><p>3.Reducer的输入文件。不断地merge后，最后会生成一个“最终文件”。为什么加引号？因为这个文件可能存在于磁盘上，也可能存在于内存中。对我们来说，当然希望它存放于内存中，直接作为Reducer的输入，但默认情况下，这个文件是存放于磁盘中的。当Reducer的输入文件已定，整个Shuffle才最终结束。然后就是Reducer执行，把结果放到HDFS上。</p>
+</li>
+</ul>
+<h3 id="Map-Reduce-过程图片"><a href="#Map-Reduce-过程图片" class="headerlink" title="Map-Reduce 过程图片"></a>Map-Reduce 过程图片</h3><p><img src="/images/Hadoop_Map_Reduce.png" alt=""></p>
+<p><img src="/images/Hadoop_Map_Reduce_1.png" alt=""></p>
+<p><img src="/images/Hadoop_Map_Reduce_2.png" alt=""></p>
+<h3 id="Map-Reduce-过程例子"><a href="#Map-Reduce-过程例子" class="headerlink" title="Map-Reduce 过程例子"></a>Map-Reduce 过程例子</h3><p><img src="/images/Hadoop_Map_Reduce_Example.png" alt=""></p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/Hadoop MapReduce/" class="archive-article-date">
+  	<time datetime="2016-11-08T08:05:53.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-08</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/bigdata/">bigdata</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-HDFS Command" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/HDFS Command/">HDFS Command</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Hadoop-FS-Command"><a href="#Hadoop-FS-Command" class="headerlink" title="Hadoop FS Command"></a>Hadoop FS Command</h2><p>可以参考： <a href="http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/FileSystemShell.html" target="_blank" rel="external">http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/FileSystemShell.html</a></p>
+<p>The File System (FS) shell includes various shell-like commands that directly interact with the Hadoop Distributed File System (HDFS) as well as other file systems that Hadoop supports, such as Local FS, HFTP FS, S3 FS, and others. The FS shell is invoked by:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bin/hadoop fs &lt;args&gt;</div></pre></td></tr></table></figure></p>
+<p>All FS shell commands take path URIs as arguments. The URI format is<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scheme://authority/path</div></pre></td></tr></table></figure></p>
+<p>For <strong>HDFS</strong> the scheme is <strong>hdfs</strong> , and for the <strong>Local FS</strong> the scheme is <strong>file</strong>. The scheme and authority are optional. If not specified, the default scheme specified in the configuration is used. An HDFS file or directory such as /parent/child can be specified as <strong>hdfs://namenodehost/parent/child</strong> or simply as <strong>/parent/child</strong> (given that your configuration is set to point to <strong>hdfs://namenodehost</strong> ).</p>
+<p>args 可以为：</p>
+<ul>
+<li>appendToFile</li>
+<li>cat</li>
+<li>checksum</li>
+<li>chgrp</li>
+<li>chmod</li>
+<li>chown</li>
+<li>copyFromLocal</li>
+<li>copyToLocal</li>
+<li>count</li>
+<li>cp</li>
+<li>createSnapshot</li>
+<li>deleteSnapshot</li>
+<li>df</li>
+<li>du</li>
+<li>dus</li>
+<li>expunge</li>
+<li>find</li>
+<li>get</li>
+<li>getfacl</li>
+<li>getfattr</li>
+<li>getmerge</li>
+<li>help</li>
+<li>ls</li>
+<li>lsr</li>
+<li>mkdir</li>
+<li>moveFromLocal</li>
+<li>moveToLocal</li>
+<li>mv</li>
+<li>put</li>
+<li>renameSnapshot</li>
+<li>rm</li>
+<li>rmdir</li>
+<li>rmr</li>
+<li>setfacl</li>
+<li>setfattr</li>
+<li>setrep</li>
+<li>stat</li>
+<li>tail</li>
+<li>test</li>
+<li>text</li>
+<li>touchz</li>
+<li>truncate</li>
+<li>usage</li>
+</ul>
+<hr>
+<h3 id="Hadoop-FS-命令："><a href="#Hadoop-FS-命令：" class="headerlink" title="Hadoop FS 命令："></a>Hadoop FS 命令：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">hadoop fs :</div><div class="line">          [-ls &lt;path&gt;]</div><div class="line">          [-lsr &lt;path&gt;]</div><div class="line">           [-du &lt;path&gt;]</div><div class="line">           [-dus &lt;path&gt;]</div><div class="line">           [-count[-q] &lt;path&gt;]</div><div class="line">           [-mv &lt;src&gt; &lt;dst&gt;]</div><div class="line">           [-cp &lt;src&gt; &lt;dst&gt;]</div><div class="line">           [-rm [-skipTrash] &lt;path&gt;]</div><div class="line">           [-rmr [-skipTrash] &lt;path&gt;]</div><div class="line">           [-put &lt;localsrc&gt; ... &lt;dst&gt;]</div><div class="line">           [-copyFromLocal &lt;localsrc&gt; ... &lt;dst&gt;]</div><div class="line">           [-moveFromLocal &lt;localsrc&gt; ... &lt;dst&gt;]</div><div class="line"></div><div class="line">           [-getmerge &lt;src&gt; &lt;localdst&gt; [addnl]]</div><div class="line">           [-cat &lt;src&gt;]</div><div class="line">           [-text &lt;src&gt;]</div><div class="line">           [-copyToLocal [-ignoreCrc] [-crc] &lt;src&gt; &lt;localdst&gt;]</div><div class="line">           [-moveToLocal [-crc] &lt;src&gt; &lt;localdst&gt;]</div><div class="line">           [-mkdir &lt;path&gt;]</div><div class="line">           [-tail [-f] &lt;file&gt;]</div><div class="line">           [-chmod [-R] &lt;MODE[,MODE]... | OCTALMODE&gt; PATH...]</div><div class="line">           [-chown [-R] [OWNER][:[GROUP]] PATH...]</div><div class="line">           [-chgrp [-R] GROUP PATH...]</div><div class="line">           [-<span class="built_in">help</span> [cmd]]</div></pre></td></tr></table></figure>
+<h3 id="Hadoop-DFS-Admin-命令："><a href="#Hadoop-DFS-Admin-命令：" class="headerlink" title="Hadoop DFS Admin 命令："></a>Hadoop DFS Admin 命令：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">hadoop dfsadmin :</div><div class="line">           [-report]</div><div class="line">             报告文件系统的基本信息</div><div class="line">           [-safemode enter | leave | get | <span class="built_in">wait</span>]</div><div class="line">           安全模式维护命令</div><div class="line">           [-saveNamespace]</div><div class="line">             保存当前的命名空间</div><div class="line">           [-refreshNodes]</div><div class="line">              重新读取 Hosts 和 eclude 文件，使新的节点或需要退出集群的节点能够重新被 NameNode 识别。</div><div class="line">           [-finalizeUpgrade]</div><div class="line">            终结 HDFS 的升级操作</div><div class="line">           [-upgradeProgress status | details | force]</div><div class="line">          [-metasave filename]</div><div class="line">           保存 Namenode 的主要数据结构到 Hadoop.log.dir 属性指定目录下的 filename 上</div><div class="line">           [-setQuota &lt;quota&gt; &lt;dirname&gt;...&lt;dirname&gt;]</div><div class="line">           为每个目录设定配额，强制限定目录树下的名字个数。</div><div class="line">           [-clrQuota &lt;dirname&gt;...&lt;dirname&gt;]</div><div class="line">          为每个目录清除配额设定。</div><div class="line">           [-setBalancerBandwidth &lt;bandwidth <span class="keyword">in</span> bytes per second&gt;]</div><div class="line">           设定负载均衡时使用的带宽</div></pre></td></tr></table></figure>
+<hr>
+<p><strong>appendToFile</strong></p>
+<p>Usage: hadoop fs -appendToFile <localsrc> … <dst></dst></localsrc></p>
+<p>Append single src, or multiple srcs from local file system to the destination file system. Also reads input from stdin and appends to destination file system.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hadoop fs -appendToFile localfile /user/hadoop/hadoopfile</div><div class="line">hadoop fs -appendToFile localfile1 localfile2 /user/hadoop/hadoopfile</div><div class="line">hadoop fs -appendToFile localfile hdfs://nn.example.com/hadoop/hadoopfile</div><div class="line">hadoop fs -appendToFile - hdfs://nn.example.com/hadoop/hadoopfile Reads the input from stdin.</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and 1 on error.</p>
+<p><strong>cat</strong></p>
+<p>Usage: hadoop fs -cat URI [URI …]</p>
+<p>Copies source paths to stdout.</p>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop fs -cat hdfs://nn1.example.com/file1 hdfs://nn2.example.com/file2</div><div class="line">hadoop fs -cat file:///file3 /user/hadoop/file4</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and -1 on error.</p>
+<p><strong>checksum</strong></p>
+<p>Usage: hadoop fs -checksum URI</p>
+<p>Returns the checksum information of a file.</p>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop fs -checksum hdfs://nn1.example.com/file1</div><div class="line">hadoop fs -checksum file:///etc/hosts</div></pre></td></tr></table></figure></p>
+<p><strong>chgrp</strong></p>
+<p>Usage: hadoop fs -chgrp [-R] GROUP URI [URI …]</p>
+<p>Change group association of files. The user must be the owner of files, or else a super-user. Additional information is in the Permissions Guide.</p>
+<p>Options</p>
+<ul>
+<li>The -R option will make the change recursively through the directory structure.</li>
+</ul>
+<p><strong>chmod</strong></p>
+<p>Usage: hadoop fs -chmod [-R] <mode[,mode]... |="" octalmode=""> URI [URI …]</mode[,mode]...></p>
+<p>Change the permissions of files. With -R, make the change recursively through the directory structure. The user must be the owner of the file, or else a super-user. Additional information is in the Permissions Guide.</p>
+<p>Options</p>
+<ul>
+<li>The -R option will make the change recursively through the directory structure.</li>
+</ul>
+<p><strong>chown</strong></p>
+<p>Usage: hadoop fs -chown [-R] [OWNER][:[GROUP]] URI [URI ]</p>
+<p>Change the owner of files. The user must be a super-user. Additional information is in the Permissions Guide.</p>
+<p>Options</p>
+<ul>
+<li>The -R option will make the change recursively through the directory structure.</li>
+</ul>
+<p><strong>copyFromLocal</strong></p>
+<p>Usage: hadoop fs -copyFromLocal <localsrc> URI</localsrc></p>
+<p>Similar to put command, except that the source is restricted to a local file reference.</p>
+<p>Options:</p>
+<ul>
+<li>The -f option will overwrite the destination if it already exists.</li>
+</ul>
+<p><strong>copyToLocal</strong></p>
+<p>Usage: hadoop fs -copyToLocal [-ignorecrc] [-crc] URI <localdst></localdst></p>
+<p>Similar to get command, except that the destination is restricted to a local file reference.</p>
+<p><strong>count</strong></p>
+<p>Usage: hadoop fs -count [-q] [-h] [-v] <paths></paths></p>
+<p>Count the number of directories, files and bytes under the paths that match the specified file pattern. The output columns with -count are: DIR_COUNT, FILE_COUNT, CONTENT_SIZE, PATHNAME</p>
+<p>The output columns with -count -q are: QUOTA, REMAINING_QUATA, SPACE_QUOTA, REMAINING_SPACE_QUOTA, DIR_COUNT, FILE_COUNT, CONTENT_SIZE, PATHNAME</p>
+<p>The -h option shows sizes in human readable format.</p>
+<p>The -v option displays a header line.</p>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hadoop fs -count hdfs://nn1.example.com/file1 hdfs://nn2.example.com/file2</div><div class="line">hadoop fs -count -q hdfs://nn1.example.com/file1</div><div class="line">hadoop fs -count -q -h hdfs://nn1.example.com/file1</div><div class="line">hdfs dfs -count -q -h -v hdfs://nn1.example.com/file1</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and -1 on error.</p>
+<p><strong>cp</strong></p>
+<p>Usage: hadoop fs -cp [-f] [-p | -p[topax]] URI [URI …] <dest></dest></p>
+<p>Copy files from source to destination. This command allows multiple sources as well in which case the destination must be a directory.</p>
+<p>‘raw.*’ namespace extended attributes are preserved if (1) the source and destination filesystems support them (HDFS only), and (2) all source and destination pathnames are in the /.reserved/raw hierarchy. Determination of whether raw.* namespace xattrs are preserved is independent of the -p (preserve) flag.</p>
+<p>Options:</p>
+<ul>
+<li>The -f option will overwrite the destination if it already exists.</li>
+<li>The -p option will preserve file attributes [topx] (timestamps, ownership, permission, ACL, XAttr). If -p is specified with no arg, then preserves timestamps, ownership, permission. If -pa is specified, then preserves permission also because ACL is a super-set of permission. Determination of whether raw namespace extended attributes are preserved is independent of the -p flag.</li>
+</ul>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop fs -cp /user/hadoop/file1 /user/hadoop/file2</div><div class="line">hadoop fs -cp /user/hadoop/file1 /user/hadoop/file2 /user/hadoop/dir</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and -1 on error.</p>
+<p><strong>createSnapshot</strong></p>
+<p>See HDFS Snapshots Guide.</p>
+<p>deleteSnapshot</p>
+<p>See HDFS Snapshots Guide.</p>
+<p><strong>df</strong></p>
+<p>Usage: hadoop fs -df [-h] URI [URI …]</p>
+<p>Displays free space.</p>
+<p>Options:</p>
+<ul>
+<li>The -h option will format file sizes in a “human-readable” fashion (e.g 64.0m instead of 67108864)</li>
+</ul>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop dfs -df /user/hadoop/dir1</div></pre></td></tr></table></figure></p>
+<p><strong>du</strong></p>
+<p>Usage: hadoop fs -du [-s] [-h] URI [URI …]</p>
+<p>Displays sizes of files and directories contained in the given directory or the length of a file in case its just a file.</p>
+<p>Options:</p>
+<ul>
+<li>The -s option will result in an aggregate summary of file lengths being displayed, rather than the individual files.</li>
+<li>The -h option will format file sizes in a “human-readable” fashion (e.g 64.0m instead of 67108864)</li>
+</ul>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop fs -du /user/hadoop/dir1 /user/hadoop/file1 hdfs://nn.example.com/user/hadoop/dir1</div></pre></td></tr></table></figure></p>
+<p>Exit Code: Returns 0 on success and -1 on error.</p>
+<p><strong>dus</strong></p>
+<p>Usage: hadoop fs -dus <args></args></p>
+<p>Displays a summary of file lengths.</p>
+<p>Note: This command is deprecated. Instead use hadoop fs -du -s.</p>
+<p><strong>expunge</strong></p>
+<p>Usage: hadoop fs -expunge</p>
+<p>Empty the Trash. Refer to the HDFS Architecture Guide for more information on the Trash feature.</p>
+<p><strong>find</strong></p>
+<p>Usage: hadoop fs -find <path></path> … <expression> …</expression></p>
+<p>Finds all files that match the specified expression and applies selected actions to them. If no path is specified then defaults to the current working directory. If no expression is specified then defaults to -print.</p>
+<p>The following primary expressions are recognised:</p>
+<ul>
+<li>-name pattern</li>
+<li><p>-iname pattern<br>Evaluates as true if the basename of the file matches the pattern using standard file system globbing. If -iname is used then the match is case insensitive.</p>
+</li>
+<li><p>-print</p>
+</li>
+<li>-print0Always<br>evaluates to true. Causes the current pathname to be written to standard output. If the -print0 expression is used then an ASCII NULL character is appended.</li>
+</ul>
+<p>The following operators are recognised:</p>
+<ul>
+<li>expression -a expression</li>
+<li>expression -and expression</li>
+<li>expression expression<br>Logical AND operator for joining two expressions. Returns true if both child expressions return true. Implied by the juxtaposition of two expressions and so does not need to be explicitly specified. The second expression will not be applied if the first fails.</li>
+</ul>
+<p>Example:</p>
+<p><strong>hadoop fs -find / -name test -print</strong></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and -1 on error.</p>
+<p><strong>get</strong></p>
+<p>Usage: hadoop fs -get [-ignorecrc] [-crc] <src> <localdst></localdst></src></p>
+<p>Copy files to the local file system. Files that fail the CRC check may be copied with the -ignorecrc option. Files and CRCs may be copied using the -crc option.</p>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop fs -get /user/hadoop/file localfile</div><div class="line">hadoop fs -get hdfs://nn.example.com/user/hadoop/file localfile</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and -1 on error.</p>
+<p><strong>getfacl</strong></p>
+<p>Usage: hadoop fs -getfacl [-R] <path></path></p>
+<p>Displays the Access Control Lists (ACLs) of files and directories. If a directory has a default ACL, then getfacl also displays the default ACL.</p>
+<p>Options:</p>
+<ul>
+<li>-R: List the ACLs of all files and directories recursively.</li>
+<li>path: File or directory to list.</li>
+</ul>
+<p>Examples:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop fs -getfacl /file</div><div class="line">hadoop fs -getfacl -R /dir</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and non-zero on error.</p>
+<p><strong>getfattr</strong></p>
+<p>Usage: hadoop fs -getfattr [-R] -n name | -d [-e en] <path></path></p>
+<p>Displays the extended attribute names and values (if any) for a file or directory.</p>
+<p>Options:</p>
+<ul>
+<li>-R: Recursively list the attributes for all files and directories.</li>
+<li>-n name: Dump the named extended attribute value.</li>
+<li>-d: Dump all extended attribute values associated with pathname.</li>
+<li>-e encoding: Encode values after retrieving them. Valid encodings are “text”, “hex”, and “base64”. Values encoded as text strings are enclosed in double quotes (“), and values encoded as hexadecimal and base64 are prefixed with 0x and 0s, respectively.</li>
+<li>path: The file or directory.</li>
+</ul>
+<p>Examples:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop fs -getfattr -d /file</div><div class="line">hadoop fs -getfattr -R -n user.myAttr /dir</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and non-zero on error.</p>
+<p><strong>getmerge</strong></p>
+<p>Usage: hadoop fs -getmerge [-nl] <src> <localdst></localdst></src></p>
+<p>Takes a source directory and a destination file as input and concatenates files in src into the destination local file. Optionally -nl can be set to enable adding a newline character (LF) at the end of each file.</p>
+<p>Examples:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop fs -getmerge -nl /src /opt/output.txt</div><div class="line">hadoop fs -getmerge -nl /src/file1.txt /src/file2.txt /output.txt</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and non-zero on error.</p>
+<p><strong>help</strong></p>
+<p>Usage: hadoop fs -help</p>
+<p>Return usage output.</p>
+<p><strong>ls</strong></p>
+<p>Usage: hadoop fs -ls [-d] [-h] [-R] <args></args></p>
+<p>Options:</p>
+<ul>
+<li>-d: Directories are listed as plain files.</li>
+<li>-h: Format file sizes in a human-readable fashion (eg 64.0m instead of 67108864).</li>
+<li>-R: Recursively list subdirectories encountered.</li>
+</ul>
+<p>For a file ls returns stat on the file with the following format:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">permissions number_of_replicas userid groupid filesize modification_date modification_time filename</div></pre></td></tr></table></figure></p>
+<p>For a directory it returns list of its direct children as in Unix. A directory is listed as:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">permissions userid groupid modification_date modification_time dirname</div></pre></td></tr></table></figure></p>
+<p>Files within a directory are order by filename by default.</p>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop fs -ls /user/hadoop/file1</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and -1 on error.</p>
+<p><strong>lsr</strong></p>
+<p>Usage: hadoop fs -lsr <args></args></p>
+<p>Recursive version of ls.</p>
+<p>Note: This command is deprecated. Instead use hadoop fs -ls -R</p>
+<p><strong>mkdir</strong></p>
+<p>Usage: hadoop fs -mkdir [-p] <paths></paths></p>
+<p>Takes path uri’s as argument and creates directories.</p>
+<p>Options:</p>
+<ul>
+<li>The -p option behavior is much like Unix mkdir -p, creating parent directories along the path.</li>
+</ul>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop fs -mkdir /user/hadoop/dir1 /user/hadoop/dir2</div><div class="line">hadoop fs -mkdir hdfs://nn1.example.com/user/hadoop/dir hdfs://nn2.example.com/user/hadoop/dir</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and -1 on error.</p>
+<p><strong>moveFromLocal</strong></p>
+<p>Usage: hadoop fs -moveFromLocal <localsrc> <dst></dst></localsrc></p>
+<p>Similar to put command, except that the source localsrc is deleted after it’s copied.</p>
+<p><strong>moveToLocal</strong></p>
+<p>Usage: hadoop fs -moveToLocal [-crc] <src> <dst></dst></src></p>
+<p>Displays a “Not implemented yet” message.</p>
+<p><strong>mv</strong></p>
+<p>Usage: hadoop fs -mv URI [URI …] <dest></dest></p>
+<p>Moves files from source to destination. This command allows multiple sources as well in which case the destination needs to be a directory. Moving files across file systems is not permitted.</p>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop fs -mv /user/hadoop/file1 /user/hadoop/file2</div><div class="line">hadoop fs -mv hdfs://nn.example.com/file1 hdfs://nn.example.com/file2 hdfs://nn.example.com/file3 hdfs://nn.example.com/dir1</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and -1 on error.</p>
+<p><strong>put</strong></p>
+<p>Usage: hadoop fs -put <localsrc> … <dst></dst></localsrc></p>
+<p>Copy single src, or multiple srcs from local file system to the destination file system. Also reads input from stdin and writes to destination file system.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hadoop fs -put localfile /user/hadoop/hadoopfile</div><div class="line">hadoop fs -put localfile1 localfile2 /user/hadoop/hadoopdir</div><div class="line">hadoop fs -put localfile hdfs://nn.example.com/hadoop/hadoopfile</div><div class="line">hadoop fs -put - hdfs://nn.example.com/hadoop/hadoopfile Reads the input from stdin.</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and -1 on error.</p>
+<p><strong>renameSnapshot</strong></p>
+<p>See HDFS Snapshots Guide.</p>
+<p><strong>rm</strong></p>
+<p>Usage: hadoop fs -rm [-f] [-r |-R] [-skipTrash] URI [URI …]</p>
+<p>Delete files specified as args.</p>
+<p>Options:</p>
+<ul>
+<li>The -f option will not display a diagnostic message or modify the exit status to reflect an error if the file does not exist.</li>
+<li>The -R option deletes the directory and any content under it recursively.</li>
+<li>The -r option is equivalent to -R.</li>
+<li>The -skipTrash option will bypass trash, if enabled, and delete the specified file(s) immediately. This can be useful when it is necessary to delete files from an over-quota directory.</li>
+</ul>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop fs -rm hdfs://nn.example.com/file /user/hadoop/emptydir</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and -1 on error.</p>
+<p><strong>rmdir</strong></p>
+<p>Usage: hadoop fs -rmdir [–ignore-fail-on-non-empty] URI [URI …]</p>
+<p>Delete a directory.</p>
+<p>Options:</p>
+<ul>
+<li>–ignore-fail-on-non-empty: When using wildcards, do not fail if a directory still contains files.</li>
+</ul>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop fs -rmdir /user/hadoop/emptydir</div></pre></td></tr></table></figure></p>
+<p><strong>rmr</strong></p>
+<p>Usage: hadoop fs -rmr [-skipTrash] URI [URI …]</p>
+<p>Recursive version of delete.</p>
+<p>Note: This command is deprecated. Instead use hadoop fs -rm -r</p>
+<p><strong>setfacl</strong></p>
+<p>Usage: hadoop fs -setfacl [-R] [-b |-k -m |-x <acl_spec> <path></path>] |[–set <acl_spec> <path></path>]</acl_spec></acl_spec></p>
+<p>Sets Access Control Lists (ACLs) of files and directories.</p>
+<p>Options:</p>
+<ul>
+<li>-b: Remove all but the base ACL entries. The entries for user, group and others are retained for compatibility with permission bits.</li>
+<li>-k: Remove the default ACL.</li>
+<li>-R: Apply operations to all files and directories recursively.</li>
+<li>-m: Modify ACL. New entries are added to the ACL, and existing entries are retained.</li>
+<li>-x: Remove specified ACL entries. Other ACL entries are retained.</li>
+<li>–set: Fully replace the ACL, discarding all existing entries. The acl_spec must include entries for user, group, and others for compatibility with permission bits.</li>
+<li>acl_spec: Comma separated list of ACL entries.</li>
+<li>path: File or directory to modify.</li>
+</ul>
+<p>Examples:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">hadoop fs -setfacl -m user:hadoop:rw- /file</div><div class="line">hadoop fs -setfacl -x user:hadoop /file</div><div class="line">hadoop fs -setfacl -b /file</div><div class="line">hadoop fs -setfacl -k /dir</div><div class="line">hadoop fs -setfacl --<span class="built_in">set</span> user::rw-,user:hadoop:rw-,group::r--,other::r-- /file</div><div class="line">hadoop fs -setfacl -R -m user:hadoop:r-x /dir</div><div class="line">hadoop fs -setfacl -m default:user:hadoop:r-x /dir</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and non-zero on error.</p>
+<p><strong>setfattr</strong></p>
+<p>Usage: hadoop fs -setfattr -n name [-v value] | -x name <path></path></p>
+<p>Sets an extended attribute name and value for a file or directory.</p>
+<p>Options:</p>
+<ul>
+<li>-b: Remove all but the base ACL entries. The entries for user, group and others are retained for compatibility with permission bits.</li>
+<li>-n name: The extended attribute name.</li>
+<li>-v value: The extended attribute value. There are three different encoding methods for the value. If the argument is enclosed in double quotes, then the value is the string inside the quotes. If the argument is prefixed with 0x or 0X, then it is taken as a hexadecimal number. If the argument begins with 0s or 0S, then it is taken as a base64 encoding.</li>
+<li>-x name: Remove the extended attribute.</li>
+<li>path: The file or directory.</li>
+</ul>
+<p>Examples:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hadoop fs -setfattr -n user.myAttr -v myValue /file</div><div class="line">hadoop fs -setfattr -n user.noValue /file</div><div class="line">hadoop fs -setfattr -x user.myAttr /file</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and non-zero on error.</p>
+<p><strong>setrep</strong></p>
+<p>Usage: hadoop fs -setrep [-R] [-w] <numreplicas> <path></path></numreplicas></p>
+<p>Changes the replication factor of a file. If path is a directory then the command recursively changes the replication factor of all files under the directory tree rooted at path.</p>
+<p>Options:</p>
+<ul>
+<li>The -w flag requests that the command wait for the replication to complete. This can potentially take a very long time.</li>
+<li>The -R flag is accepted for backwards compatibility. It has no effect.</li>
+</ul>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop fs -setrep -w 3 /user/hadoop/dir1</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and -1 on error.</p>
+<p><strong>stat</strong></p>
+<p>Usage: hadoop fs -stat [format] <path></path> …</p>
+<p>Print statistics about the file/directory at <path></path> in the specified format. Format accepts filesize in blocks (%b), type (%F), group name of owner (%g), name (%n), block size (%o), replication (%r), user name of owner(%u), and modification date (%y, %Y). %y shows UTC date as “yyyy-MM-dd HH:mm:ss” and %Y shows milliseconds since January 1, 1970 UTC. If the format is not specified, %y is used by default.</p>
+<p>Example:</p>
+<ul>
+<li>hadoop fs -stat “%F %u:%g %b %y %n” /file</li>
+</ul>
+<p>Exit Code: Returns 0 on success and -1 on error.</p>
+<p><strong>tail</strong></p>
+<p>Usage: hadoop fs -tail [-f] URI</p>
+<p>Displays last kilobyte of the file to stdout.</p>
+<p>Options:</p>
+<ul>
+<li>The -f option will output appended data as the file grows, as in Unix.</li>
+</ul>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop fs -tail pathname</div></pre></td></tr></table></figure></p>
+<p>Exit Code: Returns 0 on success and -1 on error.</p>
+<p><strong>test</strong></p>
+<p>Usage: hadoop fs -test -[defsz] URI</p>
+<p>Options:</p>
+<ul>
+<li>-d: f the path is a directory, return 0.</li>
+<li>-e: if the path exists, return 0.</li>
+<li>-f: if the path is a file, return 0.</li>
+<li>-s: if the path is not empty, return 0.</li>
+<li>-z: if the file is zero length, return 0.</li>
+</ul>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop fs -<span class="built_in">test</span> -e filename</div></pre></td></tr></table></figure></p>
+<p><strong>text</strong></p>
+<p>Usage: hadoop fs -text <src></src></p>
+<p>Takes a source file and outputs the file in text format. The allowed formats are zip and TextRecordInputStream.</p>
+<p><strong>touchz</strong></p>
+<p>Usage: hadoop fs -touchz URI [URI …]</p>
+<p>Create a file of zero length.</p>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop fs -touchz pathname</div></pre></td></tr></table></figure></p>
+<p>Exit Code: Returns 0 on success and -1 on error.</p>
+<p><strong>truncate</strong></p>
+<p>Usage: hadoop fs -truncate [-w] <length> <paths></paths></length></p>
+<p>Truncate all files that match the specified file pattern to the specified length.</p>
+<p>Options:</p>
+<ul>
+<li>The -w flag requests that the command waits for block recovery to complete, if necessary. Without -w flag the file may remain unclosed for some time while the recovery is in progress. During this time file cannot be reopened for append.</li>
+</ul>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop fs -truncate 55 /user/hadoop/file1 /user/hadoop/file2</div><div class="line">hadoop fs -truncate -w 127 hdfs://nn1.example.com/user/hadoop/file1</div></pre></td></tr></table></figure></p>
+<p><strong>usage</strong></p>
+<p>Usage: hadoop fs -usage command</p>
+<p>Return the help for an individual command.</p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/HDFS Command/" class="archive-article-date">
+  	<time datetime="2016-11-08T05:41:32.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-08</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/bigdata/">bigdata</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-HDFS介绍" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/HDFS介绍/">HDFS介绍</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="HDFS-分布式文件系统"><a href="#HDFS-分布式文件系统" class="headerlink" title="HDFS 分布式文件系统"></a>HDFS 分布式文件系统</h2><ul>
+<li><strong>Hadoop Distributed File System (HDFS™)</strong>: A distributed file system that provides high-throughput access to application data.</li>
+</ul>
+<h2 id="Hadoop-HDFS-1-x-vs-2-x"><a href="#Hadoop-HDFS-1-x-vs-2-x" class="headerlink" title="Hadoop HDFS 1.x vs 2.x"></a>Hadoop HDFS 1.x vs 2.x</h2><p><img src="/images/Hadoop_1_x_vs_2_x.png" alt=""><br>Hadoop HDFS有2个版本，1.x和2.x，两者之间还有比较大的差距：</p>
+<ol>
+<li>1.x只支持MapReduce运算. 2.x除了MapReduce之外，还支持Spark，MPI，Hama，Giraph等多种类型运算。</li>
+<li>1.x中的MR组件既分发任务还需要进行资源调度。 2.x由另一个组件YARN来进行资源调度，MR只进行任务分发。</li>
+<li>1.x无法实现HA，只有一个NameNode管理所有节点。 2.x支持HA，有SecondNameNode，但也只支持冷迁移。2.x还支持了Federation联邦，通过文件系统挂载点，将一个NameNode的负载分发下去。注意：HA和Federation可以结合使用。</li>
+</ol>
+<p>网上资料中包含了10点差异，但是从技术／架构角度上来说，这3点变化是核心的。</p>
+<h2 id="Hadoop-HDFS-2-x-架构图"><a href="#Hadoop-HDFS-2-x-架构图" class="headerlink" title="Hadoop HDFS 2.x 架构图"></a>Hadoop HDFS 2.x 架构图</h2><p><img src="/images/Hadoop_HDFS_2_x.png" alt=""></p>
+<h4 id="NameNode"><a href="#NameNode" class="headerlink" title="NameNode"></a>NameNode</h4><p>HDFS分布式文件系统中的管理者，负责管理文件系统的命名空间，集群配置信息，存储的复制。</p>
+<h4 id="Secondary-NameNode"><a href="#Secondary-NameNode" class="headerlink" title="Secondary NameNode"></a>Secondary NameNode</h4><p>并非NameNode的热备份，辅助NameNode，定期合并FSimage和EditLog。在NameNode失效的情况下，可以依据Secondary NameNode本地存储的FSimage和EditLog，恢复自身作为NameNode，但可能会有部分文件丢失，原因在于Secondary NameNode上的FSimage和EditLog并不是实时更新的。</p>
+<h4 id="DataNode"><a href="#DataNode" class="headerlink" title="DataNode"></a>DataNode</h4><p>DataNode是文件存储的节点，用于存放文件的Block，并且周期性的将Block信息发送给NameNode。值得提一句的是：HDFS中的Block大小设置很有讲究，通常为64M／128M，过小的Block会给NameNode带来巨大的管理压力，过大的Block可能会导致磁盘空间的浪费。</p>
+<h4 id="Client"><a href="#Client" class="headerlink" title="Client"></a>Client</h4><p>与NameNode交互，获取文件存放位置；再与DataNode交互，读取或写入数据；并且可以管理整个HDFS文件系统。</p>
+<h4 id="文件写入过程"><a href="#文件写入过程" class="headerlink" title="文件写入过程"></a>文件写入过程</h4><ol>
+<li>Client向NameNode发起文件写入请求。</li>
+<li>NameNode根据文件大小和文件块配置情况，返回给Client它所管理的DataNode信息。</li>
+<li>Client将文件划分为多个Block，更具DataNode的地址信息，按顺序写入到每一个DataNode块中。<h4 id="文件读取过程"><a href="#文件读取过程" class="headerlink" title="文件读取过程"></a>文件读取过程</h4></li>
+<li>Client向NameNode发起文件读取请求。</li>
+<li>NameNode返回文件存储的DataNode信息。</li>
+<li>Client读取文件信息。</li>
+</ol>
+<h2 id="HDFS-优缺点"><a href="#HDFS-优缺点" class="headerlink" title="HDFS 优缺点"></a>HDFS 优缺点</h2><h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ol>
+<li>处理超大文件</li>
+<li>流式访问数据，一次写入，多次访问</li>
+<li>运行于廉价的商用机器上</li>
+</ol>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ol>
+<li>不适合低延迟的数据访问</li>
+<li>无法高效存储大量的小文件</li>
+<li>不支持多用户写入及任意修改文件</li>
+</ol>
+<h2 id="Hadoop-HDFS-2-x-安装-关于安装-请参考博客中的另一篇文章"><a href="#Hadoop-HDFS-2-x-安装-关于安装-请参考博客中的另一篇文章" class="headerlink" title="Hadoop HDFS 2.x 安装, 关于安装, 请参考博客中的另一篇文章"></a>Hadoop HDFS 2.x 安装, 关于安装, 请参考博客中的另一篇文章</h2><p>Hadoop HDFS 2.x 包含了3种安装模式：</p>
+<ol>
+<li>Standalone. 独立模式</li>
+<li>Pseudo-Distributed Operation. 伪分布式</li>
+<li>Cluster. 集群</li>
+</ol>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/HDFS介绍/" class="archive-article-date">
+  	<time datetime="2016-11-07T12:45:12.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-07</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/bigdata/">bigdata</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-personal-profile" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/personal-profile/">介绍</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>欢迎浏览 <a href="https://sstar1314.github.io/" target="_blank" rel="external">SStar1314</a>! 我的个人博客. 以及 <a href="https://github.com/SStar1314/" target="_blank" rel="external">SStar1314</a>，我的github主页. 我的主页开通于2016年11月，一直想写点什么，两年多的时间，在Evernote上记录很多自己研究的东西，一直想开通一个博客，把Evernote上的东西搬上来，顺道梳理一下以前的知识点.</p>
+<h3 id="个人关心的方向或技术"><a href="#个人关心的方向或技术" class="headerlink" title="个人关心的方向或技术"></a>个人关心的方向或技术</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">OpenStack云计算框架: Keystone／Nova／Neutron／Glance／Cinder／Swift／Ironic</div><div class="line">	Keystone: RabbitMQ,Qpid,AMQP(Producer+Consumer+Exchange+Queue)</div><div class="line">	Nova: nova-scheduler,nova-compute,虚拟化</div><div class="line">	Neutron: OVS,Linux Bridge,vlan,vxlan,gre.</div><div class="line">		Provider network ---- Self-defined network</div><div class="line">虚拟化: KVM／Xen</div><div class="line">大数据: Headoop／Spark</div><div class="line">	Headoop: MapReduce,HDFS,Yarn,Hbase,Hive,Storm. Hadoop1.x vs 2.x</div><div class="line">	Spark: RDD,Spark-shell,Spark SQL,Spark Streaming,MLlib,GraphX</div><div class="line">NoSQL: HBase, Cassandra, MongoDB, Redis</div><div class="line">容器化: Docker, Kubernetes, rkt, CoreOS</div><div class="line">数据中心操作系统: DCOS, Mesos, Marathon, Chronos</div><div class="line">分布式协同: ZooKeeper, etcd</div><div class="line">其它: Kafka, Elastic Search, Logstash</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://github.com/SStar1314/" target="_blank" rel="external">我的github主页</a></p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/personal-profile/" class="archive-article-date">
+  	<time datetime="2016-11-07T02:31:11.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-07</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/介绍/">介绍</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/介绍/">介绍</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-大数据" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/大数据/">大数据相关目录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>推荐一本书<a href="http://item.jd.com/11966465.html" target="_blank" rel="external">《云计算架构 技术与实践 第2版》</a>，华为 顾炯炯 编著，一定要是第2版，这本书很全面，很赞！</p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>列表：</p>
+<ol>
+<li>Hadoop<br>MapReduce, HDFS, Yarn, Hbase, Hive, Storm.<br>Hadoop1.x vs 2.x</li>
+<li>Spark<br> RDD, Spark-shell, Spark SQL, Spark Streaming, MLlib, GraphX</li>
+<li>NoSQL<br>HBase, Cassandra, MongoDB, Redis</li>
+</ol>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/大数据/" class="archive-article-date">
+  	<time datetime="2016-11-07T02:31:11.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-07</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大数据/">大数据</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/bigdata/">bigdata</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </nav>
+  
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 Xia, MingXing
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: true,
+		isPost: false,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: false
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Kafka/" style="font-size: 12.5px;">Kafka</a> <a href="/tags/Libvirt/" style="font-size: 10px;">Libvirt</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/Linux-Networking-Internals/" style="font-size: 15px;">Linux Networking Internals</a> <a href="/tags/Linux-Source-Code/" style="font-size: 10px;">Linux Source Code</a> <a href="/tags/Linux-Special-File-System/" style="font-size: 10px;">Linux Special File System</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/QEMU/" style="font-size: 10px;">QEMU</a> <a href="/tags/Spark/" style="font-size: 15px;">Spark</a> <a href="/tags/ZooKeeper/" style="font-size: 12.5px;">ZooKeeper</a> <a href="/tags/etcd/" style="font-size: 10px;">etcd</a> <a href="/tags/kubernetes/" style="font-size: 10px;">kubernetes</a> <a href="/tags/lxc/" style="font-size: 10px;">lxc</a> <a href="/tags/lxcfs/" style="font-size: 10px;">lxcfs</a> <a href="/tags/介绍/" style="font-size: 10px;">介绍</a> <a href="/tags/分布式协同/" style="font-size: 10px;">分布式协同</a> <a href="/tags/大数据/" style="font-size: 17.5px;">大数据</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接1</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接2</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接3</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接4</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接5</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接6</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">平均每天保证几小时的学习时间，用一万小时定律激励自己</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

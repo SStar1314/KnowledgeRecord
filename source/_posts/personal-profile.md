@@ -1,35 +1,9 @@
 ---
-title: 个人简介
+title: 介绍
+tags: 介绍
+categories: 介绍
 ---
-欢迎浏览 [SStar1314/KnowledgeRecord](https://github.com/SStar1314/KnowledgeRecord)! 我的个人博客. 请浏览 [SStar1314](https://github.com/SStar1314/)，我的github主页. 我的主页开通于2016年11月，一直想写点什么，两年多的时间，在Evernote上记录很多自己研究的东西，一直想开通一个博客，把Evernote上的东西搬上来，顺道梳理一下以前的知识点.
-
-## 介绍一下本人
-
-### 就业单位
-
-``` bash
-现就业于 国际商业机器有限公司（IBM） 中国系统研发实验室（CSL） 西安分公司。
-BU：Platform Computing， SCF（Spectrum Cluster Foundation）团队。
-职位： 软件开发工程师
-```
-
-### 毕业院校
-
-``` bash
-硕士： 西安交通大学 电信学院 计算机系统结构
-学士： 西安交通大学 电信学院 计算机科学与技术
-```
-
-### 工作／研究生 相关方向
-
-#### 工作
-``` bash
-集群管理，偏向于云计算中的IaaS层服务，以及对cluster进行构建／监控／管理。
-```
-#### 研究生
-``` bash
-高新能计算，GPU加速，MPI＋OpenMP＋CUDA，解决非线性规划问题。
-```
+欢迎浏览 [SStar1314](https://sstar1314.github.io/)! 我的个人博客. 以及 [SStar1314](https://github.com/SStar1314/)，我的github主页. 我的主页开通于2016年11月，一直想写点什么，两年多的时间，在Evernote上记录很多自己研究的东西，一直想开通一个博客，把Evernote上的东西搬上来，顺道梳理一下以前的知识点.
 
 ### 个人关心的方向或技术
 
@@ -50,4 +24,4 @@ NoSQL: HBase, Cassandra, MongoDB, Redis
 其它: Kafka, Elastic Search, Logstash
 ```
 
-More info: [github主页](https://github.com/SStar1314/)
+More info: [我的github主页](https://github.com/SStar1314/)

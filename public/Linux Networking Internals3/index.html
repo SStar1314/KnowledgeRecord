@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>Linux Networking Internals 3 - Network Device Initialize | SStar1314</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="网络设备的初始化 ：包括2个阶段：  作为常规device，初始化 作为network device，初始化  123456789101112Kernel boot up  —&amp;gt;  start_kernel (initializes bunch of subsystems)                                        —&amp;gt;  invokes  init">
+<meta name="keywords" content="Linux Networking Internals">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux Networking Internals 3 - Network Device Initialize">
+<meta property="og:url" content="http://yoursite.com/Linux Networking Internals3/index.html">
+<meta property="og:site_name" content="SStar1314">
+<meta property="og:description" content="网络设备的初始化 ：包括2个阶段：  作为常规device，初始化 作为network device，初始化  123456789101112Kernel boot up  —&amp;gt;  start_kernel (initializes bunch of subsystems)                                        —&amp;gt;  invokes  init">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/images/Linux_network_internal_system_start.png">
+<meta property="og:image" content="http://yoursite.com/images/Linux_network_internal_event_propagation_from_user_space.png">
+<meta property="og:image" content="http://yoursite.com/images/Linux_network_internal_netdevice_register.png">
+<meta property="og:image" content="http://yoursite.com/images/Linux_network_internal_netdevice_initialization.png">
+<meta property="og:image" content="http://yoursite.com/images/Linux_network_internal_netdevice_registerd_device_list.png">
+<meta property="og:image" content="http://yoursite.com/images/Linux_network_internal_netdevice_registration_state.png">
+<meta property="og:image" content="http://yoursite.com/images/Linux_network_internal_netdevice_register_unregister.png">
+<meta property="og:image" content="http://yoursite.com/images/Linux_network_internal_netdevice_enable_disabler.png">
+<meta property="og:image" content="http://yoursite.com/images/Linux_network_internal_netdevice_IRQ_handler.png">
+<meta property="og:updated_time" content="2017-07-20T14:05:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux Networking Internals 3 - Network Device Initialize">
+<meta name="twitter:description" content="网络设备的初始化 ：包括2个阶段：  作为常规device，初始化 作为network device，初始化  123456789101112Kernel boot up  —&amp;gt;  start_kernel (initializes bunch of subsystems)                                        —&amp;gt;  invokes  init">
+<meta name="twitter:image" content="http://yoursite.com/images/Linux_network_internal_system_start.png">
+  
+    <link rel="alternative" href="/atom.xml" title="SStar1314" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/favicon.ico" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Xia, MingXing</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">西安</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/archives">所有文章</a></li>
+	        
+				<li><a href="/categories">目录</a></li>
+	        
+				<li><a href="/tags">标签</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/SStar1314/" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+		        
+					<a class="rss" target="_blank" href="#" title="rss">rss</a>
+		        
+					<a class="mail" target="_blank" href="/xaxiamx@gmail.com" title="mail">mail</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Xia, MingXing</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/favicon.ico" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Xia, MingXing</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">西安</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories">目录</a></li>
+		        
+					<li><a href="/tags">标签</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/SStar1314/" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="mail" target="_blank" href="/xaxiamx@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-Linux Networking Internals3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux Networking Internals 3 - Network Device Initialize
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="网络设备的初始化-："><a href="#网络设备的初始化-：" class="headerlink" title="网络设备的初始化 ："></a>网络设备的初始化 ：</h2><pre><code>包括2个阶段：
+</code></pre><ol>
+<li>作为常规device，初始化</li>
+<li>作为network device，初始化</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Kernel boot up  —&gt;  start_kernel (initializes bunch of subsystems)</div><div class="line">                                        —&gt;  invokes  init kernel thread   (takes care of the rest of  initializations)</div><div class="line">                                                —&gt;  do_basic_setup()        —&gt;  deriver_init/sock_init/ ….</div><div class="line">                                                —&gt;  free_init_mem()</div><div class="line">                                                —&gt;  run_init_process()</div><div class="line"></div><div class="line">Three mainly interested points:</div><div class="line">1. Boot-time options               parse_args   handle configuration parameters that a boot loader(LILO/GRUB) has passed to kernel at boot time</div><div class="line">2. Interrupts and timers        init_IRQ(hardware interrupts)/softirq_init(software interrupts)     </div><div class="line">3. Initialization routines        do_initcalls will initialize kernel subsystems and built-in device drivers        </div><div class="line"></div><div class="line">run_init_process determines the first process(PID 1) run on the system, through the init=  boot time option</div></pre></td></tr></table></figure>
+<p><img src="/images/Linux_network_internal_system_start.png" alt=""></p>
+<h3 id="Initialization-Options"><a href="#Initialization-Options" class="headerlink" title="Initialization  Options:"></a>Initialization  Options:</h3><p>Both components built into the kernel and components loaded as modules can be passed input parameters so that users can fine-tune the functionality implemented by the components, override defaults compiled into them, or change them from one system boot to the next, kernel provides two kinds of macros to define options:</p>
+<ol>
+<li>Module options                module_param  family</li>
+<li>Boot-time kernel options        _ _setup  family<br>drivers/block/loop.c</li>
+</ol>
+<p>Module options.                      <include linux="" moduleparam.h=""><br><strong>module_param</strong><br>The module parameters are listed in the module’s directory “/sys/modules”. The subdirectory /sys/modules/module/parameters holds a file for each parameter exported by module.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@localhost src]<span class="comment"># ls -la /sys/module/sis900/parameters/</span></div><div class="line">total 0</div><div class="line">drwxr-xr-x  2 root root    0 Apr  9 18:31 .</div><div class="line">drwxr-xr-x  4 root root    0 Apr  9 18:31 ..</div><div class="line">-r--r--r--  1 root root    0 Apr  9 18:31 debug</div><div class="line">-r--r--r--  1 root root 4096 Apr  9 18:31 max_interrupt_work</div><div class="line">-r--r--r--  1 root root 4096 Apr  9 18:31 multicast_filter_limit</div><div class="line">[root@localhost src]<span class="comment">#</span></div></pre></td></tr></table></figure></include></p>
+<h3 id="Initializing-the-Device-Handling-Layer-net-dev-init"><a href="#Initializing-the-Device-Handling-Layer-net-dev-init" class="headerlink" title="Initializing the Device Handling Layer: net_dev_init"></a>Initializing the Device Handling Layer: net_dev_init</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">net_dev_init defined <span class="keyword">in</span> net/core/dev.c</div><div class="line">static int _ _init net_dev_init(void)                    _ _init  macro</div><div class="line">&#123;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>subsys_initcall(net_dev_init);<br>subsys_initcall   macros ensure net_dev_init runs before any NIC device drivers register themselves.<br>main parts of  net_dev_init:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">1. the per-CPU data structures used by two networking software interrupts(softirqs) are initialized.</div><div class="line">2. when kernel is compiled with support <span class="keyword">for</span> /proc filesystem, a few files are added to /proc with dev_proc_init and dev_mcast_init.</div><div class="line">3. netdev_sysfs_init registers the net class with sysfs. This creates directory /sys/class/net,  under this you can find a subdirectory <span class="keyword">for</span> each registered network device.</div><div class="line">4. net_random_init initializes a per-CPU vector of seeds that will be used when generating random numbers with net_random routine.</div><div class="line">5. The protocol-independent destination cache(DST) is initialized with dst_init.</div><div class="line">6. The protocol handler vector ptype_base, used to demultiplex ingress traffic, is initialized.</div><div class="line">7. When OFFLINE_SAMPLE symbol is defined, the kernel sets up a <span class="keyword">function</span> to run at regular intervals to collect statistics about the devices’ queue lengths.</div><div class="line">8. A callback handler is registered with the notification chain that issues notifications about CPU hotplug events. Callback used is dev_cpu_callback.</div></pre></td></tr></table></figure></p>
+<p><strong>/proc/net</strong>  is created by net_dev_init, via <strong>dev_proc_init</strong> and <strong>dev_mcast_init</strong>:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1. dev                   <span class="keyword">for</span> each network device registered with kernel, a few statistics about reception and transmission.</div><div class="line">2. dev_mcast     <span class="keyword">for</span> each network device registered with kernel, the values of a few parameters used by IP multicast.</div><div class="line">3. wireless          <span class="keyword">for</span> each wireless device, prints the value of a few parameters from the wireless block.</div><div class="line">4. softnet_stat       exports statistics about the software interrupts used by networking code.</div></pre></td></tr></table></figure></p>
+<h3 id="User-Space-工具"><a href="#User-Space-工具" class="headerlink" title="User-Space 工具"></a>User-Space 工具</h3><ul>
+<li><p>/sbin/modprobe</p>
+<pre><code>Invoke when the kernel needs to load a module.
+</code></pre></li>
+<li><p>/sbin/hotplug</p>
+<pre><code>Invoke when the kernel detects that a new device has been plugged or unplugged from system.
+</code></pre></li>
+</ul>
+<p>The kernel provides a function named call_usermodehelper to execute such user-space helper.<br>Two kernel routines, request_module and kobject_hotplug , invoke call_usermodehelper to invoke /sbin/modprobe and /sbin/hotplug<br><img src="/images/Linux_network_internal_event_propagation_from_user_space.png" alt=""></p>
+<p><strong>kmod</strong> is the kernel module loader that allows kernel components to request the loading of module. call  request_module   </p>
+<p>Hotplug was introduced into the kernel to implement popular consuer feature known as Plug and Play (PnP). When compile the kernel modules, the object files are placed by default in directory: /lib/modules/kernel_version/.  kobject_hotplug function is invoked by the kernel to respond to insertion and removal of a device.   </p>
+<p><strong>modprobe</strong> and <strong>hotplug</strong> create file/directory in /proc/sys/kernel  </p>
+<h3 id="When-a-Device-is-Registered"><a href="#When-a-Device-is-Registered" class="headerlink" title="When a Device is Registered:"></a>When a Device is Registered:</h3><p>The  registration of a network device takes place in the following situations:</p>
+<ol>
+<li>Loading an NIC’s device driver</li>
+<li>Inserting a hot-pluggable network device</li>
+</ol>
+<h3 id="When-a-Device-is-Unregistered"><a href="#When-a-Device-is-Unregistered" class="headerlink" title="When a Device is Unregistered:"></a>When a Device is Unregistered:</h3><p>Two main conditions trigger the unregisteration of a device:</p>
+<ol>
+<li>Unloading an NIC device driver</li>
+<li>Removing a hot-pluggable network device</li>
+</ol>
+<h3 id="Allocating-net-device-Structures"><a href="#Allocating-net-device-Structures" class="headerlink" title="Allocating net_device Structures:"></a>Allocating net_device Structures:</h3><p>Network devices are defined with net_device structures.             <net core="" dev.c=""><br>include 3 input parameters:</net></p>
+<ol>
+<li>Size of private data structure</li>
+<li>Device name</li>
+<li>Setup routine</li>
+</ol>
+<p><img src="/images/Linux_network_internal_netdevice_register.png" alt=""></p>
+<h3 id="Device-Initialization"><a href="#Device-Initialization" class="headerlink" title="Device Initialization:"></a>Device Initialization:</h3><p>net_device structure is pretty bug, its fields are initialized in chunks by different routines.</p>
+<ol>
+<li>Device drivers :   Parameters such as IRQ, I/O memory, and I/O port, those values depend on hardware configuration, are taken care of by device driver.      xxx_probe</li>
+<li>Device type :     the type family is taken care by xxx_setup routines.</li>
+<li>Features:           Mandatory and optional features also need to be initialized.</li>
+</ol>
+<p><img src="/images/Linux_network_internal_netdevice_initialization.png" alt=""></p>
+<h4 id="Device-Type-Initialization-xxx-setup-Functions"><a href="#Device-Type-Initialization-xxx-setup-Functions" class="headerlink" title="Device Type Initialization: xxx_setup Functions"></a>Device Type Initialization: xxx_setup Functions</h4><p>alloc_ xxxdev  function pass right xxx_setup routine to alloc_netdev .<br>void ether_setup(struct net_device *dev)<br>{<br>    dev-&gt;change_mtu           = eth_change_mtu;<br>    dev-&gt;hard_header          = eth_header;<br>    dev-&gt;rebuild_header       = eth_rebuild_header;<br>    dev-&gt;set_mac_address      = eth_mac_addr;<br>    dev-&gt;hard_header_cache    = eth_header_cache;<br>    dev-&gt;header_cache_update  = eth_header_cache_update;<br>    dev-&gt;hard_header_parse    = eth_header_parse;</p>
+<pre><code>dev-&gt;type                 = ARPHRD_ETHER;
+dev-&gt;hard_header_len      = ETH_HLEN;
+dev-&gt;mtu                  = 1500;
+dev-&gt;addr_len             = ETH_ALEN;
+dev-&gt;tx_queue_len         = 1000;
+dev-&gt;flags                = IFF_BROADCAST|IFF_MULTICAST;
+
+memset(dev-&gt;broadcast,0xFF, ETH_ALEN);
+</code></pre><p>}</p>
+<h4 id="Organization-of-net-device-Structures"><a href="#Organization-of-net-device-Structures" class="headerlink" title="Organization of net_device Structures:"></a>Organization of net_device Structures:</h4><p><img src="/images/Linux_network_internal_netdevice_registerd_device_list.png" alt=""></p>
+<h4 id="Device-State"><a href="#Device-State" class="headerlink" title="Device State:"></a>Device State:</h4><p><strong>net_device</strong> include:</p>
+<ol>
+<li>flags                    bitmap used to store different flags.</li>
+<li>reg_state  device registration state</li>
+<li>state      device state with regard to its queuing discipline.</li>
+</ol>
+<h4 id="Net-Device-Queuing-Discipline-State"><a href="#Net-Device-Queuing-Discipline-State" class="headerlink" title="Net Device Queuing Discipline State:"></a>Net Device Queuing Discipline State:</h4><p>Each network device is assigned a queuing discipline, used by Traffic Control to implement its QoS mechanisms.      <include linux="" netdevice.h=""></include></p>
+<p>LINK_STATE_START<br>LINK_STATE_PRESENT<br>LINK_STATE_NOCARRIER<br>LINK_STATE_LINKWATCH_EVENT<br>LINK_STATE_XOFF<br>LINK_STATE_SHED<br>LINK_STATE_RX_SCHED</p>
+<h4 id="Net-Device-Registration-State"><a href="#Net-Device-Registration-State" class="headerlink" title="Net Device Registration State:"></a>Net Device Registration State:</h4><p>The state of a device with regard to its registration with the network stack is saved in reg_state field of the net_device structure.      <include linux="" netdevice.h=""><br>NETREG_UNINITIALIZED<br>NETREG_REGISTERING<br>NETREG_REGISTERED<br>NETREG_UNREGISTERING<br>NETREG_UNREGISTERED<br>NETREG_RELEASED</include></p>
+<p><img src="/images/Linux_network_internal_netdevice_registration_state.png" alt=""></p>
+<h4 id="Net-Device-register-unregister"><a href="#Net-Device-register-unregister" class="headerlink" title="Net Device register + unregister"></a>Net Device register + unregister</h4><p><img src="/images/Linux_network_internal_netdevice_register_unregister.png" alt=""></p>
+<h4 id="Device-Registration-Status-Notification"><a href="#Device-Registration-Status-Notification" class="headerlink" title="Device Registration Status Notification:"></a>Device Registration Status Notification:</h4><p>Both kernel components and user-space applications are interested in knowing when a network device is registered, unregistered, goes down, or comes up.</p>
+<p>netdev_chain: kernel components can register with this notification chain.    <net core="" dev.c=""><br>All the NETDEV_XXX events that are reported via neTDev_chain are listed in <include linux="" notifier.h="">.<br>Notification event list:<br>NETDEV_UP<br>NETDEV_GOING_DOWN<br>NETDEV_DOWN<br>NETDEV_REGISTER<br>NETDEV_UNREGISTER<br>NETDEV_REBOOT<br>NETDEV_CHANGEADDR<br>NETDEV_CHANGENAME<br>NETDEV_CHANGE</include></net></p>
+<p>Quite a few kernel components register to <strong>netdev_chain</strong>  List:</p>
+<ol>
+<li>Routing</li>
+<li>Firewall</li>
+<li>Protocol code</li>
+<li>Virtual device</li>
+<li>RTnetlink</li>
+</ol>
+<h4 id="Enabling-and-Disabling-a-Network-Device"><a href="#Enabling-and-Disabling-a-Network-Device" class="headerlink" title="Enabling and Disabling a Network Device:"></a>Enabling and Disabling a Network Device:</h4><p><img src="/images/Linux_network_internal_netdevice_enable_disabler.png" alt=""></p>
+<h4 id="Virtual-Devices"><a href="#Virtual-Devices" class="headerlink" title="Virtual Devices:"></a>Virtual Devices:</h4><p>The virtual devices need to be registered and enabled just like real ones, to be used.<br>register_netdevice/unregister_netdevice</p>
+<h4 id="Device-initialization-phases"><a href="#Device-initialization-phases" class="headerlink" title="Device initialization phases:"></a>Device initialization phases:</h4><ol>
+<li>Hardware initialization      this is done by the device driver in cooperation with the generic bus layer(PCI or USB).      </li>
+<li>Software initialization        before the device can be used, it may need to provide some configuration parameters     </li>
+<li>Feature initialization          configure some options     </li>
+</ol>
+<p>net_device data structure include a set of function pointers, that kernel uses to interact with the device driver and special kernel features</p>
+<h4 id="Basic-Goals-of-NIC-Initialization"><a href="#Basic-Goals-of-NIC-Initialization" class="headerlink" title="Basic Goals of NIC Initialization:"></a>Basic Goals of NIC Initialization:</h4><p>establish  device/kernel  communication. such as:</p>
+<ol>
+<li>IRQ line             the /proc/interrupts file can be used to view the status of the current assignments.</li>
+<li>I/O ports and memory registration         map an area of device’s memory into system memory.     I/O ports and memory are registered and released with request_region/release_region</li>
+</ol>
+<h4 id="Interaction-Between-Devices-and-Kernel"><a href="#Interaction-Between-Devices-and-Kernel" class="headerlink" title="Interaction Between Devices and Kernel:"></a>Interaction Between Devices and Kernel:</h4><p>nearly all devices interact with kernel in two ways:</p>
+<ol>
+<li>Polling                driven on the kernel side, the kernel check device status at regular intervals.</li>
+<li>Interrupt            driven on the device side, the device sends a hardware signal to kernel.</li>
+</ol>
+<h4 id="Hardware-Interrupts"><a href="#Hardware-Interrupts" class="headerlink" title="Hardware Interrupts:"></a>Hardware Interrupts:</h4><p>every interrupt runs a  function called an interrupt handler. IRQ are defined in kernel/irq/manage.c and are overridden by arch/XXX/kernel/irq.c.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">int request_irq(unsigned int irq, void (*handler)(int, void*, struct pt_regs*), unsigned long irqflags, const char * devname, void *dev_id)</div><div class="line">void free_irq(unsigned_int irq, void *dev_id)</div></pre></td></tr></table></figure></p>
+<h4 id="NIC-Inteerrupt-Types"><a href="#NIC-Inteerrupt-Types" class="headerlink" title="NIC  Inteerrupt Types:"></a>NIC  Inteerrupt Types:</h4><ol>
+<li>Reception of a frame</li>
+<li>Transmission failure</li>
+<li>DMA transfer has completed successfully</li>
+<li>Device has enough memory to handle a new transmission<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">drivers/net/3c509.c:</div><div class="line">static int</div><div class="line">el3_start_xmit(struct sk_buff *skb, struct net_device *dev)</div><div class="line">&#123;</div><div class="line">    ... ... ...</div><div class="line">    netif_stop_queue (dev);</div><div class="line">    ... ... ...</div><div class="line">    <span class="keyword">if</span> (inw(ioaddr + TX_FREE) &gt; 1536)</div><div class="line">        netif_start_queue(dev);</div><div class="line">    <span class="keyword">else</span></div><div class="line">        outw(SetTxThreshold + 1536, ioaddr + EL3_CMD);</div><div class="line">    ... ... ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Organization-of-IRQs-to-handler-mappings"><a href="#Organization-of-IRQs-to-handler-mappings" class="headerlink" title="Organization of IRQs to handler mappings:"></a>Organization of IRQs to handler mappings:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">kernel/irq/handler.c</div><div class="line">irqaction data structure:</div><div class="line">void (*handler)(int irq, void *dev_id, struct pt_regs *regs)</div><div class="line">int irq</div><div class="line">void *dev_id</div><div class="line">...</div></pre></td></tr></table></figure>
+<p><img src="/images/Linux_network_internal_netdevice_IRQ_handler.png" alt=""></p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/Linux Networking Internals3/" class="archive-article-date">
+  	<time datetime="2017-07-20T13:08:38.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-07-20</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux-Networking-Internals/">Linux Networking Internals</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/Linux/">Linux</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/Linux Networking Internals4/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Linux Networking Internals 4 - Network Device Statistics
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Linux Networking Internals2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux Networking Internals 2 - 网络相关的 procfs vs sysctl vs sysfs</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 Xia, MingXing
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: false
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Kafka/" style="font-size: 12.5px;">Kafka</a> <a href="/tags/Libvirt/" style="font-size: 10px;">Libvirt</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/Linux-Networking-Internals/" style="font-size: 15px;">Linux Networking Internals</a> <a href="/tags/Linux-Source-Code/" style="font-size: 10px;">Linux Source Code</a> <a href="/tags/Linux-Special-File-System/" style="font-size: 10px;">Linux Special File System</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/QEMU/" style="font-size: 10px;">QEMU</a> <a href="/tags/Spark/" style="font-size: 15px;">Spark</a> <a href="/tags/ZooKeeper/" style="font-size: 12.5px;">ZooKeeper</a> <a href="/tags/etcd/" style="font-size: 10px;">etcd</a> <a href="/tags/kubernetes/" style="font-size: 10px;">kubernetes</a> <a href="/tags/lxc/" style="font-size: 10px;">lxc</a> <a href="/tags/lxcfs/" style="font-size: 10px;">lxcfs</a> <a href="/tags/介绍/" style="font-size: 10px;">介绍</a> <a href="/tags/分布式协同/" style="font-size: 10px;">分布式协同</a> <a href="/tags/大数据/" style="font-size: 17.5px;">大数据</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接1</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接2</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接3</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接4</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接5</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接6</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">平均每天保证几小时的学习时间，用一万小时定律激励自己</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

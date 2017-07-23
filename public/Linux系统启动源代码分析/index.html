@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>Linux 系统启动源代码分析 | SStar1314</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Linux 系统启动源代码以x86_64 arch机器为例： —————————————————— 内核load进内存阶段 （arch/*/boot/）—————————————————- 入口文件是：  arch/x86/boot/compressed/head_64.S  注意：  kernel 代码不是以 main 函数为入口的。head_64.S 是 汇编 代码文件， 该文件会 call">
+<meta name="keywords" content="Linux Source Code">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 系统启动源代码分析">
+<meta property="og:url" content="http://yoursite.com/Linux系统启动源代码分析/index.html">
+<meta property="og:site_name" content="SStar1314">
+<meta property="og:description" content="Linux 系统启动源代码以x86_64 arch机器为例： —————————————————— 内核load进内存阶段 （arch/*/boot/）—————————————————- 入口文件是：  arch/x86/boot/compressed/head_64.S  注意：  kernel 代码不是以 main 函数为入口的。head_64.S 是 汇编 代码文件， 该文件会 call">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/images/start_kernel_call_graph.svg">
+<meta property="og:updated_time" content="2017-07-20T06:37:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux 系统启动源代码分析">
+<meta name="twitter:description" content="Linux 系统启动源代码以x86_64 arch机器为例： —————————————————— 内核load进内存阶段 （arch/*/boot/）—————————————————- 入口文件是：  arch/x86/boot/compressed/head_64.S  注意：  kernel 代码不是以 main 函数为入口的。head_64.S 是 汇编 代码文件， 该文件会 call">
+<meta name="twitter:image" content="http://yoursite.com/images/start_kernel_call_graph.svg">
+  
+    <link rel="alternative" href="/atom.xml" title="SStar1314" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/favicon.ico" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Xia, MingXing</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">西安</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/archives">所有文章</a></li>
+	        
+				<li><a href="/categories">目录</a></li>
+	        
+				<li><a href="/tags">标签</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/SStar1314/" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+		        
+					<a class="rss" target="_blank" href="#" title="rss">rss</a>
+		        
+					<a class="mail" target="_blank" href="/xaxiamx@gmail.com" title="mail">mail</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Xia, MingXing</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/favicon.ico" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Xia, MingXing</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">西安</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories">目录</a></li>
+		        
+					<li><a href="/tags">标签</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/SStar1314/" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="mail" target="_blank" href="/xaxiamx@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-Linux系统启动源代码分析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux 系统启动源代码分析
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Linux-系统启动源代码"><a href="#Linux-系统启动源代码" class="headerlink" title="Linux 系统启动源代码"></a>Linux 系统启动源代码</h2><p>以x86_64 arch机器为例：</p>
+<p>—————————————————— 内核load进内存阶段 （arch/*/boot/）—————————————————-</p>
+<p>入口文件是：  <strong>arch/x86/boot/compressed/head_64.S</strong>  注意：  kernel 代码不是以 main 函数为入口的。<br>head_64.S 是 汇编 代码文件， 该文件会 call  verify_cpu + make_boot_params(初始化boot_params) + efi_main(处理并返回boot_params)，最终里面  call  extract_kernel 会调用 入口函数 extract_kernel, 该 函数 位于 arch/x86/boot/compressed/misc.c 会：</p>
+<pre><code>1. 拿到 boot_params , 由汇编代码传入该参数      该 参数的结构体 位于 arch/x86/include/uapi/asm/bootparam.h .
+2. 通过 sanitize_boot_params 函数  初始化 boot_params 参数部分内容， 代码位于 arch/x86/include/asm/bootparam_utils.h .
+3. 通过 boot_params-&gt;screen_info 内容，  调用 arch/x86/boot/compressed/console.c  文件中的 console_init 函数, 初始化 tty 的console .
+4. (arch/x86/boot/compressed/kaslr.c) choose_random_location 函数 会随机挑选一段内存地址， 用于解压内核 压缩文件。
+5. 调用 (lib/decompress_bunzip2.c) __decompress 函数解压缩内核压缩文件, 根据不同的压缩文件类型，调用不同的解压缩函数， 压缩文件区分应该是发生在 编译内核时。
+6. 内核文件解压之后会成为 elf 文件， 位于内存中， 通过调用 parse_elf 函数 load 进 内核内容,  parse_elf 位于 arch/x86/boot/compressed/misc.c 中。
+7. 判断是否 需要重新 分配内存地址， 调用 handle_relocations 函数。
+</code></pre><p>arch/x86/boot/compressed/head_64.S 在解压缩内核之后会执行解压缩之后的内核代码！！！</p>
+<p>而 与arch 无关， 较为 common(legacy) 的 文件  arch/x86/boot/header.S  会 最终调用 (arch/x86/boot/main.c) main 函数 ， 该函数会：</p>
+<pre><code>1. copy_boot_params   拷贝启动参数
+2. console_init  初始化console
+3. init_heap
+4. validate_cpu
+5. set_bios_mode
+6. detect_memory
+7. keyboard_init
+8. query_ist
+9. query_apm_bios (if  config_apm)
+10. query_edd  (if config_edd)
+11. set_video
+12. go_to_protected_mode
+</code></pre><p>—————————————————— 内核启动阶段 （init/main.c） —————————————————-</p>
+<p>入口文件是 ： init/main.c        启动函数是：  start_kernel   该函数会：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div></pre></td><td class="code"><pre><div class="line">1. 调用 (kernel/fork.c)  set_task_stack_end_magic(&amp;init_task) 函数， 注册系统内核启动后的 idle(PID=0)  进程。 该 init_task 在 init_task.h 文件中定义，在 fork.c 文件中设置栈边界。</div><div class="line">2. smp_setup_processor_id 函数, 检查cpu是否为多处理器，获取当前处理器逻辑号。</div><div class="line">3. 调用(debugobjects.c)debug_objects_early_init 函数,  初始化debug对象的锁，并将debug对象链接成链表。</div><div class="line">4. 调用(stackprotector.h)boot_init_stack_canary函数, 尽可能早地进行stack protect，防止 栈越界 canary 攻击，关于canary attack 可以参照： https://hardenedlinux.github.io/2016/11/27/canary.html</div><div class="line">5.  调用(group.c)group_init_early 函数,  初始化 group_root 结构体， 并且将每一个 cgroup_subsys 加入到 group_root 对象中，并初始化每一个 cgroup_subsys 对象。 支持的 cgroup_subsys 位于 include/linux/cgroup_subsys.h 文件中。</div><div class="line">6. local_irq_disable() 函数 将本地中断暂时disabled。</div><div class="line">7. 调用(kernel/cpu.c)boot_cpu_init函数，  设置 获得 cpu 第一个处理器标志对象， 标志 该处理器对象为 online+active+present+possible.</div><div class="line">8. 调用 (mm/highmem.c)page_address_init 函数,  初始化 高端内存页表 page_address_htable 对象 .</div><div class="line">9. 调用 pr_notice 函数 打印 Linux 版本信息(linux_banner) .</div><div class="line">10. 调用 setup_arch(command_line) 函数， 设置与 硬件架构相关的 配置,  command_line 为内核启动参数。 相关结构体有：  hwrpb_struct， notifier_block(中断处理结构体,注册形成notifier_chain)，alpha_using_srm/alpha_using_qemu(使用 srm或者qemu), callback_init(初始化 kernel_page + kernel_PCB + third_level_PTE)  </div><div class="line">11. 调用 mm_types.h(mm_init_cpumask)函数， 初始化 init_mm 对象，init_mm 是 mm_struct 结构体对象，位于 init-mm.c 文件中.</div><div class="line">12. 调用 setup_command_line 函数，保存 原始的 command_line 对象， 保存给以后分析。    </div><div class="line">13. cpu 相关的4个函数(不太明白)： setup_nr_cpu_ids + setup_per_cpu_areas + boot_cpu_state_init + smp_prepare_boot_cpu</div><div class="line">14. 调用 (page_alloc.c)build_all_zonelists 函数 初始化 页表区， 建立系统内存页表链表 .</div><div class="line">15. 调用 (page_alloc.c)page_alloc_init 函数 初始化页表， 初始化内存页表。</div><div class="line">16. 调用 parse_early_param 函数, 解析 command_line 对象，拿到 早期 参数, 参数以 kernel_param 结构体保存 。</div><div class="line">17. 调用 pase_args 函数， 解析不能被 pase_early_param 函数解析的参数。</div><div class="line">18. 调用 (pid.c)pidhash_init 函数,  call  (page_alloc.c)alloc_large_system_hash 函数, allocate 一个大的系统 <span class="built_in">hash</span> table，名字为 PID .</div><div class="line">19. 调用 (dcache.c)bfs_caches_init_early 函数, call 两次 alloc_large_system_hash 函数, allocate 两个大的系统 <span class="built_in">hash</span> table，名字为 Dentry Cache + Inode-Cache .</div><div class="line">20. 调用 (eatable.c)sort_main_extable 函数, 对异常处理函数table进行排序。</div><div class="line">21. 调用 (arch/x86/kernel/traps.c)trap_init 函数,  初始化 硬件中断.</div><div class="line">22. 调用 (main.c)mm_init 函数, 建立内存分配器.   该函数会调用  page_ext_init_flatmem + mem_init + kmem_cache_init + percpu_init_late + pgtable_init + vmalloc_init + ioremap_huge_init  .</div><div class="line">23. 调用 (core.c)sched_init 函数， 初始化 调度器 .  该调度器会处理各种中断.  很复杂.</div><div class="line">24. preempt_disable 函数， 禁止调度抢占.</div><div class="line">25. 调用 idr_init_cache 函数， call  kmem_cache_create 函数 创建 kmem_cache , 该cache 名为 idr_layer_cache .</div><div class="line">26. 调用 (workqueue.c)workqueue_init_early 函数,  该函数 建立 各种数据结构／系统workqueue，  调用 多次 alloc_workqueque 函数 构建 各种事件队列.</div><div class="line">27. rcu_init 函数， 初始化互斥访问机制.</div><div class="line">28. (tiny.c/tree.c)trace_init 函数,   trace printk 调用.</div><div class="line">29. (context_tracking.c)context_tracking_init 函数,   tracking context 在哪个cpu上运行.</div><div class="line">30. (radix-tree.c)radix_tree_init函数,  call  kmem_cache_create 创建 kmem_cache， 该cache 名为 radix_tree_node .  radix tree 为 基数树.</div><div class="line">31. (irq.c)early_irq_init 函数, 调用 arch_early_irq_init 函数, 构建 irq_domain 结构体.</div><div class="line">32. (irqinit.c)init_IRQ 函数,  调用  arch/x86/kernel/irqinit.c init_IRQ 函数， 初始化中断向量. 关键结构体 有 x86_init_ops .</div><div class="line">33. (tick-common.c)tick_init 函数, 初始化 时钟控制.</div><div class="line">34. rcu_init_nohz 函数.</div><div class="line">35. (timer.c)init_timers 函数, 初始化 定时器. 原理是： 通过 调用 open_softirq 软中断， 注册中断处理函数为 run_timer_softirq.</div><div class="line">36. hrtimers_init 函数， 初始化 高精度定时器.</div><div class="line">37. (softer_init.c)softirq_init 函数，  软中断 初始化.  调用 open_softirq 注册2个级别 TASKLET_SOFTIRQ + HI_SOFTIRQ  中断 向量， 关键对象 softirq_vec .   可以学习:  soft_irq 与 tasklet 区别。</div><div class="line">38. timekeeping_init : 初始化资源和普通计时器,  初始化 clocksource 和 common timekeeping values.</div><div class="line">39. time_init :    call  (arch/x86/kernel/time.c) x86_late_time_init 函数, 注册 结构体 x86_init_ops 对象的  timer 属性.   以及 时钟中断, 在后面的 late_time_init 函数中调用.           </div><div class="line">40. sched_clock_postinit :  初始化 clock_data 结构体, 更新 调度 计时器.   </div><div class="line">41. printk_safe_init: 调用 init_irq_work 函数 初始化中断栈, 将 pending 的 所有 message 全都<span class="built_in">print</span> 出去.</div><div class="line">42. (core.c)perf_event_init:  初始化 idr 结构体, call perf_pmu_function 注册 performance monitoring unit(pmu) 各类事件，   pmu 事件类型有：perf_swevent +   perf_tracepoint + perf_cpu_clock + perf_task_clock + perf_breakpoint .</div><div class="line">43. (profile.c)profile_init : kernel profiling 工具 初始化.  初始化 内核调优 的代码, 与内核启动的传入参数有关.  CPU_PROFILING + SCHED_PROFILING + SLEEP_PROFILING + KVM_PROFILING .</div><div class="line">44.  call_function_init: 不知道做啥.</div><div class="line">45.  (slab.c)kmem_cache_init_late : 调.整 cpu cache大小, 并且 注册 一段 memory 用于 hotplug 回调.</div><div class="line">46. (tty_io.h)console_init : 初始化 console  device. 可以显示 printk 的内容.</div><div class="line">47. (locked.c)lockdep_info :  打印 一些 依赖 信息.</div><div class="line">48. (locking-selftest.c)locking_selftest : self-test  <span class="keyword">for</span>  hard/soft-irqs.</div><div class="line">49. (ifdef  CONFIG_BLK_DEV_INITRD)initrd_start :  kernel启动时是否传入 initrd 参数， 传入的话 会进入 raw disk.</div><div class="line">50. (page_ext.c)page_ext_init : 防止高位内存出界, 出界的内存可能没有被初始化，重新初始化, 并且 设置 回调 函数.</div><div class="line">51. (debugobjects.c) debug_objects_mem_init :  debug 内存 是否 越界.</div><div class="line">52. (kmemleak.c)kmemleak_init : 内核内存 分配 泄漏 检测 逻辑 初始化.</div><div class="line">53. (page_alloc.c)setup_per_cpu_pageset :  为每一个 cpu 分配内存 页表 及 页表区.  在此函数调用之前, 可被使用的内存 仅为 boot memory.     </div><div class="line">54. (mempolicy.c)numa_policy_init : 设置内存 numa(Non-uniform memory access, 非统一内存访问架构) 规则. 关键结构体: mempolicy</div><div class="line">55. (arch/x86/kernel/time.c)later_time_init : 执行 time_init 函数初始化的内容.</div><div class="line">56. calibrate_delay : 校准 时延.</div><div class="line">57. (pid.c)pidmap_init :  初始化  pid_max 值, 以及 初始化 pid_namespace 结构体.  保留 pid 为0 的位置.</div><div class="line">58. (rmap.c)anon_vma_init : (Anonymous Virtual Memory Access) 匿名虚拟内存区域初始化.  </div><div class="line">59. (drivers/acpi/bus.c)acpi_early_init:     ACPI ？？？  不知道 干什么?</div><div class="line">60. (efi.c)efi_enter_virtual_mode :  也不清楚 EFI 做啥？</div><div class="line">61.  (esprit_64.c)init_espfix_bsp : 调整 进程 esp 寄存器位置, 在 non-init 进程创建之前调用.</div><div class="line">62.  (fork.c)thread_stack_cache_init : 调用 kmem_cache_create 在内核内存区 创建 thread_stack cache.</div><div class="line">63. (cred.c)cred_init : 调用 kmem_cache_create 在内核内存区 创建 cred_jar  cache, 用于 存储 credentials.</div><div class="line">64. (fork.c)fork_init : 进程创建机制 初始化, 调用 kmem_cache_create 在内核内存区 创建 task_struct cache,  set_max_threads, 关键结构体 task_struct</div><div class="line">65. (fork.c)proc_caches_init : 进程创建所需的其它结构体 初始化, 调用 kmem_cache_create 在内核内存区 创建 sighand_cache/signal_cache/files_cache/fs_cache/mm_struct  cache .</div><div class="line">66. (fs/buffer.c)buffer_init : 调用 kmem_cache_create 在内核内存区 创建 buffer_head  cache. 将一定数量的内存区 设置为 buffer.</div><div class="line">67. (security/keys/key.c)key_init : 内核密钥 管理,  调用 kmem_cache_create 在内核内存区 创建 key_jar  cache .    </div><div class="line">68. (security.c)security_init : 内核安全框架. 比较复杂, 没看懂 ?</div><div class="line">69. (debug_core.c)dbg_late_init : kernel debug stuff.</div><div class="line">70. (fs/dcache.c)vfs_caches_init : 创建虚拟文件系统.  主要调用函数有:  dcache_init, inode_init, files_init, files_maxfiles_init, mnt_init(该函数还会调用 kernfs_init/sysfs_init/kobject_create_and_add/init_rootfs/init_mount_tree), bdev_cache_init, chrdev_init.  调用 kmem_cache_create 在内核内存区 创建 names_cache + dentry + inode_cache + filp + mnt_cache + bdev_cache   cache.  调用 alloc_large_system_hash   分配 Dentry cache + Inode-cache + Mount-cache + Mountpoint-cache     HashMap.</div><div class="line">    (mount.c)kernfs_init : 该函数 在内核内存区 创建 kernfs_node_cache  cache.  </div><div class="line">    (kobject.c)kobject_create_and_add : 创建 kobject  fs 对象.</div><div class="line">    (mount.c)sysfs_init : 该函数 调用  register_filesystem 函数, 初始化 file_system_type 对象 sysfs .  register_filesystem 当加载fs对应module时调用该函数.   </div><div class="line">    (do_mounts.c)init_rootfs : 该函数调用  register_filesystem 函数, 初始化 file_system_type 对象 rootfs + tmpfs/ramfs  </div><div class="line">    (namespace.c)init_mount_tree :  设置 rootfs mount tree.</div><div class="line">    (block_dev.c)bdev_cache_init : 注册 block 设备,  注册对象为 file_system_type  bdev .   bd_mount 扫描磁盘, 获得 磁盘 文件系统.      </div><div class="line">    (char_dev.c)chrdev_init :  注册 字符设备.</div><div class="line">71. (mm/filemap.c)pagecache_init :  该函数 主要是初始化 页写回 机制, 主要函数为 (page_writeback.c)page_writeback_init .</div><div class="line">72. (kernel/signal.c)signals_init :  调用 kmem_cache_create 在内核内存区 创建  sigqueue  cache 对象.  </div><div class="line">73. (fs/proc/root.c)proc_root_init :  proc 文件系统初始化, 主要调用  proc_init_inodecache + set_proc_pid_nlink + register_filesystem + proc_self_init + proc_thread_self_init + proc_symlink + proc_net_init + proc_mkdir + proc_create_mount_point + proc_tty_init + proc_sys_init .        </div><div class="line">        (fs/proc/inode.c)proc_init_inodecache :  调用 kmem_cache_create 在内核内存区 创建  proc_inode_cache 对象.</div><div class="line">        (fs/proc/base.c)set_proc_pid_nlink :  主要 调用 pid_entry_nlink 函数,  关键结构体 为 pid_entry . 初始化 2个对象:  tid_base_stuff  + tgid_base_stuff .         </div><div class="line">        (filesystem.c)register_filesystem : 注册 proc  filesystem .  关键 函数为  proc_mount, 该函数会注册 /proc/self 文件夹.  </div><div class="line">        (fs/proc/thread_self.c)proc_self_init + proc_thread_self_init :  初始化 /proc/self 文件夹.  </div><div class="line">        (fs/proc/thread_self.c)proc_symlink :  创建 链接 文件 /proc/mounts  链接  /proc/self/mounts .  </div><div class="line">        (fs/proc/proc_net.c)proc_net_init :   创建  链接 文件 /proc/net  链接  /proc/self/net .  初始化  /proc/self/net  文件夹.</div><div class="line">        proc_mkdir : 创建 sysvipc, fs, driver, bus  文件夹 .  </div><div class="line">        proc_create_mount_point : 创建  /proc/fs/nfsd 文件夹 .</div><div class="line">        proc_tty_init : 创建 /proc/tty 文件夹.</div><div class="line">        (fs/proc/proc_sysctl.c)proc_sys_init :  注册和初始化  /proc/sys (sysctl)  文件系统.   关键函数 ：  __register_sysctl_paths</div><div class="line">74. nsfs_init : 不知道干啥 ???</div><div class="line">75. (kernel/cpuset.c)cpuset_init :  初始化 cpuset 系统, 并且 创建 /sys/fs/cgroup/cpuset 文件夹.  </div><div class="line">76. (kernel/cgroup.c)cgroup_init :  control group 初始化.  </div><div class="line">77. (kernel/taskstats.c)taskstats_init_early : 早期初始化，初始化 taskstats 结构体.</div><div class="line">78. delayacct_init() + check_bugs() + acpi_subsystem_init() + arch_post_acpi_subsys_init() + sfi_init_late()</div><div class="line">79. (main.c)rest_init :  完成 剩下 non-init 的 任务.    包括 :    —&gt; https://danielmaker.github.io/blog/linux/images/start_kernel_call_graph.svg</div><div class="line">            rcu_scheduler_starting :     启动 rcu_scheduler</div><div class="line">            kernel_thread(kernel_init) :  do_fork 启动一个 进程 执行 kernel_init 函数.  PID 为 1 的进程.   —&gt;  kernel_init_freeable函数   +   run_init_process</div><div class="line">            numa_default_policy : 内存分配  numa 策略.</div><div class="line">            kernel_thread(kthreadd) :   执行 kthreadd 函数.  PID 为 2 的 进程.  为spawn所有其它的 thread 进程 .</div><div class="line">            find_task_by_pid_ns</div><div class="line">            init_idle_bootup_task</div><div class="line">            schedule_preempt_disabled</div><div class="line">            cpu_startup_entry            ——&gt;   do_idle  cpu 调度        idle 为 PID 为 0 的进程.</div></pre></td></tr></table></figure></p>
+<p>rest_init函数所做内容示意图:<br><img src="/images/start_kernel_call_graph.svg" alt=""></p>
+<p>内核代码中 调用 alloc_large_system_hash 函数的位置有不少，会构建一些 大的系统 hash table， 名称分别有：</p>
+<ol>
+<li>Dentry cache</li>
+<li>Inode-cache</li>
+<li>Mount-cache</li>
+<li>Mountpoint-cache</li>
+<li>PV qspinlock</li>
+<li>futex</li>
+<li>PID</li>
+<li>TCP established</li>
+<li>TCP bind</li>
+<li>UDP  or  UDP-Lite</li>
+</ol>
+<p>—————————————中断 宏： SAVE_ALL &amp; RESTORE_ALL    用户态和内核态 上下文切换 ————————————<br>中断向量表：    <strong>linux/arch/x86/entry/systemcalls/syscall_32.tbl</strong><br>中断结构体：    <strong>irq_desc</strong></p>
+<p>linux/arch/x86/entry/entry_32.S  : 系统调用的代码段,   入口应该是：<br><a href="http://lxr.linux.no/linux+v3.19/arch/x86/kernel/entry_32.S" target="_blank" rel="external">http://lxr.linux.no/linux+v3.19/arch/x86/kernel/entry_32.S</a>      —&gt;      ENTRY(system_call)</p>
+<p>Linux 进程 fork 关键代码：<br><a href="http://lxr.linux.no/linux+v3.19/kernel/fork.c#L1185" target="_blank" rel="external">http://lxr.linux.no/linux+v3.19/kernel/fork.c#L1185</a></p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/Linux系统启动源代码分析/" class="archive-article-date">
+  	<time datetime="2017-07-19T14:45:54.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-07-19</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux-Source-Code/">Linux Source Code</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/Linux/">Linux</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/Linux Networking Internals1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Linux Networking Internals 1 - Critical Data Structures
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Linux编译+文件IO/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux编译知识 + 文件操作</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 Xia, MingXing
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: false
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Kafka/" style="font-size: 12.5px;">Kafka</a> <a href="/tags/Libvirt/" style="font-size: 10px;">Libvirt</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/Linux-Networking-Internals/" style="font-size: 15px;">Linux Networking Internals</a> <a href="/tags/Linux-Source-Code/" style="font-size: 10px;">Linux Source Code</a> <a href="/tags/Linux-Special-File-System/" style="font-size: 10px;">Linux Special File System</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/QEMU/" style="font-size: 10px;">QEMU</a> <a href="/tags/Spark/" style="font-size: 15px;">Spark</a> <a href="/tags/ZooKeeper/" style="font-size: 12.5px;">ZooKeeper</a> <a href="/tags/etcd/" style="font-size: 10px;">etcd</a> <a href="/tags/kubernetes/" style="font-size: 10px;">kubernetes</a> <a href="/tags/lxc/" style="font-size: 10px;">lxc</a> <a href="/tags/lxcfs/" style="font-size: 10px;">lxcfs</a> <a href="/tags/介绍/" style="font-size: 10px;">介绍</a> <a href="/tags/分布式协同/" style="font-size: 10px;">分布式协同</a> <a href="/tags/大数据/" style="font-size: 17.5px;">大数据</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接1</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接2</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接3</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接4</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接5</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接6</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">平均每天保证几小时的学习时间，用一万小时定律激励自己</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

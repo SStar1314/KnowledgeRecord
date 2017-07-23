@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>HDFS Command | SStar1314</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Hadoop FS Command可以参考： http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/FileSystemShell.html The File System (FS) shell includes various shell-like commands that directly intera">
+<meta name="keywords" content="Hadoop">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HDFS Command">
+<meta property="og:url" content="http://yoursite.com/HDFS Command/index.html">
+<meta property="og:site_name" content="SStar1314">
+<meta property="og:description" content="Hadoop FS Command可以参考： http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/FileSystemShell.html The File System (FS) shell includes various shell-like commands that directly intera">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-07-19T06:00:25.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HDFS Command">
+<meta name="twitter:description" content="Hadoop FS Command可以参考： http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/FileSystemShell.html The File System (FS) shell includes various shell-like commands that directly intera">
+  
+    <link rel="alternative" href="/atom.xml" title="SStar1314" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/favicon.ico" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Xia, MingXing</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">西安</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/archives">所有文章</a></li>
+	        
+				<li><a href="/categories">目录</a></li>
+	        
+				<li><a href="/tags">标签</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/SStar1314/" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+		        
+					<a class="rss" target="_blank" href="#" title="rss">rss</a>
+		        
+					<a class="mail" target="_blank" href="/xaxiamx@gmail.com" title="mail">mail</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Xia, MingXing</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/favicon.ico" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Xia, MingXing</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">西安</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories">目录</a></li>
+		        
+					<li><a href="/tags">标签</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/SStar1314/" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="mail" target="_blank" href="/xaxiamx@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-HDFS Command" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      HDFS Command
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Hadoop-FS-Command"><a href="#Hadoop-FS-Command" class="headerlink" title="Hadoop FS Command"></a>Hadoop FS Command</h2><p>可以参考： <a href="http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/FileSystemShell.html" target="_blank" rel="external">http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/FileSystemShell.html</a></p>
+<p>The File System (FS) shell includes various shell-like commands that directly interact with the Hadoop Distributed File System (HDFS) as well as other file systems that Hadoop supports, such as Local FS, HFTP FS, S3 FS, and others. The FS shell is invoked by:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bin/hadoop fs &lt;args&gt;</div></pre></td></tr></table></figure></p>
+<p>All FS shell commands take path URIs as arguments. The URI format is<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scheme://authority/path</div></pre></td></tr></table></figure></p>
+<p>For <strong>HDFS</strong> the scheme is <strong>hdfs</strong> , and for the <strong>Local FS</strong> the scheme is <strong>file</strong>. The scheme and authority are optional. If not specified, the default scheme specified in the configuration is used. An HDFS file or directory such as /parent/child can be specified as <strong>hdfs://namenodehost/parent/child</strong> or simply as <strong>/parent/child</strong> (given that your configuration is set to point to <strong>hdfs://namenodehost</strong> ).</p>
+<p>args 可以为：</p>
+<ul>
+<li>appendToFile</li>
+<li>cat</li>
+<li>checksum</li>
+<li>chgrp</li>
+<li>chmod</li>
+<li>chown</li>
+<li>copyFromLocal</li>
+<li>copyToLocal</li>
+<li>count</li>
+<li>cp</li>
+<li>createSnapshot</li>
+<li>deleteSnapshot</li>
+<li>df</li>
+<li>du</li>
+<li>dus</li>
+<li>expunge</li>
+<li>find</li>
+<li>get</li>
+<li>getfacl</li>
+<li>getfattr</li>
+<li>getmerge</li>
+<li>help</li>
+<li>ls</li>
+<li>lsr</li>
+<li>mkdir</li>
+<li>moveFromLocal</li>
+<li>moveToLocal</li>
+<li>mv</li>
+<li>put</li>
+<li>renameSnapshot</li>
+<li>rm</li>
+<li>rmdir</li>
+<li>rmr</li>
+<li>setfacl</li>
+<li>setfattr</li>
+<li>setrep</li>
+<li>stat</li>
+<li>tail</li>
+<li>test</li>
+<li>text</li>
+<li>touchz</li>
+<li>truncate</li>
+<li>usage</li>
+</ul>
+<hr>
+<h3 id="Hadoop-FS-命令："><a href="#Hadoop-FS-命令：" class="headerlink" title="Hadoop FS 命令："></a>Hadoop FS 命令：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">hadoop fs :</div><div class="line">          [-ls &lt;path&gt;]</div><div class="line">          [-lsr &lt;path&gt;]</div><div class="line">           [-du &lt;path&gt;]</div><div class="line">           [-dus &lt;path&gt;]</div><div class="line">           [-count[-q] &lt;path&gt;]</div><div class="line">           [-mv &lt;src&gt; &lt;dst&gt;]</div><div class="line">           [-cp &lt;src&gt; &lt;dst&gt;]</div><div class="line">           [-rm [-skipTrash] &lt;path&gt;]</div><div class="line">           [-rmr [-skipTrash] &lt;path&gt;]</div><div class="line">           [-put &lt;localsrc&gt; ... &lt;dst&gt;]</div><div class="line">           [-copyFromLocal &lt;localsrc&gt; ... &lt;dst&gt;]</div><div class="line">           [-moveFromLocal &lt;localsrc&gt; ... &lt;dst&gt;]</div><div class="line"></div><div class="line">           [-getmerge &lt;src&gt; &lt;localdst&gt; [addnl]]</div><div class="line">           [-cat &lt;src&gt;]</div><div class="line">           [-text &lt;src&gt;]</div><div class="line">           [-copyToLocal [-ignoreCrc] [-crc] &lt;src&gt; &lt;localdst&gt;]</div><div class="line">           [-moveToLocal [-crc] &lt;src&gt; &lt;localdst&gt;]</div><div class="line">           [-mkdir &lt;path&gt;]</div><div class="line">           [-tail [-f] &lt;file&gt;]</div><div class="line">           [-chmod [-R] &lt;MODE[,MODE]... | OCTALMODE&gt; PATH...]</div><div class="line">           [-chown [-R] [OWNER][:[GROUP]] PATH...]</div><div class="line">           [-chgrp [-R] GROUP PATH...]</div><div class="line">           [-<span class="built_in">help</span> [cmd]]</div></pre></td></tr></table></figure>
+<h3 id="Hadoop-DFS-Admin-命令："><a href="#Hadoop-DFS-Admin-命令：" class="headerlink" title="Hadoop DFS Admin 命令："></a>Hadoop DFS Admin 命令：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">hadoop dfsadmin :</div><div class="line">           [-report]</div><div class="line">             报告文件系统的基本信息</div><div class="line">           [-safemode enter | leave | get | <span class="built_in">wait</span>]</div><div class="line">           安全模式维护命令</div><div class="line">           [-saveNamespace]</div><div class="line">             保存当前的命名空间</div><div class="line">           [-refreshNodes]</div><div class="line">              重新读取 Hosts 和 eclude 文件，使新的节点或需要退出集群的节点能够重新被 NameNode 识别。</div><div class="line">           [-finalizeUpgrade]</div><div class="line">            终结 HDFS 的升级操作</div><div class="line">           [-upgradeProgress status | details | force]</div><div class="line">          [-metasave filename]</div><div class="line">           保存 Namenode 的主要数据结构到 Hadoop.log.dir 属性指定目录下的 filename 上</div><div class="line">           [-setQuota &lt;quota&gt; &lt;dirname&gt;...&lt;dirname&gt;]</div><div class="line">           为每个目录设定配额，强制限定目录树下的名字个数。</div><div class="line">           [-clrQuota &lt;dirname&gt;...&lt;dirname&gt;]</div><div class="line">          为每个目录清除配额设定。</div><div class="line">           [-setBalancerBandwidth &lt;bandwidth <span class="keyword">in</span> bytes per second&gt;]</div><div class="line">           设定负载均衡时使用的带宽</div></pre></td></tr></table></figure>
+<hr>
+<p><strong>appendToFile</strong></p>
+<p>Usage: hadoop fs -appendToFile <localsrc> … <dst></dst></localsrc></p>
+<p>Append single src, or multiple srcs from local file system to the destination file system. Also reads input from stdin and appends to destination file system.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hadoop fs -appendToFile localfile /user/hadoop/hadoopfile</div><div class="line">hadoop fs -appendToFile localfile1 localfile2 /user/hadoop/hadoopfile</div><div class="line">hadoop fs -appendToFile localfile hdfs://nn.example.com/hadoop/hadoopfile</div><div class="line">hadoop fs -appendToFile - hdfs://nn.example.com/hadoop/hadoopfile Reads the input from stdin.</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and 1 on error.</p>
+<p><strong>cat</strong></p>
+<p>Usage: hadoop fs -cat URI [URI …]</p>
+<p>Copies source paths to stdout.</p>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop fs -cat hdfs://nn1.example.com/file1 hdfs://nn2.example.com/file2</div><div class="line">hadoop fs -cat file:///file3 /user/hadoop/file4</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and -1 on error.</p>
+<p><strong>checksum</strong></p>
+<p>Usage: hadoop fs -checksum URI</p>
+<p>Returns the checksum information of a file.</p>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop fs -checksum hdfs://nn1.example.com/file1</div><div class="line">hadoop fs -checksum file:///etc/hosts</div></pre></td></tr></table></figure></p>
+<p><strong>chgrp</strong></p>
+<p>Usage: hadoop fs -chgrp [-R] GROUP URI [URI …]</p>
+<p>Change group association of files. The user must be the owner of files, or else a super-user. Additional information is in the Permissions Guide.</p>
+<p>Options</p>
+<ul>
+<li>The -R option will make the change recursively through the directory structure.</li>
+</ul>
+<p><strong>chmod</strong></p>
+<p>Usage: hadoop fs -chmod [-R] <mode[,mode]... |="" octalmode=""> URI [URI …]</mode[,mode]...></p>
+<p>Change the permissions of files. With -R, make the change recursively through the directory structure. The user must be the owner of the file, or else a super-user. Additional information is in the Permissions Guide.</p>
+<p>Options</p>
+<ul>
+<li>The -R option will make the change recursively through the directory structure.</li>
+</ul>
+<p><strong>chown</strong></p>
+<p>Usage: hadoop fs -chown [-R] [OWNER][:[GROUP]] URI [URI ]</p>
+<p>Change the owner of files. The user must be a super-user. Additional information is in the Permissions Guide.</p>
+<p>Options</p>
+<ul>
+<li>The -R option will make the change recursively through the directory structure.</li>
+</ul>
+<p><strong>copyFromLocal</strong></p>
+<p>Usage: hadoop fs -copyFromLocal <localsrc> URI</localsrc></p>
+<p>Similar to put command, except that the source is restricted to a local file reference.</p>
+<p>Options:</p>
+<ul>
+<li>The -f option will overwrite the destination if it already exists.</li>
+</ul>
+<p><strong>copyToLocal</strong></p>
+<p>Usage: hadoop fs -copyToLocal [-ignorecrc] [-crc] URI <localdst></localdst></p>
+<p>Similar to get command, except that the destination is restricted to a local file reference.</p>
+<p><strong>count</strong></p>
+<p>Usage: hadoop fs -count [-q] [-h] [-v] <paths></paths></p>
+<p>Count the number of directories, files and bytes under the paths that match the specified file pattern. The output columns with -count are: DIR_COUNT, FILE_COUNT, CONTENT_SIZE, PATHNAME</p>
+<p>The output columns with -count -q are: QUOTA, REMAINING_QUATA, SPACE_QUOTA, REMAINING_SPACE_QUOTA, DIR_COUNT, FILE_COUNT, CONTENT_SIZE, PATHNAME</p>
+<p>The -h option shows sizes in human readable format.</p>
+<p>The -v option displays a header line.</p>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hadoop fs -count hdfs://nn1.example.com/file1 hdfs://nn2.example.com/file2</div><div class="line">hadoop fs -count -q hdfs://nn1.example.com/file1</div><div class="line">hadoop fs -count -q -h hdfs://nn1.example.com/file1</div><div class="line">hdfs dfs -count -q -h -v hdfs://nn1.example.com/file1</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and -1 on error.</p>
+<p><strong>cp</strong></p>
+<p>Usage: hadoop fs -cp [-f] [-p | -p[topax]] URI [URI …] <dest></dest></p>
+<p>Copy files from source to destination. This command allows multiple sources as well in which case the destination must be a directory.</p>
+<p>‘raw.*’ namespace extended attributes are preserved if (1) the source and destination filesystems support them (HDFS only), and (2) all source and destination pathnames are in the /.reserved/raw hierarchy. Determination of whether raw.* namespace xattrs are preserved is independent of the -p (preserve) flag.</p>
+<p>Options:</p>
+<ul>
+<li>The -f option will overwrite the destination if it already exists.</li>
+<li>The -p option will preserve file attributes [topx] (timestamps, ownership, permission, ACL, XAttr). If -p is specified with no arg, then preserves timestamps, ownership, permission. If -pa is specified, then preserves permission also because ACL is a super-set of permission. Determination of whether raw namespace extended attributes are preserved is independent of the -p flag.</li>
+</ul>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop fs -cp /user/hadoop/file1 /user/hadoop/file2</div><div class="line">hadoop fs -cp /user/hadoop/file1 /user/hadoop/file2 /user/hadoop/dir</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and -1 on error.</p>
+<p><strong>createSnapshot</strong></p>
+<p>See HDFS Snapshots Guide.</p>
+<p>deleteSnapshot</p>
+<p>See HDFS Snapshots Guide.</p>
+<p><strong>df</strong></p>
+<p>Usage: hadoop fs -df [-h] URI [URI …]</p>
+<p>Displays free space.</p>
+<p>Options:</p>
+<ul>
+<li>The -h option will format file sizes in a “human-readable” fashion (e.g 64.0m instead of 67108864)</li>
+</ul>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop dfs -df /user/hadoop/dir1</div></pre></td></tr></table></figure></p>
+<p><strong>du</strong></p>
+<p>Usage: hadoop fs -du [-s] [-h] URI [URI …]</p>
+<p>Displays sizes of files and directories contained in the given directory or the length of a file in case its just a file.</p>
+<p>Options:</p>
+<ul>
+<li>The -s option will result in an aggregate summary of file lengths being displayed, rather than the individual files.</li>
+<li>The -h option will format file sizes in a “human-readable” fashion (e.g 64.0m instead of 67108864)</li>
+</ul>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop fs -du /user/hadoop/dir1 /user/hadoop/file1 hdfs://nn.example.com/user/hadoop/dir1</div></pre></td></tr></table></figure></p>
+<p>Exit Code: Returns 0 on success and -1 on error.</p>
+<p><strong>dus</strong></p>
+<p>Usage: hadoop fs -dus <args></args></p>
+<p>Displays a summary of file lengths.</p>
+<p>Note: This command is deprecated. Instead use hadoop fs -du -s.</p>
+<p><strong>expunge</strong></p>
+<p>Usage: hadoop fs -expunge</p>
+<p>Empty the Trash. Refer to the HDFS Architecture Guide for more information on the Trash feature.</p>
+<p><strong>find</strong></p>
+<p>Usage: hadoop fs -find <path></path> … <expression> …</expression></p>
+<p>Finds all files that match the specified expression and applies selected actions to them. If no path is specified then defaults to the current working directory. If no expression is specified then defaults to -print.</p>
+<p>The following primary expressions are recognised:</p>
+<ul>
+<li>-name pattern</li>
+<li><p>-iname pattern<br>Evaluates as true if the basename of the file matches the pattern using standard file system globbing. If -iname is used then the match is case insensitive.</p>
+</li>
+<li><p>-print</p>
+</li>
+<li>-print0Always<br>evaluates to true. Causes the current pathname to be written to standard output. If the -print0 expression is used then an ASCII NULL character is appended.</li>
+</ul>
+<p>The following operators are recognised:</p>
+<ul>
+<li>expression -a expression</li>
+<li>expression -and expression</li>
+<li>expression expression<br>Logical AND operator for joining two expressions. Returns true if both child expressions return true. Implied by the juxtaposition of two expressions and so does not need to be explicitly specified. The second expression will not be applied if the first fails.</li>
+</ul>
+<p>Example:</p>
+<p><strong>hadoop fs -find / -name test -print</strong></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and -1 on error.</p>
+<p><strong>get</strong></p>
+<p>Usage: hadoop fs -get [-ignorecrc] [-crc] <src> <localdst></localdst></src></p>
+<p>Copy files to the local file system. Files that fail the CRC check may be copied with the -ignorecrc option. Files and CRCs may be copied using the -crc option.</p>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop fs -get /user/hadoop/file localfile</div><div class="line">hadoop fs -get hdfs://nn.example.com/user/hadoop/file localfile</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and -1 on error.</p>
+<p><strong>getfacl</strong></p>
+<p>Usage: hadoop fs -getfacl [-R] <path></path></p>
+<p>Displays the Access Control Lists (ACLs) of files and directories. If a directory has a default ACL, then getfacl also displays the default ACL.</p>
+<p>Options:</p>
+<ul>
+<li>-R: List the ACLs of all files and directories recursively.</li>
+<li>path: File or directory to list.</li>
+</ul>
+<p>Examples:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop fs -getfacl /file</div><div class="line">hadoop fs -getfacl -R /dir</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and non-zero on error.</p>
+<p><strong>getfattr</strong></p>
+<p>Usage: hadoop fs -getfattr [-R] -n name | -d [-e en] <path></path></p>
+<p>Displays the extended attribute names and values (if any) for a file or directory.</p>
+<p>Options:</p>
+<ul>
+<li>-R: Recursively list the attributes for all files and directories.</li>
+<li>-n name: Dump the named extended attribute value.</li>
+<li>-d: Dump all extended attribute values associated with pathname.</li>
+<li>-e encoding: Encode values after retrieving them. Valid encodings are “text”, “hex”, and “base64”. Values encoded as text strings are enclosed in double quotes (“), and values encoded as hexadecimal and base64 are prefixed with 0x and 0s, respectively.</li>
+<li>path: The file or directory.</li>
+</ul>
+<p>Examples:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop fs -getfattr -d /file</div><div class="line">hadoop fs -getfattr -R -n user.myAttr /dir</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and non-zero on error.</p>
+<p><strong>getmerge</strong></p>
+<p>Usage: hadoop fs -getmerge [-nl] <src> <localdst></localdst></src></p>
+<p>Takes a source directory and a destination file as input and concatenates files in src into the destination local file. Optionally -nl can be set to enable adding a newline character (LF) at the end of each file.</p>
+<p>Examples:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop fs -getmerge -nl /src /opt/output.txt</div><div class="line">hadoop fs -getmerge -nl /src/file1.txt /src/file2.txt /output.txt</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and non-zero on error.</p>
+<p><strong>help</strong></p>
+<p>Usage: hadoop fs -help</p>
+<p>Return usage output.</p>
+<p><strong>ls</strong></p>
+<p>Usage: hadoop fs -ls [-d] [-h] [-R] <args></args></p>
+<p>Options:</p>
+<ul>
+<li>-d: Directories are listed as plain files.</li>
+<li>-h: Format file sizes in a human-readable fashion (eg 64.0m instead of 67108864).</li>
+<li>-R: Recursively list subdirectories encountered.</li>
+</ul>
+<p>For a file ls returns stat on the file with the following format:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">permissions number_of_replicas userid groupid filesize modification_date modification_time filename</div></pre></td></tr></table></figure></p>
+<p>For a directory it returns list of its direct children as in Unix. A directory is listed as:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">permissions userid groupid modification_date modification_time dirname</div></pre></td></tr></table></figure></p>
+<p>Files within a directory are order by filename by default.</p>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop fs -ls /user/hadoop/file1</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and -1 on error.</p>
+<p><strong>lsr</strong></p>
+<p>Usage: hadoop fs -lsr <args></args></p>
+<p>Recursive version of ls.</p>
+<p>Note: This command is deprecated. Instead use hadoop fs -ls -R</p>
+<p><strong>mkdir</strong></p>
+<p>Usage: hadoop fs -mkdir [-p] <paths></paths></p>
+<p>Takes path uri’s as argument and creates directories.</p>
+<p>Options:</p>
+<ul>
+<li>The -p option behavior is much like Unix mkdir -p, creating parent directories along the path.</li>
+</ul>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop fs -mkdir /user/hadoop/dir1 /user/hadoop/dir2</div><div class="line">hadoop fs -mkdir hdfs://nn1.example.com/user/hadoop/dir hdfs://nn2.example.com/user/hadoop/dir</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and -1 on error.</p>
+<p><strong>moveFromLocal</strong></p>
+<p>Usage: hadoop fs -moveFromLocal <localsrc> <dst></dst></localsrc></p>
+<p>Similar to put command, except that the source localsrc is deleted after it’s copied.</p>
+<p><strong>moveToLocal</strong></p>
+<p>Usage: hadoop fs -moveToLocal [-crc] <src> <dst></dst></src></p>
+<p>Displays a “Not implemented yet” message.</p>
+<p><strong>mv</strong></p>
+<p>Usage: hadoop fs -mv URI [URI …] <dest></dest></p>
+<p>Moves files from source to destination. This command allows multiple sources as well in which case the destination needs to be a directory. Moving files across file systems is not permitted.</p>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop fs -mv /user/hadoop/file1 /user/hadoop/file2</div><div class="line">hadoop fs -mv hdfs://nn.example.com/file1 hdfs://nn.example.com/file2 hdfs://nn.example.com/file3 hdfs://nn.example.com/dir1</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and -1 on error.</p>
+<p><strong>put</strong></p>
+<p>Usage: hadoop fs -put <localsrc> … <dst></dst></localsrc></p>
+<p>Copy single src, or multiple srcs from local file system to the destination file system. Also reads input from stdin and writes to destination file system.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hadoop fs -put localfile /user/hadoop/hadoopfile</div><div class="line">hadoop fs -put localfile1 localfile2 /user/hadoop/hadoopdir</div><div class="line">hadoop fs -put localfile hdfs://nn.example.com/hadoop/hadoopfile</div><div class="line">hadoop fs -put - hdfs://nn.example.com/hadoop/hadoopfile Reads the input from stdin.</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and -1 on error.</p>
+<p><strong>renameSnapshot</strong></p>
+<p>See HDFS Snapshots Guide.</p>
+<p><strong>rm</strong></p>
+<p>Usage: hadoop fs -rm [-f] [-r |-R] [-skipTrash] URI [URI …]</p>
+<p>Delete files specified as args.</p>
+<p>Options:</p>
+<ul>
+<li>The -f option will not display a diagnostic message or modify the exit status to reflect an error if the file does not exist.</li>
+<li>The -R option deletes the directory and any content under it recursively.</li>
+<li>The -r option is equivalent to -R.</li>
+<li>The -skipTrash option will bypass trash, if enabled, and delete the specified file(s) immediately. This can be useful when it is necessary to delete files from an over-quota directory.</li>
+</ul>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop fs -rm hdfs://nn.example.com/file /user/hadoop/emptydir</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and -1 on error.</p>
+<p><strong>rmdir</strong></p>
+<p>Usage: hadoop fs -rmdir [–ignore-fail-on-non-empty] URI [URI …]</p>
+<p>Delete a directory.</p>
+<p>Options:</p>
+<ul>
+<li>–ignore-fail-on-non-empty: When using wildcards, do not fail if a directory still contains files.</li>
+</ul>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop fs -rmdir /user/hadoop/emptydir</div></pre></td></tr></table></figure></p>
+<p><strong>rmr</strong></p>
+<p>Usage: hadoop fs -rmr [-skipTrash] URI [URI …]</p>
+<p>Recursive version of delete.</p>
+<p>Note: This command is deprecated. Instead use hadoop fs -rm -r</p>
+<p><strong>setfacl</strong></p>
+<p>Usage: hadoop fs -setfacl [-R] [-b |-k -m |-x <acl_spec> <path></path>] |[–set <acl_spec> <path></path>]</acl_spec></acl_spec></p>
+<p>Sets Access Control Lists (ACLs) of files and directories.</p>
+<p>Options:</p>
+<ul>
+<li>-b: Remove all but the base ACL entries. The entries for user, group and others are retained for compatibility with permission bits.</li>
+<li>-k: Remove the default ACL.</li>
+<li>-R: Apply operations to all files and directories recursively.</li>
+<li>-m: Modify ACL. New entries are added to the ACL, and existing entries are retained.</li>
+<li>-x: Remove specified ACL entries. Other ACL entries are retained.</li>
+<li>–set: Fully replace the ACL, discarding all existing entries. The acl_spec must include entries for user, group, and others for compatibility with permission bits.</li>
+<li>acl_spec: Comma separated list of ACL entries.</li>
+<li>path: File or directory to modify.</li>
+</ul>
+<p>Examples:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">hadoop fs -setfacl -m user:hadoop:rw- /file</div><div class="line">hadoop fs -setfacl -x user:hadoop /file</div><div class="line">hadoop fs -setfacl -b /file</div><div class="line">hadoop fs -setfacl -k /dir</div><div class="line">hadoop fs -setfacl --<span class="built_in">set</span> user::rw-,user:hadoop:rw-,group::r--,other::r-- /file</div><div class="line">hadoop fs -setfacl -R -m user:hadoop:r-x /dir</div><div class="line">hadoop fs -setfacl -m default:user:hadoop:r-x /dir</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and non-zero on error.</p>
+<p><strong>setfattr</strong></p>
+<p>Usage: hadoop fs -setfattr -n name [-v value] | -x name <path></path></p>
+<p>Sets an extended attribute name and value for a file or directory.</p>
+<p>Options:</p>
+<ul>
+<li>-b: Remove all but the base ACL entries. The entries for user, group and others are retained for compatibility with permission bits.</li>
+<li>-n name: The extended attribute name.</li>
+<li>-v value: The extended attribute value. There are three different encoding methods for the value. If the argument is enclosed in double quotes, then the value is the string inside the quotes. If the argument is prefixed with 0x or 0X, then it is taken as a hexadecimal number. If the argument begins with 0s or 0S, then it is taken as a base64 encoding.</li>
+<li>-x name: Remove the extended attribute.</li>
+<li>path: The file or directory.</li>
+</ul>
+<p>Examples:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hadoop fs -setfattr -n user.myAttr -v myValue /file</div><div class="line">hadoop fs -setfattr -n user.noValue /file</div><div class="line">hadoop fs -setfattr -x user.myAttr /file</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and non-zero on error.</p>
+<p><strong>setrep</strong></p>
+<p>Usage: hadoop fs -setrep [-R] [-w] <numreplicas> <path></path></numreplicas></p>
+<p>Changes the replication factor of a file. If path is a directory then the command recursively changes the replication factor of all files under the directory tree rooted at path.</p>
+<p>Options:</p>
+<ul>
+<li>The -w flag requests that the command wait for the replication to complete. This can potentially take a very long time.</li>
+<li>The -R flag is accepted for backwards compatibility. It has no effect.</li>
+</ul>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop fs -setrep -w 3 /user/hadoop/dir1</div></pre></td></tr></table></figure></p>
+<p>Exit Code:</p>
+<p>Returns 0 on success and -1 on error.</p>
+<p><strong>stat</strong></p>
+<p>Usage: hadoop fs -stat [format] <path></path> …</p>
+<p>Print statistics about the file/directory at <path></path> in the specified format. Format accepts filesize in blocks (%b), type (%F), group name of owner (%g), name (%n), block size (%o), replication (%r), user name of owner(%u), and modification date (%y, %Y). %y shows UTC date as “yyyy-MM-dd HH:mm:ss” and %Y shows milliseconds since January 1, 1970 UTC. If the format is not specified, %y is used by default.</p>
+<p>Example:</p>
+<ul>
+<li>hadoop fs -stat “%F %u:%g %b %y %n” /file</li>
+</ul>
+<p>Exit Code: Returns 0 on success and -1 on error.</p>
+<p><strong>tail</strong></p>
+<p>Usage: hadoop fs -tail [-f] URI</p>
+<p>Displays last kilobyte of the file to stdout.</p>
+<p>Options:</p>
+<ul>
+<li>The -f option will output appended data as the file grows, as in Unix.</li>
+</ul>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop fs -tail pathname</div></pre></td></tr></table></figure></p>
+<p>Exit Code: Returns 0 on success and -1 on error.</p>
+<p><strong>test</strong></p>
+<p>Usage: hadoop fs -test -[defsz] URI</p>
+<p>Options:</p>
+<ul>
+<li>-d: f the path is a directory, return 0.</li>
+<li>-e: if the path exists, return 0.</li>
+<li>-f: if the path is a file, return 0.</li>
+<li>-s: if the path is not empty, return 0.</li>
+<li>-z: if the file is zero length, return 0.</li>
+</ul>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop fs -<span class="built_in">test</span> -e filename</div></pre></td></tr></table></figure></p>
+<p><strong>text</strong></p>
+<p>Usage: hadoop fs -text <src></src></p>
+<p>Takes a source file and outputs the file in text format. The allowed formats are zip and TextRecordInputStream.</p>
+<p><strong>touchz</strong></p>
+<p>Usage: hadoop fs -touchz URI [URI …]</p>
+<p>Create a file of zero length.</p>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop fs -touchz pathname</div></pre></td></tr></table></figure></p>
+<p>Exit Code: Returns 0 on success and -1 on error.</p>
+<p><strong>truncate</strong></p>
+<p>Usage: hadoop fs -truncate [-w] <length> <paths></paths></length></p>
+<p>Truncate all files that match the specified file pattern to the specified length.</p>
+<p>Options:</p>
+<ul>
+<li>The -w flag requests that the command waits for block recovery to complete, if necessary. Without -w flag the file may remain unclosed for some time while the recovery is in progress. During this time file cannot be reopened for append.</li>
+</ul>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop fs -truncate 55 /user/hadoop/file1 /user/hadoop/file2</div><div class="line">hadoop fs -truncate -w 127 hdfs://nn1.example.com/user/hadoop/file1</div></pre></td></tr></table></figure></p>
+<p><strong>usage</strong></p>
+<p>Usage: hadoop fs -usage command</p>
+<p>Return the help for an individual command.</p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/HDFS Command/" class="archive-article-date">
+  	<time datetime="2016-11-08T05:41:32.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-08</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/bigdata/">bigdata</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/Hadoop MapReduce/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Hadoop MapReduce
+        
+      </div>
+    </a>
+  
+  
+    <a href="/HDFS介绍/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">HDFS介绍</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 Xia, MingXing
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: false
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Kafka/" style="font-size: 12.5px;">Kafka</a> <a href="/tags/Libvirt/" style="font-size: 10px;">Libvirt</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/Linux-Networking-Internals/" style="font-size: 15px;">Linux Networking Internals</a> <a href="/tags/Linux-Source-Code/" style="font-size: 10px;">Linux Source Code</a> <a href="/tags/Linux-Special-File-System/" style="font-size: 10px;">Linux Special File System</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/QEMU/" style="font-size: 10px;">QEMU</a> <a href="/tags/Spark/" style="font-size: 15px;">Spark</a> <a href="/tags/ZooKeeper/" style="font-size: 12.5px;">ZooKeeper</a> <a href="/tags/etcd/" style="font-size: 10px;">etcd</a> <a href="/tags/kubernetes/" style="font-size: 10px;">kubernetes</a> <a href="/tags/lxc/" style="font-size: 10px;">lxc</a> <a href="/tags/lxcfs/" style="font-size: 10px;">lxcfs</a> <a href="/tags/介绍/" style="font-size: 10px;">介绍</a> <a href="/tags/分布式协同/" style="font-size: 10px;">分布式协同</a> <a href="/tags/大数据/" style="font-size: 17.5px;">大数据</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接1</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接2</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接3</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接4</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接5</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接6</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">平均每天保证几小时的学习时间，用一万小时定律激励自己</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
