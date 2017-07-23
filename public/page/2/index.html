@@ -147,6 +147,338 @@
       <div class="body-wrap">
         
   
+    <article id="post-Spark Cluster三种模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Spark Cluster三种模式/">Spark Cluster 三种模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Spark-Cluster-三种模式"><a href="#Spark-Cluster-三种模式" class="headerlink" title="Spark Cluster 三种模式"></a>Spark Cluster 三种模式</h2><ul>
+<li><strong>Standalone</strong> – a simple cluster manager included with Spark that makes it easy to set up a cluster.</li>
+<li><strong>Apache Mesos</strong> – a general cluster manager that can also run Hadoop MapReduce and service applications.</li>
+<li><strong>Hadoop YARN</strong> – the resource manager in Hadoop 2.</li>
+</ul>
+<h3 id="Standalone-模式："><a href="#Standalone-模式：" class="headerlink" title="Standalone 模式："></a>Standalone 模式：</h3><p>start Master:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./sbin/start-master.sh</div></pre></td></tr></table></figure></p>
+<p>start Slave:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./sbin/start-slave.sh &lt;master-spark-URL&gt;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>sbin/start-master.sh - Starts a master instance on the machine the script is executed on.</li>
+<li>sbin/start-slaves.sh - Starts a slave instance on each machine specified in the conf/slaves file.</li>
+<li>sbin/start-slave.sh - Starts a slave instance on the machine the script is executed on.</li>
+<li>sbin/start-all.sh - Starts both a master and a number of slaves as described above.</li>
+<li>sbin/stop-master.sh - Stops the master that was started via the bin/start-master.sh script.</li>
+<li>sbin/stop-slaves.sh - Stops all slave instances on the machines specified in the conf/slaves file.</li>
+<li>sbin/stop-all.sh - Stops both the master and the slaves as described above.</li>
+</ul>
+<p>Connecting an Application to the Cluster:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./bin/spark-shell --master spark://IP:PORT</div></pre></td></tr></table></figure></p>
+<p>Launching Spark Applications:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./bin/spark-class org.apache.spark.deploy.Client <span class="built_in">kill</span> &lt;master url&gt; &lt;driver ID&gt;</div></pre></td></tr></table></figure></p>
+<p>Resource Scheduling:<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> conf = <span class="keyword">new</span> <span class="type">SparkConf</span>()</div><div class="line">             .setMaster(...)</div><div class="line">             .setAppName(...)</div><div class="line">             .set(<span class="string">"spark.cores.max"</span>, <span class="string">"10"</span>)</div><div class="line"><span class="keyword">val</span> sc = <span class="keyword">new</span> <span class="type">SparkContext</span>(conf)</div></pre></td></tr></table></figure></p>
+<h3 id="Running-Spark-on-Mesos-模式："><a href="#Running-Spark-on-Mesos-模式：" class="headerlink" title="Running Spark on Mesos 模式："></a>Running Spark on Mesos 模式：</h3><p>参考： <a href="http://spark.apache.org/docs/latest/running-on-mesos.html" target="_blank" rel="external">http://spark.apache.org/docs/latest/running-on-mesos.html</a></p>
+<p><strong>Installing Mesos:</strong></p>
+<ul>
+<li>Spark 2.0.1 is designed for use with Mesos 0.21.0. <a href="http://mesos.apache.org/gettingstarted/" target="_blank" rel="external">http://mesos.apache.org/gettingstarted/</a><br><strong>Connecting  Spark  to  Mesos:</strong></li>
+<li>To use Mesos from Spark, you need a Spark binary package available in a place accessible by Mesos, and a Spark driver program configured to connect to Mesos.<br><strong>Uploading  Spark Package:</strong></li>
+<li>Download a Spark binary package from the Spark download page</li>
+<li>Upload to hdfs/http/s3<br><strong>To host on HDFS, use the Hadoop fs put command:</strong><br><code>hadoop fs -put spark-2.0.1.tar.gz /path/to/spark-2.0.1.tar.gz</code><br><strong>Using a  Mesos Master URL:</strong></li>
+<li>The Master URLs for Mesos are in the form <code>mesos://host:5050</code> for a single-master Mesos cluster, or <code>mesos://zk://host1:2181,host2:2181,host3:2181/mesos</code> for a multi-master Mesos cluster using ZooKeeper.<br><strong>Client Mode:</strong><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> conf = <span class="keyword">new</span> <span class="type">SparkConf</span>()</div><div class="line">       .setMaster(<span class="string">"mesos://HOST:5050"</span>)</div><div class="line">       .setAppName(<span class="string">"My app"</span>)</div><div class="line">       .set(<span class="string">"spark.executor.uri"</span>, <span class="string">"&lt;path to spark-2.0.1.tar.gz uploaded above&gt;"</span>)</div><div class="line"><span class="keyword">val</span> sc = <span class="keyword">new</span> <span class="type">SparkContext</span>(conf)</div><div class="line">     ./bin/spark-shell --master mesos:<span class="comment">//host:5050</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>Cluster Mode:</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">./bin/spark-submit \</div><div class="line">       --class org.apache.spark.examples.SparkPi \</div><div class="line">       --master mesos://207.184.161.138:7077 \</div><div class="line">       --deploy-mode cluster \</div><div class="line">       --supervise \</div><div class="line">       --executor-memory 20G \</div><div class="line">       --total-executor-cores 100 \</div><div class="line">       http://path/to/examples.jar \</div><div class="line">       1000 \</div></pre></td></tr></table></figure></p>
+<h3 id="Running-Spark-on-YARN-模式："><a href="#Running-Spark-on-YARN-模式：" class="headerlink" title="Running Spark on YARN 模式："></a>Running Spark on YARN 模式：</h3><p><strong>Cluster mode:</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ ./bin/spark-submit --class path.to.your.Class --master yarn --deploy-mode cluster [options] &lt;app jar&gt; [app options]</div><div class="line"></div><div class="line">$ ./bin/spark-submit --class org.apache.spark.examples.SparkPi \</div><div class="line">    --master yarn \</div><div class="line">    --deploy-mode cluster \</div><div class="line">    --driver-memory 4g \</div><div class="line">    --executor-memory 2g \</div><div class="line">    --executor-cores 1 \</div><div class="line">    --queue thequeue \</div><div class="line">    lib/spark-examples*.jar \</div><div class="line">    10</div></pre></td></tr></table></figure></p>
+<p><strong>Client mode:</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ./bin/spark-shell --master yarn --deploy-mode client</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/Spark Cluster三种模式/" class="archive-article-date">
+  	<time datetime="2016-11-09T02:11:16.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-09</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark/">Spark</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/bigdata/">bigdata</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Spark介绍" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Spark介绍/">Spark介绍</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Spark-运行架构"><a href="#Spark-运行架构" class="headerlink" title="Spark 运行架构"></a>Spark 运行架构</h3><p><img src="/images/Spark_Arch.png" alt=""></p>
+<p><img src="/images/Spark_Arch_1.png" alt=""></p>
+<p>Spark架构采用了分布式计算中的Master-Slave模型。Master是对应集群中的含有Master进程的节点，Slave是集群中含有Worker进程的节点。Master作为整个集群的控制器，负责整个集群的正常运行；Worker相当于计算节点，接收主节点命令与进行状态汇报；Executor负责任务的执行；Client作为用户的客户端负责提交应用，Driver负责控制一个应用的执行。</p>
+<p>Spark集群部署后，需要在主节点和从节点分别启动Master进程和Worker进程，对整个集群进行控制。在一个Spark应用的执行过程中，Driver和Worker是两个重要角色。<strong>Driver 程序是应用逻辑执行的起点，负责作业的调度，即Task任务的分发，而多个Worker用来管理计算节点和创建Executor并行处理任务。在执行阶段，Driver会将Task和Task所依赖的file和jar序列化后传递给对应的Worker机器，同时Executor对相应数据分区的任务进行处理。</strong></p>
+<h3 id="Spark-组件"><a href="#Spark-组件" class="headerlink" title="Spark 组件"></a>Spark 组件</h3><ul>
+<li>ClusterManager：在Standalone模式中即为Master（主节点），控制整个集群，监控Worker。在YARN模式中为资源管理器。</li>
+<li>Worker：从节点，负责控制计算节点，启动Executor或Driver。在YARN模式中为NodeManager，负责计算节点的控制。</li>
+<li>Driver：运行Application的main()函数并创建SparkContext。</li>
+<li>Executor：执行器，在worker node上执行任务的组件、用于启动线程池运行任务。每个Application拥有独立的一组Executors。</li>
+<li>SparkContext：整个应用的上下文，控制应用的生命周期。</li>
+<li>RDD：Spark的基本计算单元，一组RDD可形成执行的有向无环图RDD Graph。</li>
+<li>DAG Scheduler：根据作业（Job）构建基于Stage的DAG，并提交Stage给TaskScheduler。</li>
+<li>TaskScheduler：将任务（Task）分发给Executor执行。</li>
+<li>SparkEnv：线程级别的上下文，存储运行时的重要组件的引用。</li>
+<li>SparkConf：负责存储配置信息。</li>
+</ul>
+<h3 id="Spark-提交Job"><a href="#Spark-提交Job" class="headerlink" title="Spark 提交Job"></a>Spark 提交Job</h3><p>参考： <a href="http://spark.apache.org/docs/latest/submitting-applications.html" target="_blank" rel="external">http://spark.apache.org/docs/latest/submitting-applications.html</a><br>可向 本地 或 集群 提交。</p>
+<h3 id="推荐一本书"><a href="#推荐一本书" class="headerlink" title="推荐一本书"></a>推荐一本书</h3><p>《Advanced Analytics with Spark. 2015.4》</p>
+<h3 id="生态"><a href="#生态" class="headerlink" title="生态"></a>生态</h3><p><img src="/images/Spark_Eco.jpg" alt=""></p>
+<p>Spark can integaration with Hadoop ecosystem.</p>
+<ul>
+<li>1.Avro and Parquet can store data on Hadoop.</li>
+<li>2.Can read and write to NoSQL databases like HBase and Cassandra.</li>
+<li>3.Spark Streaming can ingest data from Flume and Kafka.</li>
+<li>4.SparkSQL can interact with Hive Metastore.</li>
+<li>5.It can run inside YARN, Hadoop’s scheduler and resource manager.</li>
+</ul>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/Spark介绍/" class="archive-article-date">
+  	<time datetime="2016-11-09T01:48:14.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-09</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark/">Spark</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/bigdata/">bigdata</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Cassandra" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Cassandra/">Cassandra 数据库</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Cassandra-数据库"><a href="#Cassandra-数据库" class="headerlink" title="Cassandra 数据库"></a>Cassandra 数据库</h3><p>Apache Cassandra是一套开源分布式NoSQL数据库系统。它最初由Facebook开发，用于储存收件箱等简单格式数据，集Google BigTable的数据模型与AmazonDynamo的完全分布式架构于一身。Facebook于2008将 Cassandra 开源，此后，由于Cassandra良好的可扩展性和性能，被Apple, Comcast,Instagram, Spotify, eBay, Rackspace, Netflix等知名网站所采用，成为了一种流行的分布式结构化数据存储方案。</p>
+<p>在数据库排行榜“DB-Engines Ranking”中，Cassandra排在第七位，是非关系型数据库中排名第二高的（仅次于MongoDB）。</p>
+<h3 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h3><p>Cassandra使用了Google 设计的 BigTable的数据模型，Cassandra使用的是宽列存储模型(Wide Column Stores)，每行数据由row key唯一标识之后，可以有最多20亿个列，每个列由一个column key标识，每个column key下对应若干value。这种模型可以理解为是一个二维的key-value存储，即整个数据模型被定义成一个类似 map&lt; key1, map&lt; key2,value&gt;&gt;的类型。</p>
+<h3 id="存储模型"><a href="#存储模型" class="headerlink" title="存储模型"></a>存储模型</h3><p>与BigTable和其模仿者HBase不同，Cassandra的数据并不存储在分布式文件系统如GFS或HDFS中，而是直接存于本地。与BigTable一样，Cassandra也是日志型数据库，即把新写入的数据存储在内存的Memtable中并通过磁盘中的CommitLog来做持久化，内存填满后将数据按照key的顺序写进一个只读文件SSTable中，每次读取数据时将所有SSTable和内存中的数据进行查找和合并。这种系统的特点是写入比读取更快，因为写入一条数据是顺序计入commit log中，不需要随机读取磁盘以及搜索。</p>
+<h3 id="与类似开源系统的比较"><a href="#与类似开源系统的比较" class="headerlink" title="与类似开源系统的比较"></a>与类似开源系统的比较</h3><p>HBase是Apache Hadoop项目的一个子项目，是Google BigTable的一个克隆，与Cassandra一样，它们都使用了BigTable的列族式的数据模型，但是：</p>
+<ul>
+<li>Cassandra只有一种节点，而HBase有多种不同角色，除了处理读写请求的region server之外，其架构在一套完整的HDFS分布式文件系统之上，并需要ZooKeeper来同步集群状态，部署上Cassandra更简单。</li>
+<li>Cassandra的数据一致性策略是可配置的，可选择是强一致性还是性能更高的最终一致性；而HBase总是强一致性的。</li>
+<li>Cassandra通过一致性哈希来决定一行数据存储在哪些节点，靠概率上的平均来实现负载均衡；而HBase每段数据(region)只有一个节点负责处理，由master来动态分配一个region是否大到需要拆分成两个，同时会将过热的节点上的一些region动态的分配给负载较低的节点，因此实现动态的负载均衡。</li>
+<li>因为每个region同时只能有一个节点处理，一旦这个节点无响应，在系统将这个节点的所有region转移到其他节点之前这些数据便无法读写，加上master也只有一个节点，备用master的恢复也需要时间，因此HBase在一定程度上有单点问题；而Cassandra无单点问题。</li>
+<li>Cassandra的读写性能优于HBase。</li>
+</ul>
+<h3 id="Cassandra-服务启动"><a href="#Cassandra-服务启动" class="headerlink" title="Cassandra 服务启动"></a>Cassandra 服务启动</h3><ul>
+<li><p>1.启动服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./cassandra   org.apache.cassandra.service.CassandraDaemon</div></pre></td></tr></table></figure>
+</li>
+<li><p>2.启动用户交互              实际启动cqlsh.py来进行交互</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./cqlsh</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>Cassandra Shell 命令：  <a href="http://www.w3ii.com/cassandra/cassandra_shell_commands.html" target="_blank" rel="external">http://www.w3ii.com/cassandra/cassandra_shell_commands.html</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./cassandra -f           前台启动 cassandra</div></pre></td></tr></table></figure></p>
+<ul>
+<li>3.停止服务<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">kill</span>  pid</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Cql-使用"><a href="#Cql-使用" class="headerlink" title="Cql 使用"></a>Cql 使用</h3><p><strong>创建使用Cqlsh一个密钥空间</strong><br><a href="http://www.w3ii.com/cassandra/cassandra_create_keyspace.html" target="_blank" rel="external">http://www.w3ii.com/cassandra/cassandra_create_keyspace.html</a><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> KEYSPACE tutorialspoint</div><div class="line"><span class="keyword">WITH</span> <span class="keyword">replication</span> = &#123;<span class="string">'class'</span>:<span class="string">'SimpleStrategy'</span>, <span class="string">'replication_factor'</span> : <span class="number">3</span>&#125;;</div><div class="line"><span class="keyword">DESCRIBE</span> keyspaces;</div></pre></td></tr></table></figure></p>
+<p><strong>使用Java创建API密钥空间一</strong><br><a href="http://www.w3ii.com/cassandra/cassandra_create_keyspace.html" target="_blank" rel="external">http://www.w3ii.com/cassandra/cassandra_create_keyspace.html</a></p>
+<p><strong>改变使用Cqlsh KEYSPACE</strong><br><a href="http://www.w3ii.com/cassandra/cassandra_alter_keyspace.html" target="_blank" rel="external">http://www.w3ii.com/cassandra/cassandra_alter_keyspace.html</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ALTER KEYSPACE <span class="string">"KeySpace Name"</span> WITH replication = &#123;<span class="string">'class'</span>: <span class="string">'Strategy name'</span>, <span class="string">'replication_factor'</span> : <span class="string">'No.Of  replicas'</span>&#125;;</div><div class="line">ALTER KEYSPACE tutorialspoint WITH replication = &#123;<span class="string">'class'</span>:<span class="string">'SimpleStrategy'</span>, <span class="string">'replication_factor'</span> : 2&#125;;</div></pre></td></tr></table></figure></p>
+<p><strong>测试密钥空间的durable_writes属性</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cqlsh&gt; SELECT * FROM system_schema.keyspaces;</div><div class="line">ALTER KEYSPACE <span class="built_in">test</span></div><div class="line">WITH REPLICATION = &#123;<span class="string">'class'</span> : <span class="string">'NetworkTopologyStrategy'</span>, <span class="string">'datacenter1'</span> : 3&#125;</div><div class="line">AND DURABLE_WRITES = <span class="literal">true</span>;</div></pre></td></tr></table></figure></p>
+<p><strong>删除使用Cqlsh一个密钥空间</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DROP KEYSPACE tutorialspoint;</div></pre></td></tr></table></figure></p>
+<p><strong>Cassandra创建表</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">USE tutorialspoint;</div><div class="line">cqlsh:tutorialspoint&gt;; CREATE TABLE emp(</div><div class="line">   emp_id int PRIMARY KEY,</div><div class="line">   emp_name text,</div><div class="line">   emp_city text,</div><div class="line">   emp_sal varint,</div><div class="line">   emp_phone varint</div><div class="line">   );</div><div class="line">cqlsh:tutorialspoint&gt; select * from emp;</div></pre></td></tr></table></figure></p>
+<p><strong>Cassandra修改表</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cqlsh:tutorialspoint&gt; ALTER TABLE emp</div><div class="line">   ... ADD emp_email text;</div></pre></td></tr></table></figure></p>
+<p><strong>Cassandra删除表</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cqlsh:tutorialspoint&gt; DROP TABLE emp;</div><div class="line">cqlsh:tutorialspoint&gt; DESCRIBE COLUMNFAMILIES;</div></pre></td></tr></table></figure></p>
+<p><strong>Cassandra截断表</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cqlsh:tp&gt; TRUNCATE student;</div></pre></td></tr></table></figure></p>
+<p><strong>Cassandra创建索引</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cqlsh:tutorialspoint&gt; CREATE INDEX name ON emp1 (emp_name);</div></pre></td></tr></table></figure></p>
+<p>Cassandra DROP INDEX<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cqlsh:tp&gt; drop index name;</div></pre></td></tr></table></figure></p>
+<p><strong>Cassandra批量</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cqlsh:tutorialspoint&gt; BEGIN BATCH</div><div class="line">     INSERT INTO emp (emp_id, emp_city, emp_name, emp_phone, emp_sal) values(  4,<span class="string">'Pune'</span>,<span class="string">'rajeev'</span>,9848022331, 30000);</div><div class="line">     UPDATE emp SET emp_sal = 50000 WHERE emp_id =3;</div><div class="line">     DELETE emp_city FROM emp WHERE emp_id = 2;</div><div class="line">     APPLY BATCH;</div></pre></td></tr></table></figure></p>
+<p><strong>Cassandra创建数据</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">cqlsh:tutorialspoint&gt; INSERT INTO emp (emp_id, emp_name, emp_city,</div><div class="line">   emp_phone, emp_sal) VALUES(1,<span class="string">'ram'</span>, <span class="string">'Hyderabad'</span>, 9848022338, 50000);</div><div class="line">cqlsh:tutorialspoint&gt; INSERT INTO emp (emp_id, emp_name, emp_city,</div><div class="line">   emp_phone, emp_sal) VALUES(2,<span class="string">'robin'</span>, <span class="string">'Hyderabad'</span>, 9848022339, 40000);</div><div class="line">cqlsh:tutorialspoint&gt; INSERT INTO emp (emp_id, emp_name, emp_city,</div><div class="line">   emp_phone, emp_sal) VALUES(3,<span class="string">'rahman'</span>, <span class="string">'Chennai'</span>, 9848022330, 45000);</div></pre></td></tr></table></figure></p>
+<p><strong>Cassandra更新数据</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cqlsh:tutorialspoint&gt; UPDATE emp SET emp_city=<span class="string">'Delhi'</span>,emp_sal=50000</div><div class="line">   WHERE emp_id=2;</div></pre></td></tr></table></figure></p>
+<p><strong>Cassandra删除数据</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cqlsh:tutorialspoint&gt; DELETE emp_sal FROM emp WHERE emp_id=3;</div></pre></td></tr></table></figure></p>
+<p><strong>Cassandra CQL集合</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">cqlsh:tutorialspoint&gt; CREATE TABLE data(name text PRIMARY KEY, email list&lt;text&gt;);</div><div class="line">cqlsh:tutorialspoint&gt; INSERT INTO data(name, email) VALUES (<span class="string">'ramu'</span>, [<span class="string">'abc@gmail.com'</span>,<span class="string">'cba@yahoo.com'</span>])</div><div class="line">cqlsh:tutorialspoint&gt; UPDATE data SET email = email +[<span class="string">'xyz@w3ii.com'</span>] <span class="built_in">where</span> name = <span class="string">'ramu'</span>;</div><div class="line"></div><div class="line">cqlsh:tutorialspoint&gt; CREATE TABLE data2 (name text PRIMARY KEY, phone <span class="built_in">set</span>&lt;varint&gt;);</div><div class="line"></div><div class="line">cqlsh:tutorialspoint&gt; INSERT INTO data2(name, phone)VALUES (<span class="string">'rahman'</span>,    &#123;9848022338,9848022339&#125;);</div><div class="line"></div><div class="line">cqlsh:tutorialspoint&gt; UPDATE data2 SET phone = phone + &#123;9848022330&#125; <span class="built_in">where</span> name = <span class="string">'rahman'</span>;</div><div class="line"></div><div class="line">cqlsh:tutorialspoint&gt; CREATE TABLE data3 (name text PRIMARY KEY, address map&lt;timestamp, text&gt;);</div><div class="line"></div><div class="line">cqlsh:tutorialspoint&gt; INSERT INTO data3 (name, address) VALUES (<span class="string">'robin'</span>, &#123;<span class="string">'home'</span> : <span class="string">'hyderabad'</span> , <span class="string">'office'</span> : <span class="string">'Delhi'</span> &#125; );</div><div class="line"></div><div class="line">cqlsh:tutorialspoint&gt; UPDATE data3 SET address = address+&#123;<span class="string">'office'</span>:<span class="string">'mumbai'</span>&#125; WHERE name = <span class="string">'robin'</span>;</div></pre></td></tr></table></figure></p>
+<h3 id="Cassandra-安装-及-源代码分析"><a href="#Cassandra-安装-及-源代码分析" class="headerlink" title="Cassandra 安装 及 源代码分析"></a>Cassandra 安装 及 源代码分析</h3><p><strong>service 启动入口函数：</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">org.apache.cassandra.service.CassandraDaemon</div></pre></td></tr></table></figure></p>
+<p><strong>installation:</strong><br><a href="http://cassandra.apache.org/doc/latest/getting_started/installing.html" target="_blank" rel="external">http://cassandra.apache.org/doc/latest/getting_started/installing.html</a></p>
+<p><strong>import源代码进Eclipse：</strong></p>
+<ul>
+<li>1.ant build</li>
+<li>2.ant generate-eclipse-files</li>
+</ul>
+<p>还有其它操作：</p>
+<ul>
+<li>执行ant avro-generate</li>
+<li>执行ant gen-thrift-java</li>
+<li>执行ant generate-eclipse-files</li>
+</ul>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/Cassandra/" class="archive-article-date">
+  	<time datetime="2016-11-08T13:09:51.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-08</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cassandra/">Cassandra</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/NoSQL/">NoSQL</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-NoSQL介绍" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/NoSQL介绍/">NoSQL参考</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="NoSQL-参考"><a href="#NoSQL-参考" class="headerlink" title="NoSQL 参考"></a>NoSQL 参考</h3><p><img src="/images/NoSQL.png" alt=""></p>
+<h3 id="NoSQL-对比"><a href="#NoSQL-对比" class="headerlink" title="NoSQL 对比"></a>NoSQL 对比</h3><p><img src="/images/NoSQL_Compare.png" alt=""></p>
+<h3 id="CAP-原理"><a href="#CAP-原理" class="headerlink" title="CAP 原理"></a>CAP 原理</h3><p><img src="/images/CAP.png" alt=""></p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/NoSQL介绍/" class="archive-article-date">
+  	<time datetime="2016-11-08T12:49:48.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-08</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NoSQL/">NoSQL</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/NoSQL/">NoSQL</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Storm介绍" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1207,63 +1539,6 @@
 
 
   
-    <article id="post-personal-profile" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/personal-profile/">介绍</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>欢迎浏览 <a href="https://sstar1314.github.io/" target="_blank" rel="external">SStar1314</a>! 我的个人博客. 以及 <a href="https://github.com/SStar1314/" target="_blank" rel="external">SStar1314</a>，我的github主页. 我的主页开通于2016年11月，一直想写点什么，两年多的时间，在Evernote上记录很多自己研究的东西，一直想开通一个博客，把Evernote上的东西搬上来，顺道梳理一下以前的知识点.</p>
-<h3 id="个人关心的方向或技术"><a href="#个人关心的方向或技术" class="headerlink" title="个人关心的方向或技术"></a>个人关心的方向或技术</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">OpenStack云计算框架: Keystone／Nova／Neutron／Glance／Cinder／Swift／Ironic</div><div class="line">	Keystone: RabbitMQ,Qpid,AMQP(Producer+Consumer+Exchange+Queue)</div><div class="line">	Nova: nova-scheduler,nova-compute,虚拟化</div><div class="line">	Neutron: OVS,Linux Bridge,vlan,vxlan,gre.</div><div class="line">		Provider network ---- Self-defined network</div><div class="line">虚拟化: KVM／Xen</div><div class="line">大数据: Headoop／Spark</div><div class="line">	Headoop: MapReduce,HDFS,Yarn,Hbase,Hive,Storm. Hadoop1.x vs 2.x</div><div class="line">	Spark: RDD,Spark-shell,Spark SQL,Spark Streaming,MLlib,GraphX</div><div class="line">NoSQL: HBase, Cassandra, MongoDB, Redis</div><div class="line">容器化: Docker, Kubernetes, rkt, CoreOS</div><div class="line">数据中心操作系统: DCOS, Mesos, Marathon, Chronos</div><div class="line">分布式协同: ZooKeeper, etcd</div><div class="line">其它: Kafka, Elastic Search, Logstash</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://github.com/SStar1314/" target="_blank" rel="external">我的github主页</a></p>
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/personal-profile/" class="archive-article-date">
-  	<time datetime="2016-11-07T02:31:11.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-07</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/介绍/">介绍</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-price-tags"></i>
-	<a class="article-category-link" href="/categories/介绍/">介绍</a>
-	</div>
-
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-  
     <article id="post-大数据" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1307,6 +1582,63 @@
 	<div class="article-category tagcloud">
 	<i class="icon-price-tags"></i>
 	<a class="article-category-link" href="/categories/bigdata/">bigdata</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-personal-profile" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/personal-profile/">介绍</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>欢迎浏览 <a href="https://sstar1314.github.io/" target="_blank" rel="external">SStar1314</a>! 我的个人博客. 以及 <a href="https://github.com/SStar1314/" target="_blank" rel="external">SStar1314</a>，我的github主页. 我的主页开通于2016年11月，一直想写点什么，两年多的时间，在Evernote上记录很多自己研究的东西，一直想开通一个博客，把Evernote上的东西搬上来，顺道梳理一下以前的知识点.</p>
+<h3 id="个人关心的方向或技术"><a href="#个人关心的方向或技术" class="headerlink" title="个人关心的方向或技术"></a>个人关心的方向或技术</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">OpenStack云计算框架: Keystone／Nova／Neutron／Glance／Cinder／Swift／Ironic</div><div class="line">	Keystone: RabbitMQ,Qpid,AMQP(Producer+Consumer+Exchange+Queue)</div><div class="line">	Nova: nova-scheduler,nova-compute,虚拟化</div><div class="line">	Neutron: OVS,Linux Bridge,vlan,vxlan,gre.</div><div class="line">		Provider network ---- Self-defined network</div><div class="line">虚拟化: KVM／Xen</div><div class="line">大数据: Headoop／Spark</div><div class="line">	Headoop: MapReduce,HDFS,Yarn,Hbase,Hive,Storm. Hadoop1.x vs 2.x</div><div class="line">	Spark: RDD,Spark-shell,Spark SQL,Spark Streaming,MLlib,GraphX</div><div class="line">NoSQL: HBase, Cassandra, MongoDB, Redis</div><div class="line">容器化: Docker, Kubernetes, rkt, CoreOS</div><div class="line">数据中心操作系统: DCOS, Mesos, Marathon, Chronos</div><div class="line">分布式协同: ZooKeeper, etcd</div><div class="line">其它: Kafka, Elastic Search, Logstash</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://github.com/SStar1314/" target="_blank" rel="external">我的github主页</a></p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/personal-profile/" class="archive-article-date">
+  	<time datetime="2016-11-07T02:31:11.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-07</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/介绍/">介绍</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/介绍/">介绍</a>
 	</div>
 
 
@@ -1406,7 +1738,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Kafka/" style="font-size: 12.5px;">Kafka</a> <a href="/tags/Libvirt/" style="font-size: 10px;">Libvirt</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/Linux-Networking-Internals/" style="font-size: 15px;">Linux Networking Internals</a> <a href="/tags/Linux-Source-Code/" style="font-size: 10px;">Linux Source Code</a> <a href="/tags/Linux-Special-File-System/" style="font-size: 10px;">Linux Special File System</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/QEMU/" style="font-size: 10px;">QEMU</a> <a href="/tags/Spark/" style="font-size: 15px;">Spark</a> <a href="/tags/ZooKeeper/" style="font-size: 12.5px;">ZooKeeper</a> <a href="/tags/etcd/" style="font-size: 10px;">etcd</a> <a href="/tags/kubernetes/" style="font-size: 10px;">kubernetes</a> <a href="/tags/lxc/" style="font-size: 10px;">lxc</a> <a href="/tags/lxcfs/" style="font-size: 10px;">lxcfs</a> <a href="/tags/介绍/" style="font-size: 10px;">介绍</a> <a href="/tags/分布式协同/" style="font-size: 10px;">分布式协同</a> <a href="/tags/大数据/" style="font-size: 17.5px;">大数据</a>
+    				<a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Kafka/" style="font-size: 12.5px;">Kafka</a> <a href="/tags/Libvirt/" style="font-size: 10px;">Libvirt</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/Linux-Networking-Internals/" style="font-size: 15px;">Linux Networking Internals</a> <a href="/tags/Linux-Source-Code/" style="font-size: 10px;">Linux Source Code</a> <a href="/tags/Linux-Special-File-System/" style="font-size: 10px;">Linux Special File System</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/QEMU/" style="font-size: 10px;">QEMU</a> <a href="/tags/Spark/" style="font-size: 15px;">Spark</a> <a href="/tags/Spring/" style="font-size: 12.5px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/ZooKeeper/" style="font-size: 12.5px;">ZooKeeper</a> <a href="/tags/etcd/" style="font-size: 10px;">etcd</a> <a href="/tags/kubernetes/" style="font-size: 10px;">kubernetes</a> <a href="/tags/lxc/" style="font-size: 10px;">lxc</a> <a href="/tags/lxcfs/" style="font-size: 10px;">lxcfs</a> <a href="/tags/介绍/" style="font-size: 10px;">介绍</a> <a href="/tags/分布式协同/" style="font-size: 10px;">分布式协同</a> <a href="/tags/大数据/" style="font-size: 17.5px;">大数据</a>
     			</div>
     	</section>
     
