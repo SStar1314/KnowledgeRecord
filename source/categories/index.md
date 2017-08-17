@@ -4,6 +4,8 @@ type: "categories"
 date: 2017-07-19 17:54:38
 ---
 
+#### [Openstack](https://sstar1314.github.io/categories/Openstack/)
+
 #### [Kafka](https://sstar1314.github.io/categories/Kafka/)
 
 #### [NoSQL](https://sstar1314.github.io/categories/NoSQL/)

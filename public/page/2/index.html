@@ -8,18 +8,21 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>SStar1314</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="西安">
+<meta property="og:type" content="website">
 <meta property="og:title" content="SStar1314">
 <meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="SStar1314">
+<meta property="og:description" content="西安">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SStar1314">
+<meta name="twitter:description" content="西安">
   
     <link rel="alternative" href="/atom.xml" title="SStar1314" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="/images/favicon.ico">
   
   <link rel="stylesheet" href="/main.css">
   
@@ -34,7 +37,7 @@
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
 			
-			<img src="/favicon.ico" class="js-avatar">
+			<img src="/images/favicon.ico" class="js-avatar">
 			
 		</a>
 
@@ -43,13 +46,13 @@
 		</hgroup>
 
 		
-		<p class="header-subtitle">西安</p>
+		<p class="header-subtitle">研发</p>
 		
 
 		<nav class="header-menu">
 			<ul>
 			
-				<li><a href="/">主页</a></li>
+				<li><a href="/archives">主页</a></li>
 	        
 				<li><a href="/archives">所有文章</a></li>
 	        
@@ -105,19 +108,19 @@
 		<header id="header" class="inner">
 			<div class="profilepic">
 				
-					<img src="/favicon.ico" class="js-avatar">
+					<img src="/images/favicon.ico" class="js-avatar">
 				
 			</div>
 			<hgroup>
 			  <h1 class="header-author">Xia, MingXing</h1>
 			</hgroup>
 			
-			<p class="header-subtitle">西安</p>
+			<p class="header-subtitle">研发</p>
 			
 			<nav class="header-menu">
 				<ul>
 				
-					<li><a href="/">主页</a></li>
+					<li><a href="/archives">主页</a></li>
 		        
 					<li><a href="/archives">所有文章</a></li>
 		        
@@ -146,6 +149,68 @@
 
       <div class="body-wrap">
         
+  
+    <article id="post-Spark Quick Start" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Spark Quick Start/">Spark Quick Start examples</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Spark-Quick-Start"><a href="#Spark-Quick-Start" class="headerlink" title="Spark Quick Start"></a>Spark Quick Start</h3><p><strong>Scala:</strong><br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">./bin/spark-shell</div><div class="line">scala&gt; <span class="keyword">val</span> textFile = sc.textFile(<span class="string">"README.md"</span>)</div><div class="line">scala&gt; textFile.count()</div><div class="line">scala&gt; textFile.first()</div><div class="line">scala&gt; <span class="keyword">val</span> linesWithSpark = textFile.filter(line =&gt; line.contains(<span class="string">"Spark"</span>))</div><div class="line">scala&gt; textFile.filter(line =&gt; line.contains(<span class="string">"Spark"</span>)).count()</div></pre></td></tr></table></figure></p>
+<p>more on RDD operations:<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">scala&gt; textFile.map(line =&gt; line.split(<span class="string">" "</span>).size).reduce((a, b) =&gt; <span class="keyword">if</span> (a &gt; b) a <span class="keyword">else</span> b)</div><div class="line">scala&gt; <span class="keyword">import</span> java.lang.<span class="type">Math</span></div><div class="line">scala&gt; textFile.map(line =&gt; line.split(<span class="string">" "</span>).size).reduce((a, b) =&gt; <span class="type">Math</span>.max(a, b))</div><div class="line">scala&gt; <span class="keyword">val</span> wordCounts = textFile.flatMap(line =&gt; line.split(<span class="string">" "</span>)).map(word =&gt; (word, <span class="number">1</span>)).reduceByKey((a, b) =&gt; a + b)</div><div class="line">scala&gt; wordCounts.collect()</div></pre></td></tr></table></figure></p>
+<p>Self-Contained  Applications:<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> org.apache.spark.<span class="type">SparkContext</span></div><div class="line"><span class="keyword">import</span> org.apache.spark.<span class="type">SparkContext</span>._</div><div class="line"><span class="keyword">import</span> org.apache.spark.<span class="type">SparkConf</span></div><div class="line"><span class="class"><span class="keyword">object</span> <span class="title">SimpleApp</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]) &#123;</div><div class="line">    <span class="keyword">val</span> logFile = <span class="string">"YOUR_SPARK_HOME/README.md"</span> <span class="comment">// Should be some file on your system</span></div><div class="line">    <span class="keyword">val</span> conf = <span class="keyword">new</span> <span class="type">SparkConf</span>().setAppName(<span class="string">"Simple Application"</span>)</div><div class="line">    <span class="keyword">val</span> sc = <span class="keyword">new</span> <span class="type">SparkContext</span>(conf)</div><div class="line">    <span class="keyword">val</span> logData = sc.textFile(logFile, <span class="number">2</span>).cache()</div><div class="line">    <span class="keyword">val</span> numAs = logData.filter(line =&gt; line.contains(<span class="string">"a"</span>)).count()</div><div class="line">    <span class="keyword">val</span> numBs = logData.filter(line =&gt; line.contains(<span class="string">"b"</span>)).count()</div><div class="line">    println(<span class="string">"Lines with a: %s, Lines with b: %s"</span>.format(numAs, numBs))</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>SparkConf:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">name := &quot;Simple Project&quot;</div><div class="line">version := &quot;1.0&quot;</div><div class="line">scalaVersion := &quot;2.11.7&quot;</div><div class="line">libraryDependencies += &quot;org.apache.spark&quot; %% &quot;spark-core&quot; % &quot;2.0.1&quot;</div></pre></td></tr></table></figure></p>
+<p><strong>Python:</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">./bin/pyspark</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>textFile = sc.textFile(<span class="string">"README.md"</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>textFile.count()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>textFile.first()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>linesWithSpark = textFile.filter(<span class="keyword">lambda</span> line: <span class="string">"Spark"</span> <span class="keyword">in</span> line)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>textFile.filter(<span class="keyword">lambda</span> line: <span class="string">"Spark"</span> <span class="keyword">in</span> line).count()</div></pre></td></tr></table></figure></p>
+<p>more on RDD operations:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>textFile.map(<span class="keyword">lambda</span> line: len(line.split())).reduce(<span class="keyword">lambda</span> a, b: a <span class="keyword">if</span> (a &gt; b) <span class="keyword">else</span> b)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">max</span><span class="params">(a, b)</span>:</span></div><div class="line"><span class="meta">... </span>    <span class="keyword">if</span> a &gt; b:</div><div class="line"><span class="meta">... </span>        <span class="keyword">return</span> a</div><div class="line"><span class="meta">... </span>    <span class="keyword">else</span>:</div><div class="line"><span class="meta">... </span>        <span class="keyword">return</span> b</div><div class="line">...</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>textFile.map(<span class="keyword">lambda</span> line: len(line.split())).reduce(max)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>wordCounts = textFile.flatMap(<span class="keyword">lambda</span> line: line.split()).map(<span class="keyword">lambda</span> word: (word, <span class="number">1</span>)).reduceByKey(<span class="keyword">lambda</span> a, b: a+b)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>wordCounts.collect()</div></pre></td></tr></table></figure></p>
+<p>Self-Contained  Applications:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> pyspark <span class="keyword">import</span> SparkContext</div><div class="line"></div><div class="line">logFile = <span class="string">"YOUR_SPARK_HOME/README.md"</span>  <span class="comment"># Should be some file on your system</span></div><div class="line">sc = SparkContext(<span class="string">"local"</span>, <span class="string">"Simple App"</span>)</div><div class="line">logData = sc.textFile(logFile).cache()</div><div class="line">numAs = logData.filter(<span class="keyword">lambda</span> s: <span class="string">'a'</span> <span class="keyword">in</span> s).count()</div><div class="line">numBs = logData.filter(<span class="keyword">lambda</span> s: <span class="string">'b'</span> <span class="keyword">in</span> s).count()</div><div class="line">print(<span class="string">"Lines with a: %i, lines with b: %i"</span> % (numAs, numBs))</div><div class="line"></div><div class="line">$ YOUR_SPARK_HOME/bin/spark-submit \</div><div class="line">  --master local[<span class="number">4</span>] \</div><div class="line">  SimpleApp.py</div></pre></td></tr></table></figure></p>
+<h2 id="Spark-Programming-Guide"><a href="#Spark-Programming-Guide" class="headerlink" title="Spark Programming Guide"></a>Spark Programming Guide</h2><p>参考： <a href="http://spark.apache.org/docs/latest/programming-guide.html" target="_blank" rel="external">http://spark.apache.org/docs/latest/programming-guide.html</a></p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/Spark Quick Start/" class="archive-article-date">
+  	<time datetime="2016-11-09T02:32:10.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-09</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark/">Spark</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/bigdata/">bigdata</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-Spark Cluster三种模式" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -1539,6 +1604,63 @@
 
 
   
+    <article id="post-personal-profile" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/personal-profile/">介绍</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>欢迎浏览 <a href="https://sstar1314.github.io/" target="_blank" rel="external">SStar1314</a>! 我的个人博客. 以及 <a href="https://github.com/SStar1314/" target="_blank" rel="external">SStar1314</a>，我的github主页. 我的主页开通于2016年11月，一直想写点什么，两年多的时间，在Evernote上记录很多自己研究的东西，一直想开通一个博客，把Evernote上的东西搬上来，顺道梳理一下以前的知识点.</p>
+<h3 id="个人关心的方向或技术"><a href="#个人关心的方向或技术" class="headerlink" title="个人关心的方向或技术"></a>个人关心的方向或技术</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">OpenStack云计算框架: Keystone／Nova／Neutron／Glance／Cinder／Swift／Ironic</div><div class="line">	Keystone: RabbitMQ,Qpid,AMQP(Producer+Consumer+Exchange+Queue)</div><div class="line">	Nova: nova-scheduler,nova-compute,虚拟化</div><div class="line">	Neutron: OVS,Linux Bridge,vlan,vxlan,gre.</div><div class="line">		Provider network ---- Self-defined network</div><div class="line">虚拟化: KVM／Xen</div><div class="line">大数据: Headoop／Spark</div><div class="line">	Headoop: MapReduce,HDFS,Yarn,Hbase,Hive,Storm. Hadoop1.x vs 2.x</div><div class="line">	Spark: RDD,Spark-shell,Spark SQL,Spark Streaming,MLlib,GraphX</div><div class="line">NoSQL: HBase, Cassandra, MongoDB, Redis</div><div class="line">容器化: Docker, Kubernetes, rkt, CoreOS</div><div class="line">数据中心操作系统: DCOS, Mesos, Marathon, Chronos</div><div class="line">分布式协同: ZooKeeper, etcd</div><div class="line">其它: Kafka, Elastic Search, Logstash</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://github.com/SStar1314/" target="_blank" rel="external">我的github主页</a></p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/personal-profile/" class="archive-article-date">
+  	<time datetime="2016-11-07T02:31:11.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-07</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/介绍/">介绍</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/介绍/">介绍</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-大数据" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1582,63 +1704,6 @@
 	<div class="article-category tagcloud">
 	<i class="icon-price-tags"></i>
 	<a class="article-category-link" href="/categories/bigdata/">bigdata</a>
-	</div>
-
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-personal-profile" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/personal-profile/">介绍</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>欢迎浏览 <a href="https://sstar1314.github.io/" target="_blank" rel="external">SStar1314</a>! 我的个人博客. 以及 <a href="https://github.com/SStar1314/" target="_blank" rel="external">SStar1314</a>，我的github主页. 我的主页开通于2016年11月，一直想写点什么，两年多的时间，在Evernote上记录很多自己研究的东西，一直想开通一个博客，把Evernote上的东西搬上来，顺道梳理一下以前的知识点.</p>
-<h3 id="个人关心的方向或技术"><a href="#个人关心的方向或技术" class="headerlink" title="个人关心的方向或技术"></a>个人关心的方向或技术</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">OpenStack云计算框架: Keystone／Nova／Neutron／Glance／Cinder／Swift／Ironic</div><div class="line">	Keystone: RabbitMQ,Qpid,AMQP(Producer+Consumer+Exchange+Queue)</div><div class="line">	Nova: nova-scheduler,nova-compute,虚拟化</div><div class="line">	Neutron: OVS,Linux Bridge,vlan,vxlan,gre.</div><div class="line">		Provider network ---- Self-defined network</div><div class="line">虚拟化: KVM／Xen</div><div class="line">大数据: Headoop／Spark</div><div class="line">	Headoop: MapReduce,HDFS,Yarn,Hbase,Hive,Storm. Hadoop1.x vs 2.x</div><div class="line">	Spark: RDD,Spark-shell,Spark SQL,Spark Streaming,MLlib,GraphX</div><div class="line">NoSQL: HBase, Cassandra, MongoDB, Redis</div><div class="line">容器化: Docker, Kubernetes, rkt, CoreOS</div><div class="line">数据中心操作系统: DCOS, Mesos, Marathon, Chronos</div><div class="line">分布式协同: ZooKeeper, etcd</div><div class="line">其它: Kafka, Elastic Search, Logstash</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://github.com/SStar1314/" target="_blank" rel="external">我的github主页</a></p>
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/personal-profile/" class="archive-article-date">
-  	<time datetime="2016-11-07T02:31:11.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-07</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/介绍/">介绍</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-price-tags"></i>
-	<a class="article-category-link" href="/categories/介绍/">介绍</a>
 	</div>
 
 
@@ -1738,7 +1803,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Kafka/" style="font-size: 12.5px;">Kafka</a> <a href="/tags/Libvirt/" style="font-size: 10px;">Libvirt</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/Linux-Networking-Internals/" style="font-size: 15px;">Linux Networking Internals</a> <a href="/tags/Linux-Source-Code/" style="font-size: 10px;">Linux Source Code</a> <a href="/tags/Linux-Special-File-System/" style="font-size: 10px;">Linux Special File System</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/QEMU/" style="font-size: 10px;">QEMU</a> <a href="/tags/Spark/" style="font-size: 15px;">Spark</a> <a href="/tags/Spring/" style="font-size: 12.5px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/ZooKeeper/" style="font-size: 12.5px;">ZooKeeper</a> <a href="/tags/etcd/" style="font-size: 10px;">etcd</a> <a href="/tags/kubernetes/" style="font-size: 10px;">kubernetes</a> <a href="/tags/lxc/" style="font-size: 10px;">lxc</a> <a href="/tags/lxcfs/" style="font-size: 10px;">lxcfs</a> <a href="/tags/介绍/" style="font-size: 10px;">介绍</a> <a href="/tags/分布式协同/" style="font-size: 10px;">分布式协同</a> <a href="/tags/大数据/" style="font-size: 17.5px;">大数据</a>
+    				<a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Kafka/" style="font-size: 12.5px;">Kafka</a> <a href="/tags/Libvirt/" style="font-size: 10px;">Libvirt</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/Linux-Networking-Internals/" style="font-size: 15px;">Linux Networking Internals</a> <a href="/tags/Linux-Source-Code/" style="font-size: 10px;">Linux Source Code</a> <a href="/tags/Linux-Special-File-System/" style="font-size: 10px;">Linux Special File System</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/Openstack/" style="font-size: 10px;">Openstack</a> <a href="/tags/QEMU/" style="font-size: 10px;">QEMU</a> <a href="/tags/Spark/" style="font-size: 15px;">Spark</a> <a href="/tags/Spring/" style="font-size: 12.5px;">Spring</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/ZooKeeper/" style="font-size: 12.5px;">ZooKeeper</a> <a href="/tags/etcd/" style="font-size: 10px;">etcd</a> <a href="/tags/kubernetes/" style="font-size: 10px;">kubernetes</a> <a href="/tags/lxc/" style="font-size: 10px;">lxc</a> <a href="/tags/lxcfs/" style="font-size: 10px;">lxcfs</a> <a href="/tags/介绍/" style="font-size: 10px;">介绍</a> <a href="/tags/分布式协同/" style="font-size: 10px;">分布式协同</a> <a href="/tags/大数据/" style="font-size: 17.5px;">大数据</a>
     			</div>
     	</section>
     
